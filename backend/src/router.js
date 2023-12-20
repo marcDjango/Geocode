@@ -31,8 +31,9 @@ router.get("/charging-station/:id", chargingStationControllers.read);
 router.put("/charging-station/:id", chargingStationControllers.edit);
 
 // Route to add a new item
-// router.post("/items", chargingStationManager.add);
+router.post("/charging-station/", chargingStationControllers.add);
 
+router.delete("/charging-station/:id", chargingStationControllers.destroy);
 /* ************************************************************************* */
 
 module.exports = router;

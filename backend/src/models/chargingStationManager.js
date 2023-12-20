@@ -36,5 +36,32 @@ class chargingStationManager extends AbstractManager {
     );
     return rows;
   }
+
+  async add(body) {
+    function isArray(data) {
+      return Object.values(data).map((arr) =>
+        Array.isArray(arr) ? JSON.stringify(arr) : arr
+      );
+    }
+
+    const values = isArray(body);
+    const params = Object.keys(body);
+    const setParams = params.map((item) => item).join(", ");
+    const placeholder = params.map(() => "? ").join(", ");
+
+    const [rows] = await this.database.query(
+      `INSERT INTO ${this.table}(${setParams}) VALUES (${placeholder})`,
+      [...values]
+    );
+    return rows;
+  }
+
+  async delete(id) {
+    const [rows] = await this.database.query(
+      `delete from ${this.table} where id = ?`,
+      [id]
+    );
+    return rows;
+  }
 }
 module.exports = chargingStationManager;
