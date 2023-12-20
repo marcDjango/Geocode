@@ -26,7 +26,9 @@ const chargingStationControllers = require("./controllers/chargingStationControl
 router.get("/charging-station", chargingStationControllers.browse);
 
 // Route to get a specific item by ID
-// router.get("/items/:id", chargingStationManager.read);
+router.get("/charging-station/:id", chargingStationControllers.read);
+
+router.put("/charging-station/:id", chargingStationControllers.edit);
 
 // Route to add a new item
 // router.post("/items", chargingStationManager.add);
