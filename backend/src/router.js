@@ -6,6 +6,15 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
+// Import itemControllers module for handling item-related operations
+
+const carControllers = require("./controllers/carControllers");
+
+// Route to get a list of items
+
+router.get("/cars", carControllers.browse);
+
+/* ************************************************************************* */
 // Import chargingStationControllers module for handling operations
 const chargingStationControllers = require("./controllers/chargingStationControllers");
 
