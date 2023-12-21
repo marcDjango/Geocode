@@ -1,32 +1,33 @@
 // // Import required dependencies
 // const { app, request, tables } = require("../setup");
 
-// // Test suite for the GET /api/vehicles route
-// describe("GET /api/vehicles", () => {
-//   it("should fetch vehicles successfully", async () => {
-//     // Define a sample vehicle for testing
-//     const newVehicle = {
-//       vehicle_image: "xxx",
+// // Test suite for the GET /api/cars route
+// describe("GET /api/cars", () => {
+//   it("should fetch cars successfully", async () => {
+//     // Define a sample car for testing
+//     const newCar = {
+//       car_image: "xxx",
 //       user_id: 1,
 //       brand_id: 1,
+//       plug_id: 1,
 //     };
 
-//     // Create a sample vehicle in the database
-//     const insertId = await tables.vehicle.create(newVehicle);
+//     // Create a sample car in the database
+//     const insertId = await tables.car.create(newCar);
 
-//     // Send a GET request to the /api/vehicles endpoint
-//     const response = await request(app).get("/api/vehicles");
+//     // Send a GET request to the /api/cars endpoint
+//     const response = await request(app).get("/api/cars");
 
 //     // Assertions
 //     expect(response.status).toBe(200);
 //     expect(response.body).toBeInstanceOf(Array);
 
-//     // Check if the created vehicle is present in the response
-//     const foundVehicle = response.body.find((item) => item.id === insertId);
+//     // Check if the created car is present in the response
+//     const foundcar = response.body.find((item) => item.id === insertId);
 
 //     // Assertions
-//     expect(foundVehicle).toBeInstanceOf(Object);
-//     expect(foundVehicle.title).toBe(testVehicle.title);
+//     expect(foundcar).toBeInstanceOf(Object);
+//     expect(foundcar.title).toBe(newCar.title);
 //   });
 // });
 

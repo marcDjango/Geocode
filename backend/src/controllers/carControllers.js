@@ -1,67 +1,70 @@
-// // Import access to database tables
-// const tables = require("../tables");
+const tables = require("../tables");
 
-// // The B of BREAD - Browse (Read All) operation
-// const browse = async (req, res, next) => {
-//   try {
-//     // Fetch all cars from the database
-//     const cars = await tables.car.readAll();
+const browse = async (req, res, next) => {
+  try {
+    const stations = await tables.car.readAll();
+    res.json(stations);
+  } catch (error) {
+    next(error);
+  }
+};
 
-//     // Respond with the cars in JSON format
-//     res.json(cars);
-//   } catch (err) {
-//     // Pass any errors to the error-handling middleware
-//     next(err);
-//   }
-// };
+const read = async (req, res, next) => {
+  try {
+    const station = await tables.car.read(req.params.id);
+    if (station == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(station);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
-// // The R of BREAD - Read operation
-// const read = async (req, res, next) => {
-//   try {
-//     // Fetch a specific car from the database based on the provided ID
-//     const car = await tables.car.read(req.params.id);
+const edit = async (req, res, next) => {
+  try {
+    const station = await tables.car.edit(req.body, req.params.id);
+    if (station == null) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
-//     // If the car is not found, respond with HTTP 404 (Not Found)
-//     // Otherwise, respond with the car in JSON format
-//     if (car == null) {
-//       res.sendStatus(404);
-//     } else {
-//       res.json(car);
-//     }
-//   } catch (err) {
-//     // Pass any errors to the error-handling middleware
-//     next(err);
-//   }
-// };
+const add = async (req, res, next) => {
+  try {
+    const station = await tables.car.add(req.body);
+    if (station == null) {
+      res.sendStatus(404);
+    } else {
+      res.status(201).json(station.insertID);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
-// // The E of BREAD - Edit (Update) operation
-// // This operation is not yet implemented
+const destroy = async (req, res, next) => {
+  try {
+    const result = await tables.car.delete(req.params.id);
+    if (result.affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
-// // The A of BREAD - Add (Create) operation
-// const add = async (req, res, next) => {
-//   // Extract the car data from the request body
-//   const car = req.body;
-
-//   try {
-//     // Insert the car into the database
-//     const insertId = await tables.car.create(car);
-
-//     // Respond with HTTP 201 (Created) and the ID of the newly inserted car
-//     res.status(201).json({ insertId });
-//   } catch (err) {
-//     // Pass any errors to the error-handling middleware
-//     next(err);
-//   }
-// };
-
-// // The D of BREAD - Destroy (Delete) operation
-// // This operation is not yet implemented
-
-// // Ready to export the controller functions
-// module.exports = {
-//   browse,
-//   read,
-//   // edit,
-//   add,
-//   // destroy,
-// };
+module.exports = {
+  browse,
+  read,
+  edit,
+  add,
+  destroy,
+};
