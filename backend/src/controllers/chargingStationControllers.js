@@ -38,10 +38,10 @@ const edit = async (req, res, next) => {
 const add = async (req, res, next) => {
   try {
     const station = await tables.charging_station.add(req.body);
-    if (station == null) {
+    if (station.affectedRows === 0) {
       res.sendStatus(404);
     } else {
-      res.status(201).json(station.insertID);
+      res.status(200).json(station.insertId);
     }
   } catch (error) {
     next(error);

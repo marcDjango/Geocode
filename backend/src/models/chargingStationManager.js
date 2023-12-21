@@ -1,4 +1,5 @@
 // Importing the AbstractManager class
+const { isArray } = require("../utils/utils");
 const AbstractManager = require("./AbstractManager");
 
 // Defining the chargingStationManager class that extends AbstractManager
@@ -30,13 +31,6 @@ class ChargingStationManager extends AbstractManager {
 
   // Method to edit/update a charging station record by ID
   async edit(body, id) {
-    // Function to check if a value is an array and stringify it if necessary
-    function isArray(data) {
-      return Object.values(data).map((arr) =>
-        Array.isArray(arr) ? JSON.stringify(arr) : arr
-      );
-    }
-
     // Converting values in the body to an array (stringifying arrays if present)
     const values = isArray(body);
 
@@ -58,13 +52,6 @@ class ChargingStationManager extends AbstractManager {
 
   // Method to add/insert a new charging station record
   async add(body) {
-    // Function to check if a value is an array and stringify it if necessary
-    function isArray(data) {
-      return Object.values(data).map((arr) =>
-        Array.isArray(arr) ? JSON.stringify(arr) : arr
-      );
-    }
-
     // Converting values in the body to an array (stringifying arrays if present)
     const values = isArray(body);
 
