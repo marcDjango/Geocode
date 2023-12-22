@@ -1,152 +1,193 @@
-// // Import required dependencies
-// const { app, request, tables } = require("../setup");
+const { app, request, database, tables } = require("../setup");
 
-// // Test suite for the GET /api/cars route
-// describe("GET /api/cars", () => {
-//   it("should fetch cars successfully", async () => {
-//     // Define a sample car for testing
-//     const newCar = {
-//       car_image: "xxx",
-//       user_id: 1,
-//       brand_id: 1,
-//       plug_id: 1,
-//     };
+// Test suite for the GET /api/cars route
+describe("GET /api/cars", () => {
+  it("should fetch cars successfully", async () => {
+    // Define a sample car for testing
+    const newCar = {
+      car_image: "xxx",
+      user_id: 1,
+      brand_id: 1,
+      plug_id: 1,
+    };
 
-//     // Create a sample car in the database
-//     const insertId = await tables.car.create(newCar);
+    // Create a sample car in the database
 
-//     // Send a GET request to the /api/cars endpoint
-//     const response = await request(app).get("/api/cars");
+    const result = await tables.car.add(newCar);
+    const id = result.insertId;
+    // Send a GET request to the /api/cars endpoint
+    const response = await request(app).get("/api/cars");
 
-//     // Assertions
-//     expect(response.status).toBe(200);
-//     expect(response.body).toBeInstanceOf(Array);
+    // // Assertions
+    expect(response.headers["content-type"]).toMatch(/json/);
+    expect(response.status).toBe(200);
+    expect(response.body).toBeInstanceOf(Array);
 
-//     // Check if the created car is present in the response
-//     const foundcar = response.body.find((item) => item.id === insertId);
+    // // Check if the created car is present in the response
+    const foundcar = response.body.find((item) => item.id === id);
 
-//     // Assertions
-//     expect(foundcar).toBeInstanceOf(Object);
-//     expect(foundcar.title).toBe(newCar.title);
-//   });
-// });
+    // // Assertions
+    expect(foundcar).toBeInstanceOf(Object);
+    expect(foundcar.car_image).toBe(newCar.car_image);
+    expect(foundcar.user_id).toBe(newCar.user_id);
+    expect(foundcar.brand_id).toBe(newCar.brand_id);
+    expect(foundcar.plug_id).toBe(newCar.plug_id);
+  });
+});
 
-// // Test suite for the GET /api/items/:id route
-// describe("GET /api/items/:id", () => {
-//   it("should fetch a single item successfully", async () => {
-//     // Define a sample item for testing
-//     const testItem = {
-//       title: "Sample Item",
-//     };
+// Test suite for the GET /api/items/:id route
+describe("GET /api/items/:id", () => {
+  it("should fetch a single item successfully", async () => {
+    // Define a sample item for testing
+    const newCar = {
+      car_image: "xxx",
+      user_id: 1,
+      brand_id: 1,
+      plug_id: 1,
+    };
 
-//     // Create a sample item in the database
-//     const insertId = await tables.item.create(testItem);
+    // Create a sample car in the database
 
-//     // Send a GET request to the /api/items/:id endpoint
-//     const response = await request(app).get(`/api/items/${insertId}`);
+    const result = await tables.car.add(newCar);
+    const id = result.insertId;
+    // Send a GET request to the /api/cars/:id endpoint
+    const response = await request(app).get(`/api/cars/${id}`);
 
-//     // Assertions
-//     expect(response.status).toBe(200);
-//     expect(response.body).toBeInstanceOf(Object);
-//     expect(response.body.id).toBe(insertId);
-//     expect(response.body.title).toBe(testItem.title);
-//   });
+    // Assertions
+    expect(response.status).toBe(200);
+    expect(response.body).toBeInstanceOf(Object);
+    expect(response.headers["content-type"]).toMatch(/json/);
 
-//   it("should return 404 for non-existent item", async () => {
-//     // Send a GET request to the /api/items/:id endpoint with an invalid ID
-//     const response = await request(app).get("/api/items/0");
+    expect(response.body.id).toBe(id);
+    expect(response.body.car_image).toBe(newCar.car_image);
+    expect(response.body.user_id).toBe(newCar.user_id);
+    expect(response.body.brand_id).toBe(newCar.brand_id);
+    expect(response.body.plug_id).toBe(newCar.plug_id);
+  });
 
-//     // Assertions
-//     expect(response.status).toBe(404);
-//     expect(response.body).toEqual({});
-//   });
-// });
+  it("should return 404 for non-existent car", async () => {
+    // Send a GET request to the /api/cars/:id endpoint with an invalid ID
+    const response = await request(app).get("/api/cars/0");
 
-// // Test suite for the POST /api/items route
-// // Doesn't pass: maybe something to change in app config :/
-// // Hint: enabling log could help ;)
-// describe("POST /api/items", () => {
-//   it("should add a new item successfully", async () => {
-//     // Define a sample item for testing
-//     const testItem = {
-//       title: "Sample Item",
-//     };
+    // Assertions
+    expect(response.status).toBe(404);
+    expect(response.body).toEqual({});
+  });
+});
 
-//     // Send a POST request to the /api/items endpoint with a test item
-//     const response = await request(app).post("/api/items").send(testItem);
+// Test suite for the POST /api/cars route
+// Doesn't pass: maybe something to change in app config :/
+// Hint: enabling log could help ;)
+describe("POST /api/cars", () => {
+  it("should add a new car successfully", async () => {
+    // Define a sample car for testing
+    const newCar = {
+      car_image: "gkcghvjx",
+      user_id: 1,
+      brand_id: 1,
+      plug_id: 1,
+    };
 
-//     // Assertions
-//     expect(response.status).toBe(201);
-//     expect(response.body).toBeInstanceOf(Object);
-//     expect(response.body.insertId).toEqual(expect.any(Number));
+    // Send a POST request to the /api/cars endpoint with a test car
+    const response = await request(app).post("/api/cars").send(newCar);
 
-//     // Check if the newly added item exists in the database
-//     const foundItem = await tables.item.read(response.body.insertId);
+    // Assertions
+    expect(response.headers["content-type"]).toMatch(/json/);
+    expect(response.status).toBe(201);
+    expect(response.body).toHaveProperty("insertId");
+    expect(typeof response.body.insertId).toBe("number");
 
-//     // Assertions
-//     expect(foundItem).toBeDefined();
-//     expect(foundItem.title).toBe(testItem.title);
-//   });
-// });
+    // Check if the newly added car exists in the database
+    const [result] = await database.query(
+      "select * from car where id = ?",
+      response.body.insertId
+    );
+    const [foundcar] = result;
+    //   // Assertions
+    expect(foundcar).toBeDefined();
+    expect(foundcar).toHaveProperty("id");
+    expect(foundcar.id).toBe(response.body.insertId);
+    expect(foundcar.car_image).toBe(newCar.car_image);
+    expect(typeof foundcar.car_image).toBe("string");
+    expect(foundcar).toHaveProperty("user_id");
+    expect(foundcar.user_id).toBe(newCar.user_id);
+    expect(typeof foundcar.user_id).toBe("number");
+    expect(foundcar).toHaveProperty("brand_id");
+    expect(foundcar.brand_id).toBe(newCar.brand_id);
+    expect(typeof foundcar.brand_id).toBe("number");
+    expect(foundcar).toHaveProperty("plug_id");
+    expect(foundcar.plug_id).toBe(newCar.plug_id);
+    expect(typeof foundcar.plug_id).toBe("number");
+  });
+});
 
-// // TODO: implement PUT and DELETE routes
+// TODO: implement PUT and DELETE routes
 
-// /*
-// // Test suite for the PUT /api/items/:id route
-// describe("PUT /api/items/:id", () => {
-//   it("should update an existing item successfully", async () => {
-//     // Define a sample item for testing
-//     const testItem = {
-//       title: "Sample Item",
-//     };
+// Test suite for the PUT /api/cars/:id route
+describe("PUT /api/cars/:id", () => {
+  it("should update an existing car successfully", async () => {
+    // Define a sample car for testing
+    const newCar = {
+      car_image: "xxx",
+      user_id: 1,
+      brand_id: 1,
+      plug_id: 1,
+    };
 
-//     // Create a sample item in the database
-//     const insertId = await tables.item.create(testItem);
+    //     // Create a sample car in the database
+    const result = await tables.car.add(newCar);
+    const id = result.insertId;
 
-//     // Define an updated item object
-//     const updatedItem = {
-//       title: "Updated Item",
-//     };
+    //     // Define an updated car object
+    const updatedcar = {
+      car_image: "xxx",
+      user_id: 1,
+      brand_id: 2,
+      plug_id: 1,
+    };
 
-//     // Send a PUT request to the /api/items/:id endpoint with updated data
-//     const response = await request(app)
-//       .put(`/api/items/${insertId}`)
-//       .send(updatedItem);
+    //     // Send a PUT request to the /api/cars/:id endpoint with updated data
+    const response = await request(app).put(`/api/cars/${id}`).send(updatedcar);
 
-//     // Assertions
-//     expect(response.status).toBe(204);
+    //     // Assertions
+    expect(response.status).toBe(204);
 
-//     // Check if the item has been updated in the database
-//     const foundItem = await tables.item.read(insertId);
+    // Check if the car has been updated in the database
+    const foundcar = await tables.car.read(id);
 
-//     // Assertions
-//     expect(foundItem).toBeDefined();
-//     expect(foundItem.title).toBe(updatedItem.title);
-//   });
-// });
+    // Assertions
+    expect(foundcar).toBeDefined();
+    expect(foundcar.car_image).toBe(updatedcar.car_image);
+    expect(foundcar.user_id).toBe(updatedcar.user_id);
+    expect(foundcar.brand_id).toBe(updatedcar.brand_id);
+    expect(foundcar.plug_id).toBe(updatedcar.plug_id);
+  });
+});
 
-// // Test suite for the DELETE /api/items/:id route
-// describe("DELETE /api/items/:id", () => {
-//   it("should delete an existing item successfully", async () => {
-//     // Define a sample item for testing
-//     const testItem = {
-//       title: "Sample Item",
-//     };
+// // Test suite for the DELETE /api/cars/:id route
+describe("DELETE /api/cars/:id", () => {
+  it("should delete an existing car successfully", async () => {
+    // Define a sample car for testing
+    const newCar = {
+      car_image: "xxx",
+      user_id: 1,
+      brand_id: 1,
+      plug_id: 1,
+    };
+    // Create a sample car in the database
+    const result = await tables.car.add(newCar);
+    const id = result.insertId;
 
-//     // Create a sample item in the database
-//     const insertId = await tables.item.create(testItem);
+    // Send a DELETE request to the /api/cars/:id endpoint
+    const response = await request(app).delete(`/api/cars/${id}`);
 
-//     // Send a DELETE request to the /api/items/:id endpoint
-//     const response = await request(app).delete(`/api/items/${insertId}`);
+    // Assertions
+    expect(response.status).toBe(204);
 
-//     // Assertions
-//     expect(response.status).toBe(204);
+    // Check if the car has been deleted from the database
+    const foundcar = await tables.car.read(id);
 
-//     // Check if the item has been deleted from the database
-//     const foundItem = await tables.item.read(insertId);
-
-//     // Assertions
-//     expect(foundItem).toBeUndefined();
-//   });
-// });
-// */
+    // Assertions
+    expect(foundcar).toBeUndefined();
+  });
+});

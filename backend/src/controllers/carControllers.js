@@ -41,7 +41,7 @@ const add = async (req, res, next) => {
     if (station == null) {
       res.sendStatus(404);
     } else {
-      res.status(201).json(station.insertID);
+      res.status(201).json(station);
     }
   } catch (error) {
     next(error);
