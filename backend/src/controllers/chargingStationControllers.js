@@ -3,7 +3,8 @@ const tables = require("../tables");
 const browse = async (req, res, next) => {
   try {
     const stations = await tables.charging_station.readAll();
-    res.json(stations);
+
+    res.status(200).json(stations);
   } catch (error) {
     next(error);
   }
@@ -12,10 +13,10 @@ const browse = async (req, res, next) => {
 const read = async (req, res, next) => {
   try {
     const station = await tables.charging_station.read(req.params.id);
-    if (station == null) {
+    if (!station) {
       res.sendStatus(404);
     } else {
-      res.json(station);
+      res.status(200).json(station);
     }
   } catch (error) {
     next(error);
@@ -38,10 +39,10 @@ const edit = async (req, res, next) => {
 const add = async (req, res, next) => {
   try {
     const station = await tables.charging_station.add(req.body);
-    if (station == null) {
+    if (!station) {
       res.sendStatus(404);
     } else {
-      res.status(201).json(station.insertID);
+      res.status(201).json(station);
     }
   } catch (error) {
     next(error);
