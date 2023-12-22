@@ -45,8 +45,32 @@ const chargingStationToCreate = {
   consolidated_longitude: 5.042062,
   consolidated_latitude: 43.836565,
 };
+const chargingStationUpdateData = {
+  nom_operateur: "ELECTRIC 55 CHARGING",
+  telephone_operateur: "33975891501",
+  nom_enseigne: "ELECTRIC 55 CHARGING",
+  implantation_station: "Voirie",
+  adresse_station: "1 Avenue Victor Basch 84300 Cavaillon",
+  coordonneesXY: [5.042062, 43.836565],
+  nbre_pdc: 1,
+  puissance_nominale: 22,
+  prise_type_ef: "FALSE",
+  prise_type_2: "FALSE",
+  prise_type_combo_ccs: "FALSE",
+  prise_type_chademo: "FALSE",
+  prise_type_autre: "FALSE",
+  tarification: "",
+  condition_acces: "AccÃ¨s rÃ©servÃ©",
+  reservation: "TRUE",
+  horaires: "24/7",
+  accessibilite_pmr: "Accessible mais non rÃ©servÃ© PMR",
+  restriction_gabarit: "15mÂ²",
+  consolidated_longitude: 5.042062,
+  consolidated_latitude: 43.836565,
+};
 
 module.exports = {
   charginStationKeys,
   chargingStationToCreate,
+  chargingStationUpdateData,
 };

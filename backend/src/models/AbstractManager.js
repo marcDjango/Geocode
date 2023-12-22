@@ -27,6 +27,7 @@ class AbstractManager {
   async readAll() {
     // Performing a database query to select all records from the charging station table
     const [rows] = await this.database.query(`select * from ${this.table}`);
+    // console.log(rows);
     // Returning all rows
     return rows;
   }
@@ -73,7 +74,7 @@ class AbstractManager {
     );
 
     // Returning the result of the insert operation
-    return rows;
+    return rows.insertId;
   }
 
   // Method to delete a charging station record by its ID
@@ -83,7 +84,6 @@ class AbstractManager {
       `delete from ${this.table} where id = ?`,
       [id]
     );
-
     // Returning the result of the delete operation
     return rows;
   }
