@@ -11,16 +11,20 @@ const chargingStationControllers = require("./controllers/chargingStationControl
 
 // Route to get a list of charging station
 router.get("/charging-station", chargingStationControllers.browse);
-
-// Route to get a specific item by ID
 router.get("/charging-station/:id", chargingStationControllers.read);
-
 router.put("/charging-station/:id", chargingStationControllers.edit);
-
-// Route to add a new item
 router.post("/charging-station/", chargingStationControllers.add);
-
 router.delete("/charging-station/:id", chargingStationControllers.destroy);
+/* ************************************************************************* */
+// Import chargingStationControllers module for handling operations
+const userControllers = require("./controllers/userControllers");
+
+// Route to get a list of charging station
+router.get("/users", userControllers.browse);
+router.get("/user/:id", userControllers.read);
+router.put("/user/:id", userControllers.edit);
+router.post("/user/", userControllers.add);
+router.delete("/user/:id", userControllers.destroy);
 /* ************************************************************************* */
 
 module.exports = router;
