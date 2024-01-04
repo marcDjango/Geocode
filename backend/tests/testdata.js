@@ -68,9 +68,41 @@ const chargingStationUpdateData = {
   consolidated_longitude: 5.042062,
   consolidated_latitude: 43.836565,
 };
+// *****************************************************************************
+
+const carCreate = {
+  car_image: "immage-test-create",
+  user_id: 1,
+  brand_id: 1,
+  plug_id: 1,
+};
+const carUpdate = {
+  car_image: "immage-test-update",
+  user_id: 2,
+  brand_id: 2,
+  plug_id: 2,
+};
+// *****************************************************************************
+const reservationCreate = {
+  user_id: 1,
+  charging_station_id: 1,
+  reservation_date: "2023-12-20",
+  amount_paid: "5.70",
+};
+const reservationUpdate = {
+  user_id: 2,
+  charging_station_id: 2,
+  reservation_date: "2024-01-20",
+  amount_paid: "6.64",
+};
 
 module.exports = {
   charginStationKeys,
   chargingStationToCreate,
   chargingStationUpdateData,
+
+  carCreate,
+  carUpdate,
+  reservationCreate,
+  reservationUpdate,
 };
