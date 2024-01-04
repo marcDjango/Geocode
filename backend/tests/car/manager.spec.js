@@ -2,8 +2,8 @@
 const { database, tables } = require("../setup");
 const { carCreate, carUpdate } = require("../testdata");
 
-describe("Create station", () => {
-  it("should create an station successfully", async () => {
+describe("Create Car", () => {
+  it("should create an Car successfully", async () => {
     const resalt = await tables.car.add(carCreate);
     const [rows] = await database.query(
       `select * from ${tables.car.table} where id = ?`,
@@ -13,36 +13,36 @@ describe("Create station", () => {
     return rows;
   });
 
-  it("should read a charging station successfully", async () => {
+  it("should read a charging Car successfully", async () => {
     const resalt = await tables.car.add(carCreate);
-    const [station] = await database.query(
+    const [Car] = await database.query(
       `select * from ${tables.car.table} where id = ?`,
       [resalt]
     );
 
-    expect(station[0].id).toEqual(resalt);
+    expect(Car[0].id).toEqual(resalt);
   });
 
-  it("should update a charging station successfully", async () => {
+  it("should update a charging Car successfully", async () => {
     const resalt = await tables.car.add(carCreate);
     await tables.car.edit(carUpdate, resalt);
 
-    const [updatedStation] = await database.query(
+    const [updatedCar] = await database.query(
       `select * from ${tables.car.table} where id = ?`,
       [resalt]
     );
 
-    expect(updatedStation.someProperty).toEqual(carUpdate.someProperty);
+    expect(updatedCar.someProperty).toEqual(carUpdate.someProperty);
   });
 
-  it("should delete a charging station successfully", async () => {
+  it("should delete a charging Car successfully", async () => {
     const resalt = await tables.car.add(carCreate);
     await tables.car.delete(resalt);
-    const [deletedStation] = await database.query(
+    const [deletedCar] = await database.query(
       `select * from ${tables.car.table} where id = ?`,
       [resalt]
     );
 
-    expect(deletedStation).toEqual([]);
+    expect(deletedCar).toEqual([]);
   });
 });

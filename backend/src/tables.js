@@ -6,11 +6,13 @@
 const chargingStationManager = require("./models/chargingStationManager");
 const carManager = require("./models/carManager");
 const reservationManager = require("./models/ReservationManager");
+const userManager = require("./models/userManager");
 
 const managers = [
   chargingStationManager,
   carManager,
   reservationManager,
+  userManager,
   // Add other managers here
 ];
 

@@ -1,6 +1,7 @@
 // Import required dependencies
 const { app, request, tables } = require("../setup");
 const { reservationCreate, reservationUpdate } = require("../testdata");
+const { validateReservationProperties } = require("../utils");
 
 // Test suite for the GET /api/reservations route
 
@@ -11,7 +12,7 @@ describe("GET /api/reservations", () => {
       reservationCreate
     );
 
-    const id = result;
+    const insertedId = result;
     // Send a GET request to the /api/reservations endpoint
     const response = await request(app).get("/api/reservations");
     // Assertions
@@ -20,29 +21,40 @@ describe("GET /api/reservations", () => {
     // Validation plus détaillée de la réponse
     const reservations = response.body;
     expect(reservations.length).toBeGreaterThan(0);
+    const expectedProperties = [
+      "id",
+      "user_id",
+      "charging_station_id",
+      "reservation_date",
+      "amount_paid",
+    ];
+    // Fonction pour valider les propriétés d'une réservation
 
-    // Vérifier la structure de chaque voiture dans la réponse
-    reservations.forEach((reservation) => {
-      expect(reservation).toHaveProperty("id");
-      expect(reservation).toHaveProperty("user_id");
-      expect(reservation).toHaveProperty("charging_station_id");
-      expect(reservation).toHaveProperty("reservation_date");
-      expect(reservation).toHaveProperty("amount_paid");
-    });
+    // Fonction pour trouver une réservation dans la liste
+    const findReservation = (reservationsTable, reservationToFind) => {
+      return reservationsTable.find((reservation) =>
+        Object.keys(reservationToFind).every(
+          (key) => reservation[key] === reservationToFind[key]
+        )
+      );
+    };
 
-    // Valider que la voiture que nous avons ajoutée précédemment est présente
-    const foundreservation = reservations.find(
-      (reservation) =>
-        reservation.user_id === reservationCreate.user_id &&
-        reservation.charging_station_id ===
-          reservationCreate.charging_station_id &&
-        reservation.reservation_date === reservationCreate.reservation_date &&
-        reservation.amount_paid === reservationCreate.amount_paid &&
-        reservation.id === id
+    // Utilisation de la fonction de validation
+    reservations.forEach((reservation) =>
+      validateReservationProperties(reservation, expectedProperties)
     );
 
-    // Assertions
-    expect(foundreservation).toBeDefined();
+    // Utilisation de la fonction pour trouver une réservation
+    const foundReservation = findReservation(reservations, {
+      user_id: reservationCreate.user_id,
+      charging_station_id: reservationCreate.charging_station_id,
+      reservation_date: reservationCreate.reservation_date,
+      amount_paid: reservationCreate.amount_paid,
+      id: insertedId,
+    });
+
+    // Ensuite, vous pouvez effectuer des assertions sur foundReservation si nécessaire
+    expect(foundReservation).toBeDefined();
   });
 });
 

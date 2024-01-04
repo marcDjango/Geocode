@@ -2,8 +2,8 @@ const tables = require("../tables");
 
 const browse = async (req, res, next) => {
   try {
-    const stations = await tables.car.readAll();
-    res.json(stations);
+    const cars = await tables.car.readAll();
+    res.json(cars);
   } catch (error) {
     next(error);
   }
@@ -11,11 +11,11 @@ const browse = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const station = await tables.car.read(req.params.id);
-    if (station == null) {
+    const car = await tables.car.read(req.params.id);
+    if (car == null) {
       res.sendStatus(404);
     } else {
-      res.json(station);
+      res.json(car);
     }
   } catch (error) {
     next(error);
@@ -24,8 +24,8 @@ const read = async (req, res, next) => {
 
 const edit = async (req, res, next) => {
   try {
-    const station = await tables.car.edit(req.body, req.params.id);
-    if (station == null) {
+    const car = await tables.car.edit(req.body, req.params.id);
+    if (car == null) {
       res.sendStatus(404);
     } else {
       res.sendStatus(204);
@@ -37,11 +37,11 @@ const edit = async (req, res, next) => {
 
 const add = async (req, res, next) => {
   try {
-    const station = await tables.car.add(req.body);
-    if (station == null) {
+    const car = await tables.car.add(req.body);
+    if (car == null) {
       res.sendStatus(404);
     } else {
-      res.status(201).json(station);
+      res.status(201).json(car);
     }
   } catch (error) {
     next(error);

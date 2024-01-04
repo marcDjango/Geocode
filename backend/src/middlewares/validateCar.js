@@ -1,4 +1,4 @@
-const validateMovie = (req, res, next) => {
+const validateCar = (req, res, next) => {
   const { user_id: userId, brand_id: brandId, plug_id: plugId } = req.body;
   const errors = [];
 
@@ -34,4 +34,4 @@ const validateMovie = (req, res, next) => {
   }
 };
 
-module.exports = validateMovie;
+module.exports = validateCar;

@@ -1,55 +1,57 @@
 const { database, tables } = require("../setup");
 const { reservationCreate, reservationUpdate } = require("../testdata");
 
-describe("Create station", () => {
-  it("should create an station successfully", async () => {
-    const resalt = await tables.user_has_charging_station.add(
+describe("Create Reservation", () => {
+  it("should create an Reservation successfully", async () => {
+    const result = await tables.user_has_charging_station.add(
       reservationCreate
     );
     const [rows] = await database.query(
       `select * from ${tables.user_has_charging_station.table} where id = ?`,
-      [resalt]
+      [result]
     );
     expect(rows.length).toBe(1);
     return rows;
   });
 
-  it("should read a charging station successfully", async () => {
-    const resalt = await tables.user_has_charging_station.add(
+  it("should read a charging Reservation successfully", async () => {
+    const result = await tables.user_has_charging_station.add(
       reservationCreate
     );
-    const [station] = await database.query(
+    const [Reservation] = await database.query(
       `select * from ${tables.user_has_charging_station.table} where id = ?`,
-      [resalt]
+      [result]
     );
 
-    expect(station[0].id).toEqual(resalt);
+    expect(Reservation[0].id).toEqual(result);
   });
 
-  it("should update a charging station successfully", async () => {
-    const resalt = await tables.user_has_charging_station.add(
+  it("should update a charging Reservation successfully", async () => {
+    const result = await tables.user_has_charging_station.add(
       reservationCreate
     );
-    await tables.user_has_charging_station.edit(reservationUpdate, resalt);
+    await tables.user_has_charging_station.edit(reservationUpdate, result);
 
-    const [updatedStation] = await database.query(
+    const [updatedReservation] = await database.query(
       `select * from ${tables.user_has_charging_station.table} where id = ?`,
-      [resalt]
+      [result]
     );
 
-    expect(updatedStation.someProperty).toEqual(reservationUpdate.someProperty);
+    expect(updatedReservation.someProperty).toEqual(
+      reservationUpdate.someProperty
+    );
   });
 
-  it("should delete a charging station successfully", async () => {
-    const resalt = await tables.user_has_charging_station.add(
+  it("should delete a charging Reservation successfully", async () => {
+    const result = await tables.user_has_charging_station.add(
       reservationCreate
     );
-    await tables.user_has_charging_station.delete(resalt);
-    const [deletedStation] = await database.query(
+    await tables.user_has_charging_station.delete(result);
+    const [deletedReservation] = await database.query(
       `select * from ${tables.user_has_charging_station.table} where id = ?`,
-      [resalt]
+      [result]
     );
 
-    expect(deletedStation).toEqual([]);
+    expect(deletedReservation).toEqual([]);
   });
 });
