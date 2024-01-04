@@ -19,6 +19,17 @@ router.get("/charging-station/:id", chargingStationControllers.read);
 router.put("/charging-station/:id", chargingStationControllers.edit);
 router.post("/charging-station/", chargingStationControllers.add);
 router.delete("/charging-station/:id", chargingStationControllers.destroy);
+/* ************************************************************************* */
+
+// Import chargingStationControllers module for handling operations
+const userControllers = require("./controllers/userControllers");
+
+// Route to get a list of charging station
+router.get("/users", userControllers.browse);
+router.get("/user/:id", userControllers.read);
+router.post("/user/", userControllers.add);
+router.put("/user/:id", userControllers.edit);
+router.delete("/user/:id", userControllers.destroy);
 
 // Route to get a list of cars
 router.get("/cars", carControllers.browse);
