@@ -10,9 +10,21 @@ import {
 
 // import App from "./App";
 import RootLayout from "./layout/RootLayout";
+import ChargingStationManagement, {
+  fetchdata,
+} from "./pages/ChargingStationManagement";
 
 const router = createBrowserRouter(
-  createRoutesFromElements(<Route element={<RootLayout />} path="/" />)
+  createRoutesFromElements(
+    <Route>
+      <Route element={<RootLayout />} path="/" />
+      <Route
+        element={<ChargingStationManagement />}
+        path="/charging-station"
+        loader={fetchdata}
+      />
+    </Route>
+  )
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
