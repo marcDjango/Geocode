@@ -4,11 +4,15 @@
 
 // Import the manager modules responsible for handling data operations on the tables
 const chargingStationManager = require("./models/chargingStationManager");
-const UserManager = require("./models/userManager");
+const carManager = require("./models/carManager");
+const reservationManager = require("./models/ReservationManager");
+const userManager = require("./models/userManager");
 
 const managers = [
   chargingStationManager,
-  UserManager,
+  carManager,
+  reservationManager,
+  userManager,
   // Add other managers here
 ];
 
