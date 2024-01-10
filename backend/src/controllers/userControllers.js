@@ -22,6 +22,22 @@ const read = async (req, res, next) => {
   }
 };
 
+const readByEmailAndPassToNext = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const user = await tables.user.readByEmail(email);
+
+    if (user == null) {
+      res.sendStatus(401);
+    } else {
+      req.user = user;
+      next();
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const edit = async (req, res, next) => {
   try {
     const user = await tables.user.edit(req.body, req.params.id);
@@ -64,6 +80,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
   browse,
   read,
+  readByEmailAndPassToNext,
   edit,
   add,
   destroy,
