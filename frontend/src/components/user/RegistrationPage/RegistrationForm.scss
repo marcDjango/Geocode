@@ -10,14 +10,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10%;
+    padding-top: 20%;
     padding-inline: 1rem;
-    gap: 1rem;
+    gap: 0.7rem;
   }
 
   .signin-btn-submit {
     margin-block: 1rem;
-    width: 195px;
+    width: 220px;
     height: 43px;
     border-radius: 24px;
     background: var(--Color-3, #10fffe);

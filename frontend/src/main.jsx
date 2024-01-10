@@ -13,6 +13,7 @@ import RootLayout from "./layout/RootLayout";
 import ChargingStationManagement, {
   fetchdata,
 } from "./pages/ChargingStationManagement";
+import ContactPage from "./components/user/ContactPage/ContactPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
         path="/charging-station"
         loader={fetchdata}
       />
+      <Route element={<ContactPage />} path="/contact" />
     </Route>
   )
 );

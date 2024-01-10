@@ -7,7 +7,20 @@ function Input({ name, placeholder, type }) {
   const handleOnChange = (e) => {
     setValueInput(e.target.value);
   };
-  return (
+  return type === "textArea" ? (
+    <textarea
+      className="input-style-textarea typo"
+      id={name}
+      name={name}
+      rows="5"
+      cols="50"
+      placeholder={placeholder}
+      value={valueInput}
+      onChange={handleOnChange}
+      style={{ resize: "none" }}
+      required
+    />
+  ) : (
     <input
       className="input-style typo"
       type={type}

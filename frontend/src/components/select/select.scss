@@ -1,8 +1,8 @@
 /* Styles généraux pour le select */
 select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  // appearance: none;
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
   text-indent: 1px;
   text-overflow: "";
   position: relative;
@@ -26,7 +26,7 @@ select::after {
 }
 
 .select-style {
-  width: 240px;
+  width: 260px;
   height: 40px;
   border-radius: 10px;
   border: 1px solid var(--Color-3, #10fffe);

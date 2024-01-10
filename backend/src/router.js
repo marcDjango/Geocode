@@ -18,6 +18,7 @@ const {
 const chargingStationControllers = require("./controllers/chargingStationControllers");
 const carControllers = require("./controllers/carControllers");
 const reservationControllers = require("./controllers/reservationControllers");
+const contactControllers = require("./controllers/contactControllers");
 
 // Import Middlewares
 const validateCar = require("./middlewares/validateCar");
@@ -73,5 +74,12 @@ router.put(
 );
 router.post("/reservation/", validateReservation, reservationControllers.add);
 router.delete("/reservation/:id", reservationControllers.destroy);
+
+// Route to get a list of cars
+router.get("/contacts", contactControllers.browse);
+router.get("/contacts/:id", contactControllers.read);
+router.put("/contacts/:id", contactControllers.edit);
+router.post("/contacts", contactControllers.add);
+router.delete("/contacts/:id", contactControllers.destroy);
 
 module.exports = router;
