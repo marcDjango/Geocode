@@ -1,0 +1,36 @@
+/* Styles généraux pour le select */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+  position: relative;
+}
+
+/* Styles spécifiques pour la flèche (utilisez une image personnalisée ou modifiez la couleur) */
+select::-ms-expand {
+  display: none;
+}
+
+select::after {
+  content: "\25BC"; /* Unicode pour la flèche vers le bas */
+  font-size: 16px; /* Taille de la police de la flèche */
+  color: #de1111; /* Couleur de la flèche */
+  position: absolute;
+  top: 50%;
+  right: 8px; /* Ajustez la valeur selon votre besoin pour décaler vers la gauche */
+  pointer-events: none;
+  transform: translateY(-50%);
+  z-index: 99;
+}
+
+.select-style {
+  width: 240px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--Color-3, #10fffe);
+  background: rgba(0, 0, 0, 0.6);
+  padding-inline: 1rem;
+  transition: all 0.3s ease;
+}
