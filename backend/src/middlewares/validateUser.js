@@ -10,7 +10,7 @@ const validateUser = (req, res, next) => {
     city,
     number_vehicles: numberVehicles,
     profil_image: profilImage,
-    role,
+    is_admin: isAdmin,
   } = req.body;
 
   // Expressions régulières pour la validation
@@ -121,12 +121,12 @@ const validateUser = (req, res, next) => {
     }
   }
 
-  // Validation pour le champ 'role'
-  if (role == null) {
-    errors.push({ field: "role", message: "Ce champ est obligatoire" });
-  } else if (![1, 2].includes(role)) {
+  // Validation pour le champ 'is_admin'
+  if (isAdmin == null) {
+    errors.push({ field: "isAdmin", message: "Ce champ est obligatoire" });
+  } else if (![0, 1].includes(isAdmin)) {
     errors.push({
-      field: "role",
+      field: "isAdmin",
       message: "Le rôle doit être 0 ou 1",
     });
   }
