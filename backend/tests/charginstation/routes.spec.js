@@ -1,6 +1,9 @@
 // Import required dependencies
 const { app, request, tables } = require("../setup");
-const { chargingStationToCreate } = require("../testdata");
+const {
+  chargingStationToCreate,
+  chargingStationUpdateData,
+} = require("../testdata");
 
 let persistentDatas = {};
 
@@ -76,12 +79,12 @@ describe("POST /api/charging_station", () => {
 // // TODO: implement PUT and DELETE routes
 
 // // Test suite for the PUT /api/items/:id route
-describe("PUT /api/charging_station/:id", () => {
+describe("PUT /api/charging-station/:id", () => {
   it("should update an existing item successfully", async () => {
     // Send a PUT request to the /api/items/:id endpoint with updated data
     const response = await request(app)
       .put(`/api/charging-station/${persistentDatas}`)
-      .send(chargingStationToCreate);
+      .send(chargingStationUpdateData);
 
     // Assertions
     expect(response.status).toBe(204);
@@ -89,8 +92,11 @@ describe("PUT /api/charging_station/:id", () => {
     // Check if the item has been updated in the database
     const foundItem = await tables.charging_station.read(persistentDatas);
 
+    delete foundItem.id;
+
     // Assertions
     expect(foundItem).toBeDefined();
+    expect(foundItem).toEqual(chargingStationUpdateData);
   });
 });
 

@@ -82,7 +82,9 @@ const carUpdate = {
   brand_id: 2,
   plug_id: 2,
 };
+const carKeys = ["id", "car_image", "user_id", "brand_id", "plug_id"];
 // *****************************************************************************
+
 const reservationCreate = {
   user_id: 1,
   charging_station_id: 1,
@@ -95,6 +97,56 @@ const reservationUpdate = {
   reservation_date: "2024-01-20",
   amount_paid: "6.64",
 };
+const reservationKeys = [
+  "id",
+  "user_id",
+  "charging_station_id",
+  "reservation_date",
+  "amount_paid",
+];
+// *****************************************************************************
+const userCreate = {
+  name: "bob",
+  firstname: "herman",
+  email: "wXnJt@example.com",
+  gender: "male",
+  date_of_birth: "1997-01-01",
+  postal_code: "75000",
+  city: "paris",
+  number_vehicles: 1,
+  password: "123456",
+  profil_image:
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  role: 1,
+};
+const userUpdate = {
+  name: "bob",
+  firstname: "herman",
+  email: "wXnJt@example.com",
+  gender: "male",
+  date_of_birth: "1997-01-01",
+  postal_code: "31000",
+  city: "toulouse",
+  number_vehicles: 2,
+  password: "123456",
+  profil_image:
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+  role: 0,
+};
+const userKeys = [
+  "id",
+  "name",
+  "firstname",
+  "email",
+  "gender",
+  "date_of_birth",
+  "postal_code",
+  "city",
+  "number_vehicles",
+  "password",
+  "profil_image",
+  "role",
+];
 
 module.exports = {
   charginStationKeys,
@@ -103,6 +155,13 @@ module.exports = {
 
   carCreate,
   carUpdate,
+  carKeys,
+
   reservationCreate,
   reservationUpdate,
+  reservationKeys,
+
+  userCreate,
+  userUpdate,
+  userKeys,
 };

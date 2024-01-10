@@ -1,14 +1,15 @@
 // Import required dependencies
 const { app, request, tables } = require("../setup");
-const { carCreate, carUpdate } = require("../testdata");
+const { carCreate, carUpdate, carKeys } = require("../testdata");
+const { validateTableProperties, findTable } = require("../utils");
 
 // Test suite for the GET /api/cars route
 
 describe("GET /api/cars", () => {
   it("should fetch cars successfully", async () => {
     // Create a sample car in the database
-    const result = await tables.car.add(carCreate);
-    const id = result;
+    const insertedId = await tables.car.add(carCreate);
+
     // Send a GET request to the /api/cars endpoint
     const response = await request(app).get("/api/cars");
 
@@ -19,24 +20,12 @@ describe("GET /api/cars", () => {
     const cars = response.body;
     expect(cars.length).toBeGreaterThan(0);
 
-    // Vérifier la structure de chaque voiture dans la réponse
-    cars.forEach((car) => {
-      expect(car).toHaveProperty("id");
-      expect(car).toHaveProperty("car_image");
-      expect(car).toHaveProperty("user_id");
-      expect(car).toHaveProperty("brand_id");
-      expect(car).toHaveProperty("plug_id");
+    cars.forEach((car) => validateTableProperties(car, carKeys));
+
+    const foundCar = findTable(cars, {
+      ...carCreate,
+      id: insertedId,
     });
-
-    const foundCar = cars.find(
-      (car) =>
-        car.car_image === carCreate.car_image &&
-        car.user_id === carCreate.user_id &&
-        car.brand_id === carCreate.brand_id &&
-        car.plug_id === carCreate.plug_id &&
-        car.id === id
-    );
-
     // Assertions
     expect(foundCar).toBeDefined();
   });
