@@ -9,7 +9,6 @@ const validateUser = (req, res, next) => {
     postal_code: postalCode,
     city,
     number_vehicles: numberVehicles,
-    password,
     profil_image: profilImage,
     role,
   } = req.body;
@@ -106,16 +105,6 @@ const validateUser = (req, res, next) => {
     errors.push({
       field: "number_vehicles",
       message: "Le nombre de véhicules doit être un entier positif",
-    });
-  }
-
-  // Validation pour le champ 'password'
-  if (password == null) {
-    errors.push({ field: "password", message: "Ce champ est obligatoire" });
-  } else if (password.length < 8) {
-    errors.push({
-      field: "password",
-      message: "Le mot de passe doit contenir au moins 8 caractères",
     });
   }
 
