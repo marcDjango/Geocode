@@ -36,10 +36,9 @@ function Form({ data, FormPostData }) {
 export default Form;
 
 const dataShape = PropTypes.shape({
-  title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  option: PropTypes.string.isRequired,
+  option: PropTypes.arrayOf,
 });
 
 Form.propTypes = {

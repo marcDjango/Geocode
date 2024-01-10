@@ -8,7 +8,7 @@ const validateUser = (req, res, next) => {
     date_of_birth: dateOfBirth,
     postal_code: postalCode,
     city,
-    number_vehicles: numberVehicles,
+    number_vehicles: numberVehiclesString,
     password,
     profil_image: profilImage,
     role,
@@ -95,14 +95,17 @@ const validateUser = (req, res, next) => {
       message: "Doit contenir moins de 45 caractères",
     });
   }
+  // ...
+
+  // Convertir la valeur du champ 'number_vehicles' en un nombre
+  const numberVehicles = parseInt(numberVehiclesString, 10);
 
   // Validation pour le champ 'number_vehicles'
-  if (numberVehicles == null) {
-    errors.push({
-      field: "numberVehicles",
-      message: "Ce champ est obligatoire",
-    });
-  } else if (!Number.isInteger(numberVehicles) || numberVehicles < 0) {
+  if (
+    numberVehicles == null ||
+    Number.isNaN(numberVehicles) ||
+    numberVehicles < 0
+  ) {
     errors.push({
       field: "number_vehicles",
       message: "Le nombre de véhicules doit être un entier positif",
@@ -135,7 +138,7 @@ const validateUser = (req, res, next) => {
   // Validation pour le champ 'role'
   if (role == null) {
     errors.push({ field: "role", message: "Ce champ est obligatoire" });
-  } else if (![1, 2].includes(role)) {
+  } else if (![0, 1].includes(role)) {
     errors.push({
       field: "role",
       message: "Le rôle doit être 0 ou 1",
