@@ -1,68 +1,50 @@
-import React, { useState } from "react";
-import Input from "../../input/input";
+import React from "react";
+import "./RegistrationForm.scss";
+import user from "./config.json";
+import Form from "../../form/form";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function RegistrationForm() {
-  const userKey = [
-    "name",
-    "firstname",
-    "email",
-    "gender",
-    "date_of_birth",
-    "postal_code",
-    "city",
-    "number_vehicles",
-    "password",
-    "profil_image",
-    "role",
-  ];
-
-  // Utiliser un objet avec des valeurs par défaut au lieu d'un tableau
-  const [data, setData] = useState(
-    userKey.reduce((acc, key) => {
-      acc[key] = ""; // Valeur par défaut pour chaque clé
-      return acc;
-    }, {})
-  );
-
-  // Utiliser une fonction pour mettre à jour les données lorsqu'un champ est modifié
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
   const FormPostData = async (e) => {
-    e.preventDefault(); // Empêcher le comportement par défaut du formulaire
+    e.preventDefault();
+    // Vérifier si le mot de passe et la confirmation du mot de passe sont identiques
+    const form = new FormData(e.target);
+    const data = Object.fromEntries(form);
+    const { confirm_password: confirPassword, ...dataWithoutConfirmPassword } =
+      data;
+    const password = "password";
+    // Supprimer la clé 'confirm_password' de l'objet data avant l'envoi
+    if (data[password] !== data[confirPassword]) {
+      // Si non identiques, vous pouvez gérer cela ici (par exemple, afficher une erreur)
+      console.error(
+        "Le mot de passe et la confirmation du mot de passe ne correspondent pas."
+      );
+      return;
+    }
+    // Si le mot de passe et la confirmation du mot de passe sont identiques
+    // Ajouter une nouvelle clé au nouvel objet
+    const newDataWithAdditionalKey = {
+      ...dataWithoutConfirmPassword,
+      role: 0,
+    };
     try {
       const response = await fetch(`${VITE_BACKEND_URL}/api/user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Spécifier le type de contenu JSON
         },
-        body: JSON.stringify(data), // Convertir l'objet data en chaîne JSON
+        body: JSON.stringify(newDataWithAdditionalKey), // Convertir l'objet data en chaîne JSON
       });
-      console.info(response);
+      if (!response) {
+        throw new Error("Erreur: lors de l'inscription");
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
-  return (
-    <div>
-      <form onSubmit={FormPostData}>
-        {userKey.map((key) => (
-          <Input
-            key={key}
-            name={key}
-            value={data[key]}
-            onChange={handleChange}
-          />
-        ))}
-        <button type="submit">Envoyer</button>
-      </form>
-    </div>
-  );
+  return <Form data={user} FormPostData={FormPostData} />;
 }
 
 export default RegistrationForm;

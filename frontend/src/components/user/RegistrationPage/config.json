@@ -1,0 +1,66 @@
+{
+    "name": {
+        "value": "Nom",
+        "type": "text",
+        "option": "required"
+    },
+    "firstname": {
+        "value": "Prenom",
+        "type": "text",
+        "option": "required"
+    },
+    "email": {
+        "value": "Email",
+        "type": "email",
+        "option": "required"
+    },
+    "gender": {
+        "value": "sexe",
+        "type": "select",
+        "option":[
+            {
+            "value":"male",
+            "title":"Homme"
+            },
+            {
+            "value":"female",
+            "title":"Homme"
+            }
+        ]
+    },
+    "date_of_birth": {
+        "value": "",
+        "type": "date",
+        "option": "required"
+    },
+    "postal_code": {
+        "value": "Code Postal",
+        "type": "text",
+        "option": "required"
+    },
+    "city": {
+        "value": "Ville",
+        "type": "text",
+        "option": "required"
+    },
+    "number_vehicles": {
+        "value": "Nombre de vehicule",
+        "type": "text",
+        "option": "required"
+    },
+    "password": {
+        "value": "Mot de passe",
+        "type": "password",
+        "option": "required"
+    },
+    "confirm_password": {
+        "value": "Confirmer",
+        "type": "password",
+        "option": "required"
+    },
+    "profil_image": {
+        "value": "Image de profil",
+        "type": "text",
+        "option": "required"
+    }
+}

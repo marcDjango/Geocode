@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import "./input.scss";
 
-function Input({ name, value, onChange }) {
+function Input({ name, placeholder, type }) {
+  const [valueInput, setValueInput] = useState("");
+  const handleOnChange = (e) => {
+    setValueInput(e.target.value);
+  };
   return (
     <input
-      type="text"
+      className="input-style typo"
+      type={type}
       id={name}
       name={name}
-      value={value}
-      onChange={onChange}
+      placeholder={placeholder}
+      value={valueInput}
+      onChange={handleOnChange}
+      required
     />
   );
 }
@@ -17,9 +25,6 @@ export default Input;
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-};
-Input.defaultProps = {
-  value: "",
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };
