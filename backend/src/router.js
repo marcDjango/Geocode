@@ -77,9 +77,9 @@ router.delete("/reservation/:id", reservationControllers.destroy);
 
 // Route to get a list of cars
 router.get("/contacts", contactControllers.browse);
-router.get("/contact/:id", contactControllers.read);
-router.put("/contact/:id", contactControllers.edit);
-router.post("/contact", contactControllers.add);
-router.delete("/contact/:id", contactControllers.destroy);
+router.get("/contacts/:id", contactControllers.read);
+router.put("/contacts/:id", contactControllers.edit);
+router.post("/contacts", contactControllers.add);
+router.delete("/contacts/:id", contactControllers.destroy);
 
 module.exports = router;

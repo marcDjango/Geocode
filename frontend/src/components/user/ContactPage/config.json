@@ -1,5 +1,5 @@
 {
-    "objet": {
+    "object": {
         "value": "Objet de la demande",
         "type": "select",
         "option":[
@@ -27,7 +27,7 @@
         "type": "email",
         "option": "required"
     },
-    "sujet": {
+    "subject": {
         "value": "Sujet de la demande",
         "type": "textArea",
         "option": "required"
