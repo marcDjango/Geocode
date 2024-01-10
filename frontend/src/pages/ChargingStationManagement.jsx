@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import RegistrationForm from "../components/user/RegistrationPage/RegistrationForm";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -16,10 +17,11 @@ export const fetchdata = async () => {
 
 function ChargingStationManagement() {
   const dataLoad = useLoaderData();
+  console.info(dataLoad);
   return (
     <div>
-      list
-      {dataLoad.map((item) => item.nom_operateur)}
+      <RegistrationForm />
+      {/* {dataLoad.map((item) => item.nom_operateur)} */}
     </div>
   );
 }
