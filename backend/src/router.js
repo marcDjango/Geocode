@@ -44,6 +44,7 @@ router.delete("/charging-station/:id", chargingStationControllers.destroy);
 
 // Import chargingStationControllers module for handling operations
 const userControllers = require("./controllers/userControllers");
+const validateMessage = require("./middlewares/validateMessage");
 
 // Route to get a list of charging station
 router.get("/users", verifyToken, userControllers.browse);
@@ -78,8 +79,7 @@ router.delete("/reservation/:id", reservationControllers.destroy);
 // Route to get a list of cars
 router.get("/contacts", contactControllers.browse);
 router.get("/contacts/:id", contactControllers.read);
-router.put("/contacts/:id", contactControllers.edit);
-router.post("/contacts", contactControllers.add);
+router.post("/contacts", validateMessage, contactControllers.add);
 router.delete("/contacts/:id", contactControllers.destroy);
 
 module.exports = router;

@@ -13,14 +13,15 @@ function ContactPage() {
     const form = new FormData(e.target);
     const data = Object.fromEntries(form);
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/contact`, {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/contacts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Spécifier le type de contenu JSON
         },
         body: JSON.stringify(data), // Convertir l'objet data en chaîne JSON
       });
-
+      const dataresponse = await response.json();
+      console.info(dataresponse);
       if (!response.ok) {
         throw new Error("Erreur lors de l'inscription");
       }
