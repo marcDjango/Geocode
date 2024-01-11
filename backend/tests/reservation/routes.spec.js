@@ -25,28 +25,28 @@ describe("GET /api/reservations", () => {
 
 // Test suite for the GET /api/reservations/:id route
 describe("GET /api/reservation/:id", () => {
-  let samplereservation;
+  let sampleReservation;
   beforeAll(async () => {
     // Créer une voiture de test pour le test
     const result = await tables.user_has_charging_station.add(
       reservationCreate
     );
-    samplereservation = await tables.user_has_charging_station.readReservation(
+    sampleReservation = await tables.user_has_charging_station.readReservation(
       result
     );
   });
   it("should fetch a single reservation successfully", async () => {
     // Envoyer une requête GET à l'endpoint /api/reservations/:id avec l'ID de la voiture de test
     const response = await request(app).get(
-      `/api/reservation/${samplereservation.id}`
+      `/api/reservation/${sampleReservation.id}`
     );
     // Assertions
 
     expect(response.status).toBe(200);
 
-    const returnedreservation = response.body;
+    const returnedReservation = response.body;
 
-    expect(returnedreservation).toEqual(samplereservation);
+    expect(returnedReservation).toEqual(sampleReservation);
   });
 
   it("should return 404 for non-existent reservation", async () => {
@@ -75,12 +75,12 @@ describe("POST /api/reservation", () => {
     expect(response.body).toEqual(expect.any(Number));
 
     // Check if the newly added reservation exists in the database
-    const foundreservation =
+    const foundReservation =
       await tables.user_has_charging_station.readReservation(response.body);
 
     // Assertions
-    expect(foundreservation).toBeDefined();
-    expect(foundreservation).toEqual(
+    expect(foundReservation).toBeDefined();
+    expect(foundReservation).toEqual(
       expect.objectContaining(reservationCreate)
     );
   });
