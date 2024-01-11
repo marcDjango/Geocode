@@ -1,6 +1,9 @@
 // Import required dependencies
 const { app, request, tables } = require("../setup");
-const { chargingStationToCreate } = require("../testdata");
+const {
+  chargingStationToCreate,
+  chargingStationUpdateData,
+} = require("../testdata");
 
 let persistentDatas = {};
 
@@ -13,7 +16,7 @@ describe("GET /api/charging_station", () => {
     );
 
     // Send a GET request to the /api/items endpoint
-    const response = await request(app).get("/api/charging-station");
+    const response = await request(app).get("/api/charging-stations");
     // Assertions
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Array);
@@ -27,11 +30,11 @@ describe("GET /api/charging_station", () => {
 });
 
 // Test suite for the GET /api/items/:id route
-describe("GET /api/charging_station/:id", () => {
+describe("GET /api/charging_stations/:id", () => {
   it("should fetch a single item successfully", async () => {
     // Send a GET request to the /api/items/:id endpoint
     const response = await request(app).get(
-      `/api/charging-station/${persistentDatas}`
+      `/api/charging-stations/${persistentDatas}`
     );
 
     // Assertions
@@ -42,7 +45,7 @@ describe("GET /api/charging_station/:id", () => {
 
   it("should return 404 for non-existent item", async () => {
     // Send a GET request to the /api/items/:id endpoint with an invalid ID
-    const response = await request(app).get("/api/charging-station/0");
+    const response = await request(app).get("/api/charging-stations/0");
 
     // Assertions
     expect(response.status).toBe(404);
@@ -53,11 +56,11 @@ describe("GET /api/charging_station/:id", () => {
 // Test suite for the POST /api/items route
 // Doesn't pass: maybe something to change in app config :/
 // Hint: enabling log could help ;)
-describe("POST /api/charging_station", () => {
+describe("POST /api/charging_stations", () => {
   it("should add a new item successfully", async () => {
     // Send a POST request to the /api/items endpoint with a test item
     const response = await request(app)
-      .post("/api/charging-station")
+      .post("/api/charging-stations")
       .send(chargingStationToCreate);
 
     // Assertions
@@ -76,12 +79,12 @@ describe("POST /api/charging_station", () => {
 // // TODO: implement PUT and DELETE routes
 
 // // Test suite for the PUT /api/items/:id route
-describe("PUT /api/charging_station/:id", () => {
+describe("PUT /api/charging-stations/:id", () => {
   it("should update an existing item successfully", async () => {
     // Send a PUT request to the /api/items/:id endpoint with updated data
     const response = await request(app)
-      .put(`/api/charging-station/${persistentDatas}`)
-      .send(chargingStationToCreate);
+      .put(`/api/charging-stations/${persistentDatas}`)
+      .send(chargingStationUpdateData);
 
     // Assertions
     expect(response.status).toBe(204);
@@ -89,17 +92,20 @@ describe("PUT /api/charging_station/:id", () => {
     // Check if the item has been updated in the database
     const foundItem = await tables.charging_station.read(persistentDatas);
 
+    delete foundItem.id;
+
     // Assertions
     expect(foundItem).toBeDefined();
+    expect(foundItem).toEqual(chargingStationUpdateData);
   });
 });
 
 // // Test suite for the DELETE /api/items/:id route
-describe("DELETE /api/charging_station/:id", () => {
+describe("DELETE /api/charging_stations/:id", () => {
   it("should delete an existing item successfully", async () => {
     // Send a DELETE request to the /api/items/:id endpoint
     const response = await request(app).delete(
-      `/api/charging-station/${persistentDatas}`
+      `/api/charging-stations/${persistentDatas}`
     );
 
     // Assertions
