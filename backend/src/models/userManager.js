@@ -33,7 +33,6 @@ class UserManager extends AbstractManager {
       `select * from ${this.table} where email = ?`,
       [email]
     );
-
     return rows[0];
   }
 }

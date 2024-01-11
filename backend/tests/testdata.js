@@ -1,3 +1,5 @@
+const argon2 = require("argon2");
+
 const charginStationKeys = [
   "nom_operateur",
   "telephone_operateur",
@@ -82,7 +84,9 @@ const carUpdate = {
   brand_id: 2,
   plug_id: 2,
 };
+const carKeys = ["id", "car_image", "user_id", "brand_id", "plug_id"];
 // *****************************************************************************
+
 const reservationCreate = {
   user_id: 1,
   charging_station_id: 1,
@@ -95,6 +99,48 @@ const reservationUpdate = {
   reservation_date: "2024-01-20",
   amount_paid: "6.64",
 };
+const reservationKeys = [
+  "id",
+  "user_id",
+  "charging_station_id",
+  "reservation_date",
+  "amount_paid",
+];
+// *****************************************************************************
+const userCreate = {
+  name: "bob",
+  firstname: "herman",
+  email: "wXnJt@examplexs.com",
+  gender: "male",
+  date_of_birth: "1997-01-01",
+  postal_code: "75000",
+  city: "paris",
+  number_vehicles: 1,
+  profil_image: "coucou.jpeg",
+  is_admin: 1,
+};
+
+const createUserWithHashedPassword = async () => {
+  const hash = await argon2.hash("1234567890");
+  return { ...userCreate, hashed_password: hash };
+};
+
+const userUpdate = {
+  name: "bob",
+  firstname: "herman",
+  email: "wXnJt@examplexs.com",
+  gender: "male",
+  date_of_birth: "1997-01-01",
+  postal_code: "31000",
+  city: "toulouse",
+  number_vehicles: 2,
+  profil_image: "coucou.jpeg",
+  is_admin: 0,
+};
+const updateUserWithHashedPassword = async () => {
+  const hash = await argon2.hash("1234567890");
+  return { ...userUpdate, hashed_password: hash };
+};
 
 module.exports = {
   charginStationKeys,
@@ -103,6 +149,14 @@ module.exports = {
 
   carCreate,
   carUpdate,
+  carKeys,
+
   reservationCreate,
   reservationUpdate,
+  reservationKeys,
+
+  createUserWithHashedPassword,
+  updateUserWithHashedPassword,
+  userUpdate,
+  userCreate,
 };

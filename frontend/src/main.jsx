@@ -20,6 +20,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route element={<RootLayout />} path="/" />
+
       <Route
         element={<ChargingStationManagement />}
         path="/charging-station"
