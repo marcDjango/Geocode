@@ -24,7 +24,7 @@ describe("GET /api/reservations", () => {
 });
 
 // Test suite for the GET /api/reservations/:id route
-describe("GET /api/reservation/:id", () => {
+describe("GET /api/reservations/:id", () => {
   let sampleReservation;
   beforeAll(async () => {
     // Créer une voiture de test pour le test
@@ -35,10 +35,10 @@ describe("GET /api/reservation/:id", () => {
       result
     );
   });
-  it("should fetch a single reservation successfully", async () => {
+  it("should fetch a single reservations successfully", async () => {
     // Envoyer une requête GET à l'endpoint /api/reservations/:id avec l'ID de la voiture de test
     const response = await request(app).get(
-      `/api/reservation/${sampleReservation.id}`
+      `/api/reservations/${sampleReservation.id}`
     );
     // Assertions
 
@@ -49,7 +49,7 @@ describe("GET /api/reservation/:id", () => {
     expect(returnedReservation).toEqual(sampleReservation);
   });
 
-  it("should return 404 for non-existent reservation", async () => {
+  it("should return 404 for non-existent reservations", async () => {
     // Send a GET request to the /api/reservations/:id endpoint with an invalid ID
     const response = await request(app).get("/api/reservations/0");
 
@@ -62,11 +62,11 @@ describe("GET /api/reservation/:id", () => {
 // Test suite for the POST /api/reservations route
 // // Doesn't pass: maybe something to change in app config :/
 // // Hint: enabling log could help ;)
-describe("POST /api/reservation", () => {
-  it("should add a new reservation successfully", async () => {
+describe("POST /api/reservations", () => {
+  it("should add a new reservations successfully", async () => {
     // Send a POST request to the /api/reservations endpoint with a test reservation
     const response = await request(app)
-      .post("/api/reservation")
+      .post("/api/reservations")
       .send(reservationCreate);
 
     // Assertions
@@ -89,15 +89,15 @@ describe("POST /api/reservation", () => {
 // // // // TODO: implement PUT and DELETE routes
 
 // // // // Test suite for the PUT /api/reservations/:id route
-describe("PUT /api/reservation/:id", () => {
-  it("should update an existing reservation successfully", async () => {
+describe("PUT /api/reservations/:id", () => {
+  it("should update an existing reservations successfully", async () => {
     // Send a PUT request to the /api/reservations/:id endpoint with updated data
     const result = await tables.user_has_charging_station.add(
       reservationCreate
     );
     const id = result;
     const response = await request(app)
-      .put(`/api/reservation/${id}`)
+      .put(`/api/reservations/${id}`)
       .send(reservationUpdate);
     // Assertions
     expect(response.status).toBe(204);
@@ -115,15 +115,15 @@ describe("PUT /api/reservation/:id", () => {
 });
 
 // // // // Test suite for the DELETE /api/reservations/:id route
-describe("DELETE /api/reservation/:id", () => {
-  it("should delete an existing reservation successfully", async () => {
+describe("DELETE /api/reservations/:id", () => {
+  it("should delete an existing reservations successfully", async () => {
     // Send a DELETE request to the /api/reservations/:id endpoint
     const result = await tables.user_has_charging_station.add(
       reservationCreate
     );
 
     const id = result;
-    const response = await request(app).delete(`/api/reservation/${id}`);
+    const response = await request(app).delete(`/api/reservations/${id}`);
 
     // Assertions
     expect(response.status).toBe(204);
@@ -135,9 +135,9 @@ describe("DELETE /api/reservation/:id", () => {
     // Assertions
     expect(foundReservation).toBeUndefined();
   });
-  it("should return 404 for non-existent reservation", async () => {
+  it("should return 404 for non-existent reservations", async () => {
     // Envoyer une requête DELETE à l'endpoint /api/reservations/:id avec un ID qui n'existe pas
-    const response = await request(app).delete("/api/reservation/0");
+    const response = await request(app).delete("/api/reservations/0");
 
     // Assertions
     expect(response.status).toBe(404);

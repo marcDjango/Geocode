@@ -39,7 +39,7 @@ describe("GET /api/users", () => {
 });
 
 // Test suite for the GET /api/users/:id route
-describe("GET /api/user/:id", () => {
+describe("GET /api/users/:id", () => {
   let sampleUser;
   beforeAll(async () => {
     sampleUser = await tables.user.readUser(insertedId);
@@ -47,7 +47,7 @@ describe("GET /api/user/:id", () => {
   it("should fetch a single user successfully", async () => {
     // Envoyer une requête GET à l'endpoint /api/users/:id avec l'ID de la voiture de test
     const response = await request(app)
-      .get(`/api/user/${sampleUser.id}`)
+      .get(`/api/users/${sampleUser.id}`)
       .set("Authorization", `Bearer ${token.body.token}`);
     // Assertions
 
@@ -60,7 +60,9 @@ describe("GET /api/user/:id", () => {
 
   it("should return 404 for non-existent user", async () => {
     // Send a GET request to the /api/users/:id endpoint with an invalid ID
-    const response = await request(app).get("/api/users/0");
+    const response = await request(app)
+      .get("/api/users/0")
+      .set("Authorization", `Bearer ${token.body.token}`);
 
     // Assertions
     expect(response.status).toBe(404);
@@ -69,12 +71,12 @@ describe("GET /api/user/:id", () => {
 });
 
 // Test suite for the POST /api/users route
-describe("POST /api/user", () => {
-  it("should add a new user successfully", async () => {
+describe("POST /api/users", () => {
+  it("should add a new users successfully", async () => {
     const userCreatePassword = await { ...userCreate, password: "1234567890" };
     // Send a POST request to the /api/users endpoint with a test user
     const response = await request(app)
-      .post("/api/user")
+      .post("/api/users")
       .send(userCreatePassword);
 
     // Assertions
@@ -93,15 +95,15 @@ describe("POST /api/user", () => {
 });
 
 // Test suite for the PUT /api/users/:id route
-describe("PUT /api/user/:id", () => {
-  it("should update an existing user successfully", async () => {
+describe("PUT /api/users/:id", () => {
+  it("should update an existing users successfully", async () => {
     // Send a PUT request to the /api/users/:id endpoint with updated data
     const userUpdatePassword = await {
       ...userUpdate,
       password: "1234567890",
     };
     const response = await request(app)
-      .put(`/api/user/${insertedId}`)
+      .put(`/api/users/${insertedId}`)
       .send(userUpdatePassword)
       .set("Authorization", `Bearer ${token.body.token}`);
     // Assertions
@@ -118,12 +120,12 @@ describe("PUT /api/user/:id", () => {
 });
 
 // Test suite for the DELETE /api/users/:id route
-describe("DELETE /api/user/:id", () => {
-  it("should delete an existing user successfully", async () => {
+describe("DELETE /api/users/:id", () => {
+  it("should delete an existing users successfully", async () => {
     // Send a DELETE request to the /api/users/:id endpoint
 
     const response = await request(app)
-      .delete(`/api/user/${insertedId}`)
+      .delete(`/api/users/${insertedId}`)
       .set("Authorization", `Bearer ${token.body.token}`);
 
     // Assertions
@@ -135,10 +137,10 @@ describe("DELETE /api/user/:id", () => {
     // Assertions
     expect(foundUser).toBeUndefined();
   });
-  it("should return 404 for non-existent user", async () => {
+  it("should return 404 for non-existent users", async () => {
     // Envoyer une requête DELETE à l'endpoint /api/users/:id avec un ID qui n'existe pas
     const response = await request(app)
-      .delete("/api/user/0")
+      .delete("/api/users/0")
       .set("Authorization", `Bearer ${token.body.token}`);
 
     // Assertions
