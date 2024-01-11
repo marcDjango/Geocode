@@ -29,7 +29,6 @@ const router = createBrowserRouter(
         path="/charging-station"
         loader={fetchdata}
       />
-      <Route element={<ContactPage />} path="/contact" />
       <Route element={<Map />} path="/map" />
     </Route>
   )
