@@ -108,12 +108,12 @@ describe("PUT /api/user/:id", () => {
     expect(response.status).toBe(204);
 
     // Check if the user has been updated in the database
-    const founduser = await tables.user.readUser(insertedId);
-    delete founduser.hashed_password;
-    delete founduser.id;
+    const foundUser = await tables.user.readUser(insertedId);
+    delete foundUser.hashed_password;
+    delete foundUser.id;
     // Assertions
-    expect(founduser).toBeDefined();
-    expect(founduser).toEqual(expect.objectContaining(userUpdate));
+    expect(foundUser).toBeDefined();
+    expect(foundUser).toEqual(expect.objectContaining(userUpdate));
   });
 });
 
