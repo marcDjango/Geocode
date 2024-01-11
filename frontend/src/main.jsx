@@ -10,6 +10,7 @@ import {
 
 // import App from "./App";
 import RootLayout from "./layout/RootLayout";
+import Map from "./components/map/map";
 import ChargingStationManagement, {
   fetchdata,
 } from "./pages/ChargingStationManagement";
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
         loader={fetchdata}
       />
       <Route element={<ContactPage />} path="/contact" />
+      <Route element={<Map />} path="/map" />
     </Route>
   )
 );
