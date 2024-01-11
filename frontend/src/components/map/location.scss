@@ -1,0 +1,13 @@
+.buttonLocation {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  position: absolute;
+  top: 82px;
+  right: 11px;
+  z-index: 1000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
