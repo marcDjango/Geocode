@@ -1,0 +1,35 @@
+{
+    "object": {
+        "value": "Objet de la demande",
+        "type": "select",
+        "option":[
+            {
+            "value":"information",
+            "title":"Demande d'information"
+            },
+            {
+            "value":"partenariat",
+            "title":"Demande de partenariat"
+            },
+            {
+            "value":"autres",
+            "title":"Autres"
+            }
+        ]
+    },
+    "name": {
+        "value": "Nom et Prénom",
+        "type": "text",
+        "option": "required"
+    },
+    "email": {
+        "value": "Adresse email",
+        "type": "email",
+        "option": "required"
+    },
+    "subject": {
+        "value": "Sujet de la demande",
+        "type": "textArea",
+        "option": "required"
+    }
+}

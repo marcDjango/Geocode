@@ -1,0 +1,42 @@
+.input-style,
+.input-style:valid,
+.input-style:focus,
+.input-style:-webkit-autofill {
+  width: 260px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--Color-3, #10fffe);
+  background: rgba(0, 0, 0, 0.6);
+  padding-inline: 1rem;
+  transition: all 0.3s ease; /* Ajoutez une transition pour une animation fluide si nécessaire */
+}
+
+.input-style:focus,
+.input-style:valid,
+.input-style:focus::-webkit-input-placeholder,
+.input-style:-webkit-autofill::-webkit-input-placeholder {
+  /* Styles spécifiques au focus ou à la saisie automatique */
+  border-color: var(--Color-3, #10fffe);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.typo {
+  color: #fff;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Invert the color of the calendar icon */
+}
+.input-style-textarea {
+  width: 260px;
+  height: 210px;
+  border-radius: 10px;
+  border: 1px solid var(--Color-3, #10fffe);
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1rem;
+  transition: all 0.3s ease; /* Ajoutez une transition pour une animation fluide si nécessaire */
+}
