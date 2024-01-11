@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import L from "leaflet";
 import { useMap } from "react-leaflet";
 
+// Création d'une fonction pour rechercher une ville à l'aide de leafle-control-geocoder
 function LeafletGeocoder() {
   const map = useMap();
   useEffect(() => {

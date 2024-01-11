@@ -19,9 +19,11 @@ import LeafletGeocoder from "./search";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function Map() {
+  // Position initiale de la carte
   const position = [48.8566, 2.3522];
   const [chargingStations, setChargingStations] = useState([]);
 
+  // Fonction pour récupérer les stations de recharge depuis le backend
   const fetchChargingStations = useCallback(async () => {
     try {
       const response = await fetch(`${VITE_BACKEND_URL}/api/charging-station`);
@@ -36,6 +38,7 @@ function Map() {
     fetchChargingStations();
   }, [fetchChargingStations]);
 
+  // Fonction pour créer une icône personnalisée pour les clusters
   const createClusterCustomIcon = useCallback((cluster) => {
     return new DivIcon({
       html: `<span class="cluster-icon">${cluster.getChildCount()}</span>`,
@@ -44,6 +47,7 @@ function Map() {
     });
   }, []);
 
+  // Icône personnalisée pour les marqueurs individuels
   const customIcon = new Icon({
     iconUrl: VectorImage,
     iconSize: [38, 38],

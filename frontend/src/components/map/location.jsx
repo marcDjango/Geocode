@@ -6,6 +6,7 @@ import imagePosition from "../../assets/tabler_location.svg";
 function LocationMarker() {
   const [location, setLocation] = useState(null);
 
+  // Trouver la localisation
   const map = useMapEvents({
     locationfound(e) {
       setLocation(e.latlng);
@@ -13,6 +14,7 @@ function LocationMarker() {
     },
   });
 
+  // Gestionnaire de clic pour le boutton location
   const handleFindLocationClick = () => {
     map.locate();
   };
