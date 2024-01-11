@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Outlet } from "react-router-dom";
 import "../reset.css";
+import { useCurrentUserContext } from "../contexte/CurrentUserContext";
 
 function RootLayout() {
-  const [auth, setAuth] = useState();
-
+  const { auth } = useCurrentUserContext();
+  const userItem = JSON.parse(localStorage.getItem("user"));
+  console.info(auth);
+  console.info(userItem);
   return (
     <div className="root-layout">
-      <header>importer ici la navbar</header>
+      <header>Importer ici la navbar</header>
       <main>
-        {auth && <p>Hello {auth.user.email}</p>}
-        <Outlet context={{ auth, setAuth }} />
+        <Outlet />
       </main>
     </div>
   );

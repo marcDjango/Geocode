@@ -1,11 +1,12 @@
 import React from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useCurrentUserContext } from "../../../contexte/CurrentUserContext";
 import Form from "../../form/form";
+
 import "../RegistrationPage/RegistrationForm.scss";
 
 function LoginPage() {
-  const { setAuth } = useOutletContext();
-
+  const { auth, setAuth } = useCurrentUserContext();
   // Hook pour la navigation
   const navigate = useNavigate();
 
@@ -38,9 +39,10 @@ function LoginPage() {
       });
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
-        const auth = await response.json();
-
-        setAuth(auth);
+        const user = await response.json();
+        setAuth(user.user);
+        localStorage.setItem("user", JSON.stringify(user.user));
+        localStorage.setItem("token", user.token);
 
         navigate("/contact");
       } else {
@@ -56,7 +58,15 @@ function LoginPage() {
     }
   };
 
-  return <Form data={contact} FormPostData={FormPostData} />;
+  return (
+    <div>
+      {auth ? (
+        <p>Hello {auth}</p>
+      ) : (
+        <Form data={contact} FormPostData={FormPostData} />
+      )}
+    </div>
+  );
 }
 
 export default LoginPage;

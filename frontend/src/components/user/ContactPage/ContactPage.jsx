@@ -1,4 +1,5 @@
 import React from "react";
+import { useCurrentUserContext } from "../../../contexte/CurrentUserContext";
 import contact from "./config.json";
 import Form from "../../form/form";
 import "../RegistrationPage/RegistrationForm.scss";
@@ -6,6 +7,10 @@ import "../RegistrationPage/RegistrationForm.scss";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function ContactPage() {
+  const { auth } = useCurrentUserContext();
+  const userItem = JSON.parse(localStorage.getItem("user"));
+  console.info(userItem);
+
   const FormPostData = async (e) => {
     e.preventDefault();
 
@@ -31,7 +36,12 @@ function ContactPage() {
     }
   };
 
-  return <Form data={contact} FormPostData={FormPostData} />;
+  return (
+    <div>
+      {auth && <p>{auth}</p>}
+      <Form data={contact} FormPostData={FormPostData} />
+    </div>
+  );
 }
 
 export default ContactPage;
