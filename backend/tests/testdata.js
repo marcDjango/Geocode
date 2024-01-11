@@ -1,3 +1,5 @@
+const argon2 = require("argon2");
+
 const charginStationKeys = [
   "nom_operateur",
   "telephone_operateur",
@@ -108,45 +110,37 @@ const reservationKeys = [
 const userCreate = {
   name: "bob",
   firstname: "herman",
-  email: "wXnJt@example.com",
+  email: "wXnJt@examplexs.com",
   gender: "male",
   date_of_birth: "1997-01-01",
   postal_code: "75000",
   city: "paris",
   number_vehicles: 1,
-  password: "123456",
-  profil_image:
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-  role: 1,
+  profil_image: "coucou.jpeg",
+  is_admin: 1,
 };
+
+const createUserWithHashedPassword = async () => {
+  const hash = await argon2.hash("1234567890");
+  return { ...userCreate, hashed_password: hash };
+};
+
 const userUpdate = {
   name: "bob",
   firstname: "herman",
-  email: "wXnJt@example.com",
+  email: "wXnJt@examplexs.com",
   gender: "male",
   date_of_birth: "1997-01-01",
   postal_code: "31000",
   city: "toulouse",
   number_vehicles: 2,
-  password: "123456",
-  profil_image:
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-  role: 0,
+  profil_image: "coucou.jpeg",
+  is_admin: 0,
 };
-const userKeys = [
-  "id",
-  "name",
-  "firstname",
-  "email",
-  "gender",
-  "date_of_birth",
-  "postal_code",
-  "city",
-  "number_vehicles",
-  "password",
-  "profil_image",
-  "role",
-];
+const updateUserWithHashedPassword = async () => {
+  const hash = await argon2.hash("1234567890");
+  return { ...userUpdate, hashed_password: hash };
+};
 
 module.exports = {
   charginStationKeys,
@@ -161,7 +155,8 @@ module.exports = {
   reservationUpdate,
   reservationKeys,
 
-  userCreate,
+  createUserWithHashedPassword,
+  updateUserWithHashedPassword,
   userUpdate,
-  userKeys,
+  userCreate,
 };

@@ -1,46 +1,49 @@
 // Import required dependencies
 const { database, tables } = require("../setup");
-const { userCreate, userUpdate } = require("../testdata");
+const {
+  createUserWithHashedPassword,
+  updateUserWithHashedPassword,
+} = require("../testdata");
 
 describe("Create user", () => {
+  let persistentUser = {};
+
   it("should create an user successfully", async () => {
-    const result = await tables.user.add(userCreate);
+    const userCreate = await createUserWithHashedPassword();
+    persistentUser = await tables.user.add(userCreate);
     const [rows] = await database.query(
       `select * from ${tables.user.table} where id = ?`,
-      [result]
+      [persistentUser]
     );
     expect(rows.length).toBe(1);
     return rows;
   });
 
   it("should read a charging user successfully", async () => {
-    const result = await tables.user.add(userCreate);
     const [user] = await database.query(
       `select * from ${tables.user.table} where id = ?`,
-      [result]
+      [persistentUser]
     );
 
-    expect(user[0].id).toEqual(result);
+    expect(user[0].id).toEqual(persistentUser);
   });
 
   it("should update a charging user successfully", async () => {
-    const result = await tables.user.add(userCreate);
-    await tables.user.edit(userUpdate, result);
-
+    const userUpdate = await updateUserWithHashedPassword();
+    await tables.user.edit(userUpdate, persistentUser);
     const [updateduser] = await database.query(
       `select * from ${tables.user.table} where id = ?`,
-      [result]
+      [persistentUser]
     );
 
     expect(updateduser.someProperty).toEqual(userUpdate.someProperty);
   });
 
   it("should delete a charging user successfully", async () => {
-    const result = await tables.user.add(userCreate);
-    await tables.user.delete(result);
+    await tables.user.delete(persistentUser);
     const [deleteduser] = await database.query(
       `select * from ${tables.user.table} where id = ?`,
-      [result]
+      [persistentUser]
     );
 
     expect(deleteduser).toEqual([]);
