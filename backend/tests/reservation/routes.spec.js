@@ -15,11 +15,11 @@ describe("GET /api/reservations", () => {
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Array);
     // Check if the created user is present in the response
-    const founduser = response.body.find(
+    const foundUser = response.body.find(
       (reservation) => reservation.id === result
     );
     // Assertions
-    expect(founduser).toBeInstanceOf(Object);
+    expect(foundUser).toBeInstanceOf(Object);
   });
 });
 
@@ -103,12 +103,12 @@ describe("PUT /api/reservation/:id", () => {
     expect(response.status).toBe(204);
 
     // Check if the reservation has been updated in the database
-    const foundreservation =
+    const foundReservation =
       await tables.user_has_charging_station.readReservation(id);
 
     // Assertions
-    expect(foundreservation).toBeDefined();
-    expect(foundreservation).toEqual(
+    expect(foundReservation).toBeDefined();
+    expect(foundReservation).toEqual(
       expect.objectContaining(reservationUpdate)
     );
   });
@@ -129,11 +129,11 @@ describe("DELETE /api/reservation/:id", () => {
     expect(response.status).toBe(204);
 
     // Check if the reservation has been deleted from the database
-    const foundreservation =
+    const foundReservation =
       await tables.user_has_charging_station.readReservation(id);
 
     // Assertions
-    expect(foundreservation).toBeUndefined();
+    expect(foundReservation).toBeUndefined();
   });
   it("should return 404 for non-existent reservation", async () => {
     // Envoyer une requête DELETE à l'endpoint /api/reservations/:id avec un ID qui n'existe pas

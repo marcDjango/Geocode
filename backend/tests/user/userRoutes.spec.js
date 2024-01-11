@@ -32,22 +32,22 @@ describe("GET /api/users", () => {
     expect(response.status).toBe(200);
     expect(response.body).toBeInstanceOf(Array);
     // Check if the created user is present in the response
-    const founduser = response.body.find((user) => user.id === insertedId);
+    const foundUser = response.body.find((user) => user.id === insertedId);
     // Assertions
-    expect(founduser).toBeInstanceOf(Object);
+    expect(foundUser).toBeInstanceOf(Object);
   });
 });
 
 // Test suite for the GET /api/users/:id route
 describe("GET /api/user/:id", () => {
-  let sampleuser;
+  let sampleUser;
   beforeAll(async () => {
-    sampleuser = await tables.user.readUser(insertedId);
+    sampleUser = await tables.user.readUser(insertedId);
   });
   it("should fetch a single user successfully", async () => {
     // Envoyer une requête GET à l'endpoint /api/users/:id avec l'ID de la voiture de test
     const response = await request(app)
-      .get(`/api/user/${sampleuser.id}`)
+      .get(`/api/user/${sampleUser.id}`)
       .set("Authorization", `Bearer ${token.body.token}`);
     // Assertions
 
@@ -55,7 +55,7 @@ describe("GET /api/user/:id", () => {
 
     const returnedUser = response.body;
 
-    expect(returnedUser).toEqual(sampleuser);
+    expect(returnedUser).toEqual(sampleUser);
   });
 
   it("should return 404 for non-existent user", async () => {
@@ -83,12 +83,12 @@ describe("POST /api/user", () => {
     expect(response.body).toEqual(expect.any(Number));
 
     // Check if the newly added user exists in the database
-    const founduser = await tables.user.readUser(response.body);
-    delete founduser.hashed_password;
-    delete founduser.id;
+    const foundUser = await tables.user.readUser(response.body);
+    delete foundUser.hashed_password;
+    delete foundUser.id;
     // Assertions
-    expect(founduser).toBeDefined();
-    expect(founduser).toEqual(expect.objectContaining(userCreate));
+    expect(foundUser).toBeDefined();
+    expect(foundUser).toEqual(expect.objectContaining(userCreate));
   });
 });
 
@@ -130,10 +130,10 @@ describe("DELETE /api/user/:id", () => {
     expect(response.status).toBe(204);
 
     // Check if the user has been deleted from the database
-    const founduser = await tables.user.readUser(insertedId);
+    const foundUser = await tables.user.readUser(insertedId);
 
     // Assertions
-    expect(founduser).toBeUndefined();
+    expect(foundUser).toBeUndefined();
   });
   it("should return 404 for non-existent user", async () => {
     // Envoyer une requête DELETE à l'endpoint /api/users/:id avec un ID qui n'existe pas
