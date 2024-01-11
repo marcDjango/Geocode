@@ -25,7 +25,6 @@ function ContactPage() {
       if (!response.ok) {
         throw new Error("Erreur lors de l'inscription");
       }
-
       // Traiter la réponse ici si nécessaire
     } catch (error) {
       console.error(error);

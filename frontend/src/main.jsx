@@ -14,17 +14,20 @@ import ChargingStationManagement, {
   fetchdata,
 } from "./pages/ChargingStationManagement";
 import ContactPage from "./components/user/ContactPage/ContactPage";
+import LoginPage from "./components/user/LoginPage/LoginPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route element={<RootLayout />} path="/" />
+      <Route element={<RootLayout />} path="/">
+        <Route element={<ContactPage />} path="/contact" />
+        <Route element={<LoginPage />} path="/login" />
+      </Route>
       <Route
         element={<ChargingStationManagement />}
         path="/charging-station"
         loader={fetchdata}
       />
-      <Route element={<ContactPage />} path="/contact" />
     </Route>
   )
 );
