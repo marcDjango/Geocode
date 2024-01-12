@@ -11,6 +11,18 @@
 .leaflet-container {
   width: 100vw;
   height: 100vh;
+
+  .leaflet-popup-content-wrapper {
+    background: none;
+    box-shadow: none;
+    color: none;
+    padding: 0px;
+    border-radius: 0px;
+    display: flex;
+  }
+  .leaflet-popup-content {
+    display: flex;
+  }
 }
 
 .cluster-icon {

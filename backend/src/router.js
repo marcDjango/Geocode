@@ -46,7 +46,7 @@ router.delete("/charging-station/:id", chargingStationControllers.destroy);
 const userControllers = require("./controllers/userControllers");
 
 // Route to get a list of charging station
-router.get("/users", verifyToken, userControllers.browse);
+router.get("/users", userControllers.browse);
 router.get("/user/:id", verifyToken, userControllers.read);
 router.post("/user/", validateUser, hashPassword, userControllers.add);
 router.post(
