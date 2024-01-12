@@ -61,7 +61,9 @@ function LoginPage() {
   return (
     <div>
       {auth ? (
-        <p>Hello {auth}</p>
+        <p>
+          Bonjour {auth.firstname} {auth.name}{" "}
+        </p>
       ) : (
         <Form data={contact} FormPostData={FormPostData} />
       )}

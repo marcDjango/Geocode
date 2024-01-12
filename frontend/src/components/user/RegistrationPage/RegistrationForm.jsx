@@ -36,7 +36,7 @@ function RegistrationForm() {
       profil_image: null,
     };
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/user/`, {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/users/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Spécifier le type de contenu JSON

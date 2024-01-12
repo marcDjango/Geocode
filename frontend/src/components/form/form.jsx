@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Select from "../select/select";
 import Input from "../input/input";
 
-function Form({ data, FormPostData }) {
+function Form({ data, FormPostData, isAuth }) {
   return (
     <div className="registration-contain">
       <form className="df-column" onSubmit={FormPostData}>
@@ -15,6 +15,7 @@ function Form({ data, FormPostData }) {
               type={data[fieldName].type}
               placeholder={data[fieldName].value}
               required={data[fieldName].option === "required"}
+              isAuth={isAuth}
             />
           ) : (
             <Select
@@ -44,4 +45,5 @@ const dataShape = PropTypes.shape({
 Form.propTypes = {
   data: PropTypes.objectOf(dataShape).isRequired,
   FormPostData: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool.isRequired,
 };

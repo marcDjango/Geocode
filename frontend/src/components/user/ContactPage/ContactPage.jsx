@@ -11,6 +11,15 @@ function ContactPage() {
   const userItem = JSON.parse(localStorage.getItem("user"));
   console.info(userItem);
 
+  const isConnected = () => {
+    if (auth) {
+      contact.name.value = auth.firstname + auth.name;
+      contact.email.value = auth.email;
+      return true;
+    }
+    return false;
+  };
+
   const FormPostData = async (e) => {
     e.preventDefault();
 
@@ -35,11 +44,10 @@ function ContactPage() {
       console.error(error);
     }
   };
-
+  const verfiAuth = isConnected();
   return (
     <div>
-      {auth && <p>{auth}</p>}
-      <Form data={contact} FormPostData={FormPostData} />
+      <Form data={contact} FormPostData={FormPostData} isAuth={verfiAuth} />
     </div>
   );
 }
