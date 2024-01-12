@@ -26,7 +26,7 @@ function Map() {
   // Fonction pour récupérer les stations de recharge depuis le backend
   const fetchChargingStations = useCallback(async () => {
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/charging-station`);
+      const response = await fetch(`${VITE_BACKEND_URL}/api/charging-stations`);
       const data = await response.json();
       setChargingStations(data);
     } catch (error) {

@@ -15,12 +15,14 @@ import ChargingStationManagement, {
   fetchdata,
 } from "./pages/ChargingStationManagement";
 import ContactPage from "./components/user/ContactPage/ContactPage";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route element={<RootLayout />} path="/" />
-
+      <Route path="/" element={<RootLayout />}>
+        <Route path="/" element={<Home />} />
+      </Route>
       <Route
         element={<ChargingStationManagement />}
         path="/charging-station"
