@@ -7,17 +7,17 @@ import ChargingStationManagement, {
   fetchdata,
 } from "../pages/ChargingStationManagement";
 import Map from "../components/map/map";
-import Home from "../pages/Home";
+import Home from "../pages/home/Home";
 
 function AppRoutes() {
   return (
     <Routes>
       {/* routes pour l'utilisateur ou visiteur  */}
       <Route element={<RootLayout />} path="/">
+        <Route element={<Home />} path="/" />
         <Route element={<ContactPage />} path="/contact" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<Map />} path="/map" />
-        <Route element={<Home />} path="/" />
       </Route>
 
       {/* routes pour l'administrateur */}
