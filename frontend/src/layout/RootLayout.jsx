@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import "../reset.css";
 import { useCurrentUserContext } from "../contexte/CurrentUserContext";
+import Navbar from "../components/navbar/Navbar";
 
 function RootLayout() {
   const { auth } = useCurrentUserContext();
@@ -9,8 +10,10 @@ function RootLayout() {
   console.info(auth);
   console.info(userItem);
   return (
-    <div className="root-layout">
-      <header>Importer ici la navbar</header>
+    <div style={{ position: "relative" }}>
+      <header style={{ position: "absolute", zIndex: 999 }}>
+        <Navbar />
+      </header>
       <main>
         <Outlet />
       </main>
