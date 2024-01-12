@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./home.scss";
-import logoSearch from "../assets/logoSearch.svg";
+import logoSearch from "../../assets/logoSearch.svg";
 
 function Home() {
   const navigate = useNavigate();
