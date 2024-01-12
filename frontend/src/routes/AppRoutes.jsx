@@ -21,7 +21,7 @@ function AppRoutes() {
       {/* routes pour l'administrateur */}
       <Route
         element={<ChargingStationManagement />}
-        path="/charging-station"
+        path="admin/charging-station"
         loader={fetchdata}
       />
     </Routes>
