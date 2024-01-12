@@ -11,7 +11,14 @@ function RootLayout() {
   console.info(userItem);
   return (
     <div style={{ position: "relative" }}>
-      <header style={{ position: "absolute", zIndex: 999 }}>
+      <header
+        style={{
+          position: "absolute",
+          top: "3%",
+          left: "3%",
+          zIndex: 999,
+        }}
+      >
         <Navbar />
       </header>
       <main>
