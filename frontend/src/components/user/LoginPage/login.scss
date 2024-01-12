@@ -1,13 +1,20 @@
 .login-contain {
   width: 100%;
   height: 100dvh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-image: url("../../../assets/images/backgroundhome.png");
   background-repeat: no-repeat;
   background-size: cover;
 
   .login-section-contain {
     width: 350px;
-    background: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: whitesmoke;
     z-index: 99;
   }
   .df-column {
