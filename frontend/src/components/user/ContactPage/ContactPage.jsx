@@ -1,4 +1,5 @@
 import React from "react";
+import { useCurrentUserContext } from "../../../contexte/CurrentUserContext";
 import contact from "./config.json";
 import Form from "../../form/form";
 import "../RegistrationPage/RegistrationForm.scss";
@@ -6,6 +7,10 @@ import "../RegistrationPage/RegistrationForm.scss";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function ContactPage() {
+  const { auth } = useCurrentUserContext();
+  const userItem = JSON.parse(localStorage.getItem("user"));
+  console.info(userItem);
+
   const FormPostData = async (e) => {
     e.preventDefault();
 
@@ -13,25 +18,30 @@ function ContactPage() {
     const form = new FormData(e.target);
     const data = Object.fromEntries(form);
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/contact`, {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/contacts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Spécifier le type de contenu JSON
         },
         body: JSON.stringify(data), // Convertir l'objet data en chaîne JSON
       });
-
+      const dataresponse = await response.json();
+      console.info(dataresponse);
       if (!response.ok) {
         throw new Error("Erreur lors de l'inscription");
       }
-
       // Traiter la réponse ici si nécessaire
     } catch (error) {
       console.error(error);
     }
   };
 
-  return <Form data={contact} FormPostData={FormPostData} />;
+  return (
+    <div>
+      {auth && <p>{auth}</p>}
+      <Form data={contact} FormPostData={FormPostData} />
+    </div>
+  );
 }
 
 export default ContactPage;
