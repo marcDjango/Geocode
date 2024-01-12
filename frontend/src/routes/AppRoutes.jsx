@@ -8,6 +8,7 @@ import ChargingStationManagement, {
 } from "../pages/ChargingStationManagement";
 import Map from "../components/map/map";
 import RegistrationForm from "../components/user/RegistrationPage/RegistrationForm";
+import Home from "../pages/Home";
 
 function AppRoutes() {
   return (
@@ -18,6 +19,7 @@ function AppRoutes() {
         <Route element={<LoginPage />} path="/login" />
         <Route element={<RegistrationForm />} path="/signup" />
         <Route element={<Map />} path="/map" />
+        <Route element={<Home />} path="/" />
       </Route>
 
       {/* routes pour l'administrateur */}
