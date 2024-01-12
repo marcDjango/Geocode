@@ -46,7 +46,7 @@ function ContactPage() {
   };
   const verfiAuth = isConnected();
   return (
-    <div>
+    <div className="registration-contain">
       <Form data={contact} FormPostData={FormPostData} isAuth={verfiAuth} />
     </div>
   );

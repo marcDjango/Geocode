@@ -11,6 +11,7 @@ select {
 /* Styles spécifiques pour la flèche (utilisez une image personnalisée ou modifiez la couleur) */
 select::-ms-expand {
   display: none;
+  padding-right: 1rem;
 }
 
 select::after {
@@ -28,11 +29,16 @@ select::after {
 .select-style {
   width: 260px;
   height: 40px;
-
   transition: all 0.3s ease;
-  border-radius: 20px;
+  border-radius: 10px;
   border: 2px solid var(--Color-3, #10fffe);
-  background: #353f3f;
-
-  box-shadow: 0px 2px 8px 0px #10fffe;
+  background: rgba(0, 0, 0, 0.6);
+}
+.typo {
+  color: #fff;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }

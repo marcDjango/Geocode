@@ -39,10 +39,12 @@ function Input({ name, placeholder, type, isAuth }) {
 }
 
 export default Input;
-
+Input.defaultProps = {
+  isAuth: false,
+};
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  isAuth: PropTypes.bool.isRequired,
+  isAuth: PropTypes.bool,
   placeholder: PropTypes.string.isRequired,
 };

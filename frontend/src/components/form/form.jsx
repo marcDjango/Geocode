@@ -5,7 +5,7 @@ import Input from "../input/input";
 
 function Form({ data, FormPostData, isAuth }) {
   return (
-    <div className="registration-contain">
+    <div>
       <form className="df-column" onSubmit={FormPostData}>
         {Object.keys(data).map((fieldName) =>
           data[fieldName].type !== "select" ? (
@@ -41,9 +41,11 @@ const dataShape = PropTypes.shape({
   value: PropTypes.string.isRequired,
   option: PropTypes.arrayOf,
 });
-
+Form.defaultProps = {
+  isAuth: false,
+};
 Form.propTypes = {
   data: PropTypes.objectOf(dataShape).isRequired,
   FormPostData: PropTypes.func.isRequired,
-  isAuth: PropTypes.bool.isRequired,
+  isAuth: PropTypes.bool,
 };

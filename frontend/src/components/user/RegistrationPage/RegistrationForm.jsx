@@ -54,7 +54,11 @@ function RegistrationForm() {
     }
   };
 
-  return <Form data={user} FormPostData={FormPostData} />;
+  return (
+    <div className="registration-contain">
+      <Form data={user} FormPostData={FormPostData} />;
+    </div>
+  );
 }
 
 export default RegistrationForm;

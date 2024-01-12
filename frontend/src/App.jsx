@@ -1,7 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { CurrentUserContextProvider } from "./contexte/CurrentUserContext";
 
-import "./App.css";
 import AppRoutes from "./routes/AppRoutes";
 
 function App() {

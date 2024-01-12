@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../../../contexte/CurrentUserContext";
 import Form from "../../form/form";
 
-import "../RegistrationPage/RegistrationForm.scss";
+import "./login.scss";
 
 function LoginPage() {
   const { auth, setAuth } = useCurrentUserContext();
@@ -59,13 +59,15 @@ function LoginPage() {
   };
 
   return (
-    <div>
+    <div className="login-contain">
       {auth ? (
         <p>
           Bonjour {auth.firstname} {auth.name}{" "}
         </p>
       ) : (
-        <Form data={contact} FormPostData={FormPostData} />
+        <section className="login-section-contain">
+          <Form data={contact} FormPostData={FormPostData} />
+        </section>
       )}
     </div>
   );
