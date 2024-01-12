@@ -1,0 +1,39 @@
+.home {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../assets/images/Design-home.png");
+  position: relative;
+
+  .home-btn {
+    width: clamp(160px, 75%, 260px);
+    height: 43px;
+    cursor: pointer;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    border-radius: 20px;
+    border: 2px solid #10fffe;
+
+    box-shadow: 0px 2px 8px 0px #10fffe;
+    position: relative;
+
+    .home-logoSeaech {
+      position: absolute;
+      top: 50%;
+
+      left: 10px;
+      transform: translateY(-50%);
+      height: 70%;
+      width: calc(height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: white;
+    }
+  }
+}

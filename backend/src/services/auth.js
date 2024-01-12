@@ -1,4 +1,5 @@
 const argon2 = require("argon2");
+
 const jwt = require("jsonwebtoken");
 
 // Middleware pour hacher le mot de passe
@@ -53,7 +54,7 @@ const verifyPassword = async (req, res, next) => {
       expiresIn: 60 * 60,
     });
 
-    delete req.user.password;
+    delete req.user.hashed_password;
     res.status(200).send({ token, user: req.user });
   } catch (err) {
     next(err);
