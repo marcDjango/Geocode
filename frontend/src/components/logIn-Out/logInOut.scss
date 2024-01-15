@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.logInOut {
+  position: absolute;
+  z-index: 1001;
+  right: 3%;
+  height: clamp(30px, 10vw, 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid red;
+  button {
+    cursor: pointer;
+    background-color: rgba(40, 49, 49, 1);
+    border: 1px solid #10fffe;
+    box-shadow: 0px 2px 8px 0px #10fffe;
+    margin-inline: 0.5rem;
+    img {
+      padding: 10%;
+      margin: auto;
+    }
+  }
+  .logInOut-btn-login {
+    border-radius: 100%;
+    width: clamp(30px, 10vw, 50px);
+    height: clamp(30px, 10vw, 50px);
+  }
+  .logInOut-btn-signup {
+    border-radius: 10px;
+    color: white;
+    padding: 0.1rem 0.5rem;
+    font-size: clamp(16px, 2.5vw, 20px);
+  }
+}

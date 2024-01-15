@@ -1,12 +1,34 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useCurrentUserContext } from "../../contexte/CurrentUserContext";
+import "./logInOut.scss";
+import avatar from "../../assets/avatar.png";
 
-function logInOut() {
+function LogInOut() {
+  const navigate = useNavigate();
+  const { auth } = useCurrentUserContext();
   return (
     <div className="logInOut">
-      <button type="button">Log In</button>
-      <button type="button">Log Out</button>
+      {auth.length > 0 && (
+        <div>
+          <button
+            type="button"
+            className="logInOut-btn-login"
+            onClick={() => navigate("/login")}
+          >
+            <img className="logInOut-avatar" src={avatar} alt="avatar" />
+          </button>
+          <button
+            type="button"
+            className="logInOut-btn-signup"
+            onClick={() => navigate("/")}
+          >
+            S'inscrire
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
-export default logInOut;
+export default LogInOut;

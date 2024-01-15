@@ -1,4 +1,8 @@
 .navbar {
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  z-index: 1001;
   .navbar-buttons-navigate {
     display: flex;
     flex-direction: column;
@@ -8,7 +12,7 @@
       height: 40px;
       border-radius: 10px;
       border: 1px solid #10fffe;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(40, 49, 49, 1);
       padding-inline: 1rem;
       transition: all 0.3s ease;
       color: white;

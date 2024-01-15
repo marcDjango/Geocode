@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import "../reset.css";
 import { useCurrentUserContext } from "../contexte/CurrentUserContext";
 import Navbar from "../components/navbar/Navbar";
+import LogInOut from "../components/logIn-Out/LogInOut";
 
 function RootLayout() {
   const { auth } = useCurrentUserContext();
@@ -10,16 +11,10 @@ function RootLayout() {
   console.info(auth);
   console.info(userItem);
   return (
-    <div style={{ position: "relative" }}>
-      <header
-        style={{
-          position: "absolute",
-          top: "3%",
-          left: "3%",
-          zIndex: 999,
-        }}
-      >
+    <div>
+      <header style={{ position: "relative" }}>
         <Navbar />
+        <LogInOut />
       </header>
       <main>
         <Outlet />
