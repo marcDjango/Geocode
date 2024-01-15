@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import "../reset.css";
 import { useCurrentUserContext } from "../contexte/CurrentUserContext";
 import Navbar from "../components/navbar/Navbar";
 import LogInOut from "../components/logIn-Out/LogInOut";
+import "../reset.css";
 
 function RootLayout() {
   const { auth } = useCurrentUserContext();
