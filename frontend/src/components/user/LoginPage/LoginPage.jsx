@@ -7,7 +7,6 @@ import "./login.scss";
 
 function LoginPage() {
   const { auth, setAuth } = useCurrentUserContext();
-  // Hook pour la navigation
   const navigate = useNavigate();
 
   const contact = {
@@ -17,7 +16,7 @@ function LoginPage() {
       option: "required",
     },
     password: {
-      value: "Password",
+      value: "Mot de passe",
       type: "password",
       option: "required",
     },
@@ -44,15 +43,11 @@ function LoginPage() {
         localStorage.setItem("user", JSON.stringify(user.user));
         localStorage.setItem("token", user.token);
 
-        navigate("/contact");
-      } else {
-        // Log des détails de la réponse en cas d'échec
-        console.info(response);
+        navigate(-1);
       }
       if (!response.ok) {
         throw new Error("Erreur lors de la connexion");
       }
-      // Traiter la réponse ici si nécessaire
     } catch (error) {
       console.error(error);
     }
@@ -65,9 +60,13 @@ function LoginPage() {
           Bonjour {auth.firstname} {auth.name}{" "}
         </p>
       ) : (
-        <section className="login-section-contain">
-          <Form data={contact} FormPostData={FormPostData} />
-        </section>
+        <div className="login-main">
+          <section className="login-section-contain">
+            <div className="login-form-contain">
+              <Form data={contact} FormPostData={FormPostData} action />
+            </div>
+          </section>
+        </div>
       )}
     </div>
   );

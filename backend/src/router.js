@@ -11,6 +11,7 @@ const {
   hashPassword,
   verifyPassword,
   verifyToken,
+  verifyTokenValid,
 } = require("./services/auth");
 
 // Import itemControllers module for handling item-related operations
@@ -87,5 +88,8 @@ router.get("/contacts", contactControllers.browse);
 router.get("/contacts/:id", contactControllers.read);
 router.post("/contacts", validateMessage, contactControllers.add);
 router.delete("/contacts/:id", contactControllers.destroy);
-
+router.get("/verify-token", verifyTokenValid, (req, res) => {
+  // Si le middleware passe, vous pouvez renvoyer une réponse appropriée
+  res.status(200).json({ token: req.user });
+});
 module.exports = router;

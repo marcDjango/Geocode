@@ -1,12 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Select from "../select/select";
 import Input from "../input/input";
+import User from "../../assets/images/Vector.svg";
 
-function Form({ data, FormPostData, isAuth }) {
+function Form({ data, FormPostData, isAuth, action }) {
   return (
     <div>
       <form className="df-column" onSubmit={FormPostData}>
+        {action && (
+          <div className="contain-login-logo">
+            <img src={User} alt="user icon" />
+          </div>
+        )}
         {Object.keys(data).map((fieldName) =>
           data[fieldName].type !== "select" ? (
             <Input
@@ -26,9 +33,19 @@ function Form({ data, FormPostData, isAuth }) {
             />
           )
         )}
+        {action && (
+          <Link className="login-link-password" to="/sinscire">
+            Mot de passe oublié?
+          </Link>
+        )}
         <button className="signin-btn-submit" type="submit">
-          Valider
+          {action ? "Se connecter" : "Valider"}
         </button>
+        {action && (
+          <Link className="login-link-signup" to="/signup">
+            S'inscrire
+          </Link>
+        )}
       </form>
     </div>
   );
@@ -43,9 +60,11 @@ const dataShape = PropTypes.shape({
 });
 Form.defaultProps = {
   isAuth: false,
+  action: false,
 };
 Form.propTypes = {
   data: PropTypes.objectOf(dataShape).isRequired,
   FormPostData: PropTypes.func.isRequired,
   isAuth: PropTypes.bool,
+  action: PropTypes.bool,
 };
