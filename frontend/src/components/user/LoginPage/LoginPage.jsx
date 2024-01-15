@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../../../contexte/CurrentUserContext";
 import Form from "../../form/form";
 
-import "../RegistrationPage/RegistrationForm.scss";
+import "./login.scss";
 
 function LoginPage() {
   const { auth, setAuth } = useCurrentUserContext();
-  // Hook pour la navigation
   const navigate = useNavigate();
 
   const contact = {
@@ -17,7 +16,7 @@ function LoginPage() {
       option: "required",
     },
     password: {
-      value: "Password",
+      value: "Mot de passe",
       type: "password",
       option: "required",
     },
@@ -38,32 +37,37 @@ function LoginPage() {
         body: JSON.stringify(data), // Convertir l'objet data en chaîne JSON
       });
       // Redirection vers la page de connexion si la création réussit
+      const user = await response.json();
+      // console.log(user);
       if (response.status === 200) {
-        const user = await response.json();
         setAuth(user.user);
         localStorage.setItem("user", JSON.stringify(user.user));
         localStorage.setItem("token", user.token);
 
-        navigate("/contact");
-      } else {
-        // Log des détails de la réponse en cas d'échec
-        console.info(response);
+        navigate(-1);
       }
       if (!response.ok) {
         throw new Error("Erreur lors de la connexion");
       }
-      // Traiter la réponse ici si nécessaire
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div>
+    <div className="login-contain">
       {auth ? (
-        <p>Hello {auth}</p>
+        <p>
+          Bonjour {auth.firstname} {auth.name}{" "}
+        </p>
       ) : (
-        <Form data={contact} FormPostData={FormPostData} />
+        <div className="login-main">
+          <section className="login-section-contain">
+            <div className="login-form-contain">
+              <Form data={contact} FormPostData={FormPostData} action />
+            </div>
+          </section>
+        </div>
       )}
     </div>
   );

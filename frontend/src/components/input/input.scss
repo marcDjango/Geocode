@@ -1,7 +1,7 @@
-.input-style,
-.input-style:valid,
-.input-style:focus,
-.input-style:-webkit-autofill {
+.input-general-style,
+.input-general-style:valid,
+.input-general-style:focus,
+.input-general-style:-webkit-autofill {
   width: 260px;
   height: 40px;
   border-radius: 10px;
@@ -11,10 +11,10 @@
   transition: all 0.3s ease; /* Ajoutez une transition pour une animation fluide si nécessaire */
 }
 
-.input-style:focus,
-.input-style:valid,
-.input-style:focus::-webkit-input-placeholder,
-.input-style:-webkit-autofill::-webkit-input-placeholder {
+.input-general-style:focus,
+.input-general-style:valid,
+.input-general-style:focus::-webkit-input-placeholder,
+.input-general-style:-webkit-autofill::-webkit-input-placeholder {
   /* Styles spécifiques au focus ou à la saisie automatique */
   border-color: var(--Color-3, #10fffe);
   background: rgba(0, 0, 0, 0.6);
@@ -39,4 +39,31 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: rgba(0, 0, 0, 0.6);
   padding: 1rem;
   transition: all 0.3s ease; /* Ajoutez une transition pour une animation fluide si nécessaire */
+}
+.icon-email,
+.icon-password {
+  display: flex;
+  padding-bottom: 6px;
+  width: 80%;
+  height: 2rem;
+  border-bottom: 2px solid black;
+
+  .input-login-style {
+    width: 80%;
+    border: none;
+    height: 2rem;
+    font-size: 16px;
+    font-family: sans-serif;
+    padding-left: 0.7rem;
+    color: black;
+    background: none;
+    z-index: 99;
+  }
+  input.input-login-style:focus,
+  input.input-login-style:valid,
+  input.input-login-style:focus::-webkit-input-placeholder,
+  input.input-login-style:-webkit-autofill::-webkit-input-placeholder {
+    outline: none;
+    background: none;
+  }
 }

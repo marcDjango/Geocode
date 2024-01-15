@@ -24,7 +24,11 @@
             },
             {
             "value":"female",
-            "title":"Homme"
+            "title":"Femme"
+            },
+            {
+            "value":"other",
+            "title":"Autre"
             }
         ]
     },
