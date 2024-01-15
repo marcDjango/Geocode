@@ -1,15 +1,16 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../../contexte/CurrentUserContext";
 import "./logInOut.scss";
 import avatar from "../../assets/avatar.png";
 
 function LogInOut() {
+  const location = useLocation();
   const navigate = useNavigate();
   const { auth } = useCurrentUserContext();
   return (
     <div className="logInOut">
-      {auth.length > 0 && (
+      {!auth && location.pathname !== "/login" && (
         <>
           <button
             type="button"

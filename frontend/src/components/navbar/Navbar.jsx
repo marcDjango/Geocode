@@ -1,10 +1,10 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import { React, useState } from "react";
 import "./navbar.scss";
 
 function navbar() {
   const navigate = useNavigate();
-  const [buttonClicked, setButtonClick] = React.useState(false);
+  const [buttonClicked, setButtonClick] = useState(false);
   const navbarData = [
     { name: "Accueil", route: "/" },
     { name: "Carte", route: "/map" },
