@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { useCurrentUserContext } from "../contexte/CurrentUserContext";
 import Navbar from "../components/navbar/Navbar";
-import LogInOut from "../components/logIn-Out/LogInOut";
+import LogInOut from "../components/logInOut/LogInOut";
 import "../reset.css";
 
 function RootLayout() {
