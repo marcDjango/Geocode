@@ -1,9 +1,7 @@
-* {
+.logInOut {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-.logInOut {
   position: absolute;
   z-index: 1001;
   right: 3%;
@@ -11,7 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
+
   button {
     cursor: pointer;
     background-color: rgba(40, 49, 49, 1);

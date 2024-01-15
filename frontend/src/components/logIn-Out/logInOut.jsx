@@ -10,7 +10,7 @@ function LogInOut() {
   return (
     <div className="logInOut">
       {auth.length > 0 && (
-        <div>
+        <>
           <button
             type="button"
             className="logInOut-btn-login"
@@ -25,7 +25,7 @@ function LogInOut() {
           >
             S'inscrire
           </button>
-        </div>
+        </>
       )}
     </div>
   );
