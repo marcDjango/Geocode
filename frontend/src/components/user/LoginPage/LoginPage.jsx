@@ -37,8 +37,9 @@ function LoginPage() {
         body: JSON.stringify(data), // Convertir l'objet data en chaîne JSON
       });
       // Redirection vers la page de connexion si la création réussit
+      const user = await response.json();
+      // console.log(user);
       if (response.status === 200) {
-        const user = await response.json();
         setAuth(user.user);
         localStorage.setItem("user", JSON.stringify(user.user));
         localStorage.setItem("token", user.token);

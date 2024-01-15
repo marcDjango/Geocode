@@ -26,7 +26,7 @@ const validateCar = require("./middlewares/validateCar");
 const validateUser = require("./middlewares/validateUser");
 const validateReservation = require("./middlewares/validateReservation");
 const validateChargingStation = require("./middlewares/validateChargingStation");
-
+const validateUserLogin = require("./middlewares/validateUserLogin");
 // Route to get a list of charging station
 router.get("/charging-stations", chargingStationControllers.browse);
 router.get("/charging-stations/:id", chargingStationControllers.read);
@@ -53,6 +53,7 @@ router.get("/users/:id", verifyToken, userControllers.read);
 router.post("/users/", validateUser, hashPassword, userControllers.add);
 router.post(
   "/users/login",
+  validateUserLogin,
   userControllers.readByEmailAndPassToNext,
   verifyPassword
 );

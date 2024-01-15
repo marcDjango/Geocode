@@ -1,4 +1,5 @@
 // verifyTokenOnServer.js
+
 const { VITE_BACKEND_URL } = import.meta.env;
 
 const verifyTokenOnServer = async () => {
