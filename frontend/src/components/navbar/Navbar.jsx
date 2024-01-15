@@ -18,10 +18,13 @@ function navbar() {
     <div className="navbar">
       <button
         type="button"
-        style={{ color: "red" }}
+        className={`hamburger ${buttonClicked ? "active" : ""}`}
         onClick={() => setButtonClick(!buttonClicked)}
+        aria-label="burger-menu"
       >
-        {buttonClicked ? "X" : "O"}
+        <span className="bar" />
+        <span className="bar" />
+        <span className="bar" />
       </button>
       <button
         type="button"
