@@ -11,6 +11,7 @@ const {
   hashPassword,
   verifyPassword,
   verifyToken,
+  verifyTokenValid,
 } = require("./services/auth");
 
 // Import itemControllers module for handling item-related operations
@@ -25,7 +26,7 @@ const validateCar = require("./middlewares/validateCar");
 const validateUser = require("./middlewares/validateUser");
 const validateReservation = require("./middlewares/validateReservation");
 const validateChargingStation = require("./middlewares/validateChargingStation");
-
+const validateUserLogin = require("./middlewares/validateUserLogin");
 // Route to get a list of charging station
 router.get("/charging-stations", chargingStationControllers.browse);
 router.get("/charging-stations/:id", chargingStationControllers.read);
@@ -52,6 +53,7 @@ router.get("/users/:id", verifyToken, userControllers.read);
 router.post("/users/", validateUser, hashPassword, userControllers.add);
 router.post(
   "/users/login",
+  validateUserLogin,
   userControllers.readByEmailAndPassToNext,
   verifyPassword
 );
@@ -87,5 +89,8 @@ router.get("/contacts", contactControllers.browse);
 router.get("/contacts/:id", contactControllers.read);
 router.post("/contacts", validateMessage, contactControllers.add);
 router.delete("/contacts/:id", contactControllers.destroy);
-
+router.get("/verify-token", verifyTokenValid, (req, res) => {
+  // Si le middleware passe, vous pouvez renvoyer une réponse appropriée
+  res.status(200).json({ token: req.user });
+});
 module.exports = router;

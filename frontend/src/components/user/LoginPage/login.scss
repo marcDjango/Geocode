@@ -1,0 +1,109 @@
+.df-column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20%;
+  padding-inline: 20%;
+  gap: 1rem;
+}
+
+.login-contain {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../../assets/images/backgroundhome.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .login-main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .login-section-contain {
+      position: relative;
+      width: 607.985px;
+      height: 387.834px;
+      transform: rotate(-31.654deg);
+      border-radius: 607.985%;
+      border: 1px solid var(--Color-3, #10fffe);
+      background: #d7dcda;
+      box-shadow: 0px 4px 4px 0px #29c7b6;
+    }
+
+    .login-form-contain {
+      position: relative;
+      margin-block: 0px;
+      transform: rotate(31.654deg);
+      z-index: 99;
+    }
+    .contain-login-logo {
+      display: flex;
+      position: absolute;
+      top: -70px;
+      width: 150px;
+      height: 150px;
+      transform: rotate(-0.057deg);
+      padding: 7px 0px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      border-radius: 75px;
+      border: 1px solid var(--Color-3, #10fffe);
+      background: linear-gradient(
+        180deg,
+        #465454 0%,
+        rgba(70, 84, 84, 0.1) 100%
+      );
+      box-shadow: 0px 2px 12px 0px #10fffe;
+    }
+  }
+  .signin-btn-submit {
+    margin-block: 1rem;
+    width: 220px;
+    height: 43px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 24px;
+    background: var(--Color-3, #10fffe);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+  }
+  .login-link-password {
+    color: #000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: relative;
+    right: -80px;
+  }
+  .login-link-signup {
+    color: #000;
+    margin-top: -1rem;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .registration-contain {
+    width: 40%;
+    max-width: 450px;
+  }
+}

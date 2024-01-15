@@ -6,7 +6,8 @@ const CurrentUserContext = createContext();
 export const useCurrentUserContext = () => useContext(CurrentUserContext);
 
 export function CurrentUserContextProvider({ children }) {
-  const [auth, setAuth] = useState(localStorage.getItem("user"));
+  const [auth, setAuth] = useState(JSON.parse(localStorage.getItem("user")));
+
   const memoizedUser = useMemo(() => {
     return { auth, setAuth };
   }, [auth]);

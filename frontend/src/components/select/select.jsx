@@ -20,7 +20,7 @@ function Select({ name, objet, entry }) {
       </option>
       {Object.keys(objet).map((item) => (
         <option key={item} value={objet[item].value}>
-          {objet[item].value}
+          {objet[item].title}
         </option>
       ))}
     </select>
