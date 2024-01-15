@@ -6,26 +6,27 @@ import verifyTokenOnServer from "../../services/authVerify";
 
 function Home() {
   const navigate = useNavigate();
-  const [isTokenValid, setTokenValid] = useState(null);
+  const [isTokenValid, setisTokenValid] = useState(null);
+
   useEffect(() => {
     const checkToken = async () => {
       try {
         const token = await verifyTokenOnServer();
 
         if (token) {
-          setTokenValid(true);
+          setisTokenValid(true);
         } else {
-          setTokenValid(false);
+          setisTokenValid(false);
         }
       } catch (error) {
         console.error("Erreur lors de la vérification du token :", error);
-        setTokenValid(false);
+        setisTokenValid(false);
       }
     };
 
     checkToken();
   }, [navigate]);
-
+  console.info(isTokenValid);
   return (
     <div className="home">
       <button
@@ -34,7 +35,7 @@ function Home() {
         onClick={() => navigate("/map")}
       >
         <img className="home-logoSeaech" src={logoSearch} alt="logo" />
-        {!isTokenValid ? <h1>test</h1> : <h1>Trouver une borne</h1>}
+        <h1>Trouver une borne</h1>
       </button>
     </div>
   );

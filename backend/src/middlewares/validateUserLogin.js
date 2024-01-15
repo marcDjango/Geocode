@@ -14,7 +14,7 @@ const validateUserLogin = (req, res, next) => {
   } else if (email.length >= 100) {
     errors.push({
       field: "email",
-      message: "Doit contenir moins de 255 caractères",
+      message: "Doit contenir moins de 100 caractères",
     });
   } else if (!emailRegex.test(email)) {
     errors.push({ field: "email", message: "Email invalide" });

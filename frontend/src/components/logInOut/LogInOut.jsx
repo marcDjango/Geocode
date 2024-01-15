@@ -9,7 +9,7 @@ function LogInOut() {
   const { auth } = useCurrentUserContext();
   return (
     <div className="logInOut">
-      {auth.length > 0 && (
+      {!auth && (
         <>
           <button
             type="button"
