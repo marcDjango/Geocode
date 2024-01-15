@@ -7,6 +7,7 @@ import LogInOut from "../components/logIn-Out/LogInOut";
 
 function RootLayout() {
   const { auth } = useCurrentUserContext();
+
   const userItem = JSON.parse(localStorage.getItem("user"));
   console.info(auth);
   console.info(userItem);
