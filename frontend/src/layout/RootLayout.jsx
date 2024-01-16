@@ -16,7 +16,7 @@ function RootLayout() {
           position: "absolute",
           top: "3%",
           left: "3%",
-          zIndex: 999,
+          zIndex: 1001,
         }}
       >
         <Navbar />

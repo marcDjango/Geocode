@@ -5,6 +5,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "iconv-lite": "^0.6.3",
     "leaflet": "^1.9.4",
     "leaflet-control-geocoder": "^2.4.0",
     "leaflet-routing-machine": "^3.2.12",
@@ -15,6 +16,7 @@
     "react-leaflet": "^4.2.1",
     "react-leaflet-cluster": "^2.1.0",
     "react-router-dom": "^6.21.1",
+    "safer-buffer": "^2.1.2",
     "sass": "^1.69.7"
   },
   "devDependencies": {

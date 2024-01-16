@@ -7,21 +7,20 @@
 #root {
   height: 100vh;
 }
-
+.leaflet-popup {
+  width: 347px;
+}
 .leaflet-container {
   width: 100vw;
   height: 100vh;
 
   .leaflet-popup-content-wrapper {
-    background: none;
-    box-shadow: none;
-    color: none;
     padding: 0px;
-    border-radius: 0px;
-    display: flex;
-  }
-  .leaflet-popup-content {
-    display: flex;
+    border-radius: 20px;
+
+    .leaflet-popup-content {
+      margin: 0px;
+    }
   }
 }
 
@@ -39,5 +38,18 @@
 }
 
 .leaflet-pane .leaflet-label {
-  color: #ff0000; /* Remplacez par la couleur de texte souhaitée en format hexadécimal, rgba, etc. */
+  color: #ff0000;
+}
+
+.itinerary-button {
+  background-color: red;
+  z-index: 1002;
+  cursor: pointer;
+  position: relative;
+}
+
+.leaflet-popup-close-button {
+  span {
+    color: white;
+  }
 }

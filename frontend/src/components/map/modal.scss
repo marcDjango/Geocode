@@ -1,17 +1,17 @@
 .popup-charging-station {
-  width: 361px;
+  width: 347px;
   height: 512px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   border: 2px solid var(--Color-3, #10fffe);
-
   background: var(--Color-2, #525b5a);
 
   .part-user {
     display: flex;
-    justify-content: center;
     margin: 16px;
+    color: white;
+    justify-content: space-between;
   }
   .part-charging-station {
     width: 100%;
@@ -22,6 +22,13 @@
     justify-content: start;
     border-radius: 20px;
     background: var(--Color-1, rgba(229, 233, 231, 0.91));
+    gap: 8px;
+
+    .station-nom-operateur {
+      font-size: 16px;
+      font-weight: 800;
+      padding-bottom: 4px;
+    }
 
     .part-one-charging-station {
       padding: 8px;
@@ -31,39 +38,80 @@
       padding: 8px;
       display: flex;
       justify-content: space-around;
+      position: relative;
+      height: 40px;
 
       .number-pdc {
         display: flex;
+        gap: 8px;
         width: 133px;
         height: 34px;
         justify-content: center;
         align-items: center;
-        gap: 10px;
         border-radius: 15px;
         background: var(--Color-2, #525b5a);
         color: white;
+        position: absolute;
+        top: 0;
+        left: 5%;
       }
 
       .timetables {
         display: flex;
         width: 133px;
-        height: 34px;
+        gap: 8px;
+        padding: 5px;
         justify-content: center;
         align-items: center;
-        gap: 10px;
         border-radius: 15px;
         background: var(--Color-2, #525b5a);
         color: white;
+        position: absolute;
+        top: 0;
+        left: 55%;
+
+        button {
+          cursor: pointer;
+          img {
+            max-width: none;
+          }
+        }
       }
     }
     .part-plug-charging-station {
       padding: 8px;
+
+      h3 {
+        font-size: 16px;
+        font-weight: bolder;
+        padding-bottom: 4px;
+      }
+
+      .images-plug {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .plug-charging-station {
+        display: flex;
+        justify-content: space-around;
+      }
     }
     .part-rate-charging-station {
       padding: 8px;
+
+      h3 {
+        font-size: 16px;
+        font-weight: bolder;
+      }
     }
     .part-information-charging-station {
       padding: 8px;
+
+      h3 {
+        font-size: 16px;
+        font-weight: bolder;
+      }
     }
     .button-reservation {
       padding: 16px;
@@ -72,11 +120,13 @@
       height: 38px;
       justify-content: center;
       align-items: center;
-      gap: 10px;
       border-radius: 20px;
       background: var(--Color-3, #10fffe);
       box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
       cursor: pointer;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 20px;
     }
   }
 }
