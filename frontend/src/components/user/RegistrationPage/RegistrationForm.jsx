@@ -32,7 +32,7 @@ function RegistrationForm() {
     // Ajouter une nouvelle clé au nouvel objet
     const newDataWithAdditionalKey = {
       ...dataWithoutConfirmPassword,
-      role: 0,
+      isAdmin: 0,
       profil_image: null,
     };
     try {
@@ -43,8 +43,9 @@ function RegistrationForm() {
         },
         body: JSON.stringify(newDataWithAdditionalKey), // Convertir l'objet data en chaîne JSON
       });
-
+      const dataresponse = await response.json();
       if (!response.ok) {
+        console.info(dataresponse);
         throw new Error("Erreur lors de l'inscription");
       }
 

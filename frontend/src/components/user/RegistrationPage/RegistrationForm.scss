@@ -1,28 +1,42 @@
-.registration-contain {
+.background-modal {
+  position: absolute;
   width: 100%;
-  height: 100dvh;
-  background-image: url("../../../assets/images/bckground.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  // padding-top: 2rem;
+  height: 100vh;
+  z-index: 10002;
+  backdrop-filter: blur(1.5px);
+  background-color: rgba(255, 255, 255, 0.162);
 
-  .df-column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20%;
-    padding-inline: 1rem;
-    gap: 0.7rem;
-  }
+  .registration-contain {
+    width: 100%;
+    height: 100dvh;
+    background-image: url("../../../assets/images/bckground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 
-  .signin-btn-submit {
-    margin-block: 1rem;
-    width: 220px;
-    height: 43px;
-    border-radius: 24px;
-    background: var(--Color-3, #10fffe);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    cursor: pointer;
+    .contact-btn-close {
+      color: white;
+      background-color: darkcyan;
+      cursor: pointer;
+    }
+
+    .df-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20%;
+      padding-inline: 1rem;
+      gap: 0.7rem;
+    }
+
+    .signin-btn-submit {
+      margin-block: 1rem;
+      width: 220px;
+      height: 43px;
+      border-radius: 24px;
+      background: var(--Color-3, #10fffe);
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+    }
   }
 }
 
