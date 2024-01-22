@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../../../contexte/CurrentUserContext";
 import Form from "../../form/form";
+import Alert from "../../alert/alert";
 
 import "./login.scss";
 
 function LoginPage() {
   const { auth, setAuth } = useCurrentUserContext();
   const navigate = useNavigate();
+  const [isErrors, setIsErrors] = useState(null);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const contact = {
     email: {
@@ -24,7 +27,7 @@ function LoginPage() {
   const FormPostData = async (e) => {
     e.preventDefault();
     const { VITE_BACKEND_URL } = import.meta.env;
-
+    setIsSubmit(true);
     // Créer un objet FormData à partir de l'événement de formulaire
     const form = new FormData(e.target);
     const data = Object.fromEntries(form);
@@ -38,38 +41,48 @@ function LoginPage() {
       });
       // Redirection vers la page de connexion si la création réussit
       const user = await response.json();
-      // console.log(user);
       if (response.status === 200) {
         setAuth(user.user);
         localStorage.setItem("user", JSON.stringify(user.user));
         localStorage.setItem("token", user.token);
 
         navigate(-1);
-      }
-      if (!response.ok) {
+      } else {
+        if (user.validationErrors.length > 0) {
+          setIsErrors(user.validationErrors);
+          setIsSubmit(true);
+        }
         throw new Error("Erreur lors de la connexion");
       }
     } catch (error) {
-      console.error(error);
+      console.error("error", error);
+      setIsErrors({ field: "server", message: "Erreur de serveur" });
+      setIsSubmit(true);
     }
   };
-
   return (
-    <div className="login-contain">
-      {auth ? (
-        <p>
-          Bonjour {auth.firstname} {auth.name}{" "}
-        </p>
-      ) : (
-        <div className="login-main">
-          <section className="login-section-contain">
-            <div className="login-form-contain">
-              <Form data={contact} FormPostData={FormPostData} action />
+    <section className="tercolumn">
+      <div className="login-contain">
+        {auth ? (
+          <p>
+            Bonjour {auth.firstname} {auth.name}{" "}
+          </p>
+        ) : (
+          <div className="login-main">
+            <section className="login-section-contain">
+              <div className="login-form-contain">
+                <Form data={contact} FormPostData={FormPostData} action />
+              </div>
+            </section>
+            <div className="pos-relative">
+              {isErrors && isSubmit && (
+                <Alert errors={isErrors} submit={isSubmit} />
+              )}
             </div>
-          </section>
-        </div>
-      )}
-    </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 

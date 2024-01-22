@@ -17,7 +17,7 @@ function Alert({ errors, submit }) {
   return (
     <div>
       <section className="posabsolute">
-        <div className="container mt-5">
+        <div className="container">
           <div className="row">
             {isShowAlertSuccess && (
               <div className="col-sm-12">
@@ -87,7 +87,7 @@ function Alert({ errors, submit }) {
             </div> */}
 
             {isShowAlertDanger && (
-              <div className="col-sm-12">
+              <div className="col-sm-12 maxwidth">
                 <div
                   className="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show"
                   role="alert"
@@ -149,12 +149,15 @@ function Alert({ errors, submit }) {
 }
 
 export default Alert;
+Alert.defaultProps = {
+  errors: [],
+};
 Alert.propTypes = {
   errors: PropTypes.arrayOf(
     PropTypes.shape({
-      field: PropTypes.string.isRequired,
-      message: PropTypes.string.isRequired,
+      field: PropTypes.string,
+      message: PropTypes.string,
     })
-  ).isRequired,
+  ),
   submit: PropTypes.bool.isRequired,
 };

@@ -45,9 +45,10 @@ function ContactPage({ isContactModal, setIsContactModal }) {
           setIsErrors(dataresponse.validationErrors);
         }
         throw new Error("Erreur lors de l'inscription");
+      } else {
+        setIsErrors(null);
+        setIsSubmit(true);
       }
-      setIsErrors(null);
-      setIsSubmit(true);
     } catch (error) {
       console.error(error);
     }
@@ -57,7 +58,7 @@ function ContactPage({ isContactModal, setIsContactModal }) {
     if (isSubmit) {
       const timerId = setTimeout(() => {
         setIsContactModal(false);
-      }, 3000);
+      }, 2000);
 
       return () => {
         // Assurez-vous de nettoyer le timer si le composant est démonté avant l'expiration du délai
@@ -83,6 +84,7 @@ function ContactPage({ isContactModal, setIsContactModal }) {
   );
 }
 export default ContactPage;
+
 ContactPage.propTypes = {
   isContactModal: PropTypes.bool.isRequired,
   setIsContactModal: PropTypes.func.isRequired,

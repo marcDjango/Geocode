@@ -1,8 +1,14 @@
 .posabsolute {
   position: absolute;
   bottom: 0;
+  // left: 50%;
+  // transform: translateX(-50%);
+  width: 100%;
+  z-index: 1004;
 }
-
+.maxwidth {
+  max-width: 768px;
+}
 .alert > .start-icon {
   margin-right: 0;
   min-width: 20px;
@@ -116,39 +122,6 @@
   text-shadow: none;
 }
 
-.square_box {
-  position: absolute;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  border-top-left-radius: 45px;
-  opacity: 0.302;
-}
-
-.square_box.box_three {
-  background-image: -moz-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-  background-image: -webkit-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-  background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-  opacity: 0.059;
-  left: -80px;
-  top: -60px;
-  width: 500px;
-  height: 500px;
-  border-radius: 45px;
-}
-
-.square_box.box_four {
-  background-image: -moz-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-  background-image: -webkit-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-  background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
-  opacity: 0.059;
-  left: 150px;
-  top: -25px;
-  width: 550px;
-  height: 550px;
-  border-radius: 45px;
-}
-
 .alert:before {
   content: "";
   position: absolute;
@@ -167,6 +140,19 @@
 .fa-times {
   -webkit-animation: blink-1 2s infinite both;
   animation: blink-1 2s infinite both;
+}
+.alert-dismissible .close {
+  padding: 0.5rem 1rem;
+}
+@media screen and (min-width: 768px) {
+  .posabsolute {
+    width: 100%;
+    max-width: 450px;
+  }
+  .maxwidth {
+    width: 40%;
+    max-width: 450px;
+  }
 }
 
 /**
