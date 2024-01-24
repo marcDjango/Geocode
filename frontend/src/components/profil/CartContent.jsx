@@ -46,7 +46,6 @@ CartContent.propTypes = {
   item: PropTypes.shape({
     status: PropTypes.string.isRequired,
     img: PropTypes.string.isRequired,
-    // Add more specific prop types for the 'item' object if needed
   }).isRequired,
 
   dataUser: PropTypes.arrayOf.isRequired,

@@ -29,7 +29,6 @@ CardProfil.propTypes = {
   item: PropTypes.shape({
     status: PropTypes.string.isRequired,
     icons: PropTypes.arrayOf(PropTypes.string).isRequired,
-    // Add more specific prop types for the 'item' object if needed
   }).isRequired,
   dataUser: PropTypes.arrayOf.isRequired,
 };
