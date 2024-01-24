@@ -7,7 +7,7 @@ import avatar from "../../assets/Vector.svg";
 
 function Navbar() {
   const navigate = useNavigate();
-  const [buttonClicked, setButtonClick] = React.useState(false);
+  const [buttonClicked, setButtonClick] = useState(false);
   const [isContactModal, setIsContactModal] = useState(false);
   const location = useLocation();
   const { auth } = useCurrentUserContext();

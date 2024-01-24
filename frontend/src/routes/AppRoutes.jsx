@@ -14,6 +14,7 @@ import Map from "../components/map/map";
 import RegistrationForm from "../components/user/RegistrationPage/RegistrationForm";
 import Home from "../pages/home/Home";
 import Logout from "../pages/Logout";
+import AdminLayout from "../layout/AdminLayout";
 
 const AppRoutes = createBrowserRouter(
   createRoutesFromElements(
@@ -29,11 +30,13 @@ const AppRoutes = createBrowserRouter(
       </Route>
 
       {/* routes pour l'administrateur */}
-      <Route
-        element={<ChargingStationManagement />}
-        path="/admin/charging-station"
-        loader={fetchdata}
-      />
+      <Route element={<AdminLayout />} path="/admin">
+        <Route
+          element={<ChargingStationManagement />}
+          path="/admin/charging-station"
+          loader={fetchdata}
+        />
+      </Route>
     </Route>
   )
 );
