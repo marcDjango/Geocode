@@ -15,6 +15,7 @@ import RegistrationForm from "../components/user/RegistrationPage/RegistrationFo
 import Home from "../pages/home/Home";
 import Logout from "../pages/Logout";
 import AdminLayout from "../layout/AdminLayout";
+import Profil from "../components/profil/Profil";
 
 const AppRoutes = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const AppRoutes = createBrowserRouter(
         <Route element={<Logout />} path="/logout" />
         <Route element={<RegistrationForm />} path="/signup" />
         <Route element={<Map />} path="/map" />
+        <Route element={<Profil />} path="/profil" />
       </Route>
 
       {/* routes pour l'administrateur */}
