@@ -51,7 +51,7 @@ const verifyPassword = async (req, res, next) => {
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: 60 * 60,
+      expiresIn: 24 * 60 * 60,
     });
 
     delete req.user.hashed_password;
