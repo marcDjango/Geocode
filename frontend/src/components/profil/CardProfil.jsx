@@ -30,6 +30,13 @@ CardProfil.propTypes = {
     status: PropTypes.string.isRequired,
     icons: PropTypes.arrayOf(PropTypes.string).isRequired,
   }).isRequired,
-  dataUser: PropTypes.arrayOf.isRequired,
+  dataUser: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    firstname: PropTypes.string.isRequired,
+    date_of_birth: PropTypes.string.isRequired,
+    postal_code: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+  }).isRequired,
 };
 export default CardProfil;
