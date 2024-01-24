@@ -1,17 +1,7 @@
-import { BrowserRouter } from "react-router-dom";
-import { CurrentUserContextProvider } from "./contexte/CurrentUserContext";
-
-import "./App.css";
-import AppRoutes from "./routes/AppRoutes";
+import React from "react";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <CurrentUserContextProvider>
-        <AppRoutes />
-      </CurrentUserContextProvider>
-    </BrowserRouter>
-  );
+  return <>vide</>;
 }
 
 export default App;

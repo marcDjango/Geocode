@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../../../contexte/CurrentUserContext";
 import Form from "../../form/form";
+import Alert from "../../alert/alert";
 
-import "../RegistrationPage/RegistrationForm.scss";
+import "./login.scss";
 
 function LoginPage() {
   const { auth, setAuth } = useCurrentUserContext();
-  // Hook pour la navigation
   const navigate = useNavigate();
+  const [isErrors, setIsErrors] = useState(null);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const contact = {
     email: {
@@ -17,7 +19,7 @@ function LoginPage() {
       option: "required",
     },
     password: {
-      value: "Password",
+      value: "Mot de passe",
       type: "password",
       option: "required",
     },
@@ -25,7 +27,7 @@ function LoginPage() {
   const FormPostData = async (e) => {
     e.preventDefault();
     const { VITE_BACKEND_URL } = import.meta.env;
-
+    setIsSubmit(true);
     // Créer un objet FormData à partir de l'événement de formulaire
     const form = new FormData(e.target);
     const data = Object.fromEntries(form);
@@ -38,34 +40,49 @@ function LoginPage() {
         body: JSON.stringify(data), // Convertir l'objet data en chaîne JSON
       });
       // Redirection vers la page de connexion si la création réussit
+      const user = await response.json();
       if (response.status === 200) {
-        const user = await response.json();
         setAuth(user.user);
         localStorage.setItem("user", JSON.stringify(user.user));
         localStorage.setItem("token", user.token);
 
-        navigate("/contact");
+        navigate(-1);
       } else {
-        // Log des détails de la réponse en cas d'échec
-        console.info(response);
-      }
-      if (!response.ok) {
+        if (user.validationErrors.length > 0) {
+          setIsErrors(user.validationErrors);
+          setIsSubmit(true);
+        }
         throw new Error("Erreur lors de la connexion");
       }
-      // Traiter la réponse ici si nécessaire
     } catch (error) {
-      console.error(error);
+      console.error("error", error);
+      setIsErrors({ field: "server", message: "Erreur de serveur" });
+      setIsSubmit(true);
     }
   };
-
   return (
-    <div>
-      {auth ? (
-        <p>Hello {auth}</p>
-      ) : (
-        <Form data={contact} FormPostData={FormPostData} />
-      )}
-    </div>
+    <section className="tercolumn">
+      <div className="login-contain">
+        {auth ? (
+          <p>
+            Bonjour {auth.firstname} {auth.name}{" "}
+          </p>
+        ) : (
+          <div className="login-main">
+            <section className="login-section-contain">
+              <div className="login-form-contain">
+                <Form data={contact} FormPostData={FormPostData} action />
+              </div>
+            </section>
+            <div className="pos-relative">
+              {isErrors && isSubmit && (
+                <Alert errors={isErrors} submit={isSubmit} />
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 

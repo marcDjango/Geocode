@@ -1,25 +1,21 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import "../reset.css";
 import { useCurrentUserContext } from "../contexte/CurrentUserContext";
 import Navbar from "../components/navbar/Navbar";
+import LogInOut from "../components/logInOut/LogInOut";
+import "../reset.css";
 
 function RootLayout() {
   const { auth } = useCurrentUserContext();
+
   const userItem = JSON.parse(localStorage.getItem("user"));
   console.info(auth);
   console.info(userItem);
   return (
-    <div style={{ position: "relative" }}>
-      <header
-        style={{
-          position: "absolute",
-          top: "3%",
-          left: "3%",
-          zIndex: 1001,
-        }}
-      >
+    <div>
+      <header style={{ position: "relative" }}>
         <Navbar />
+        <LogInOut />
       </header>
       <main>
         <Outlet />

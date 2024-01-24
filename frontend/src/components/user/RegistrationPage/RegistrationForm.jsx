@@ -32,19 +32,20 @@ function RegistrationForm() {
     // Ajouter une nouvelle clé au nouvel objet
     const newDataWithAdditionalKey = {
       ...dataWithoutConfirmPassword,
-      role: 0,
+      isAdmin: 0,
       profil_image: null,
     };
     try {
-      const response = await fetch(`${VITE_BACKEND_URL}/api/user/`, {
+      const response = await fetch(`${VITE_BACKEND_URL}/api/users/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Spécifier le type de contenu JSON
         },
         body: JSON.stringify(newDataWithAdditionalKey), // Convertir l'objet data en chaîne JSON
       });
-
+      const dataresponse = await response.json();
       if (!response.ok) {
+        console.info(dataresponse);
         throw new Error("Erreur lors de l'inscription");
       }
 
@@ -54,7 +55,11 @@ function RegistrationForm() {
     }
   };
 
-  return <Form data={user} FormPostData={FormPostData} />;
+  return (
+    <div className="registration-contain">
+      <Form data={user} FormPostData={FormPostData} />;
+    </div>
+  );
 }
 
 export default RegistrationForm;

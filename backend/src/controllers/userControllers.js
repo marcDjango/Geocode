@@ -26,9 +26,13 @@ const readByEmailAndPassToNext = async (req, res, next) => {
   try {
     const { email } = req.body;
     const user = await tables.user.readByEmail(email);
-
+    const errors = [];
     if (user == null) {
-      res.sendStatus(401);
+      errors.push({
+        field: "Email ou le mot de passe",
+        message: "sont incorrect",
+      });
+      res.status(401).json({ validationErrors: errors });
     } else {
       req.user = user;
       next();
