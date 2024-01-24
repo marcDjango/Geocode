@@ -59,9 +59,7 @@ function Profil() {
       </section>
 
       {data.map((item) => (
-        <div key={item.id}>
-          <CardProfil item={item} dataUser={dataUser} />
-        </div>
+        <CardProfil key={item.id} item={item} dataUser={dataUser} />
       ))}
     </div>
   );
