@@ -1,14 +1,14 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useCurrentUserContext } from "../../contexte/CurrentUserContext";
 import "./logInOut.scss";
 import avatar from "../../assets/Vector.svg";
 
 function LogInOut() {
   const location = useLocation();
-  const navigate = useNavigate();
+
   const { auth } = useCurrentUserContext();
-  if (window.innerWidth >= 480 && location.pathname !== "/") {
+  if (window.innerWidth >= 600 && location.pathname !== "/") {
     return null;
   }
   if (auth || location.pathname === "/login") {
@@ -16,20 +16,12 @@ function LogInOut() {
   }
   return (
     <div className="logInOut">
-      <button
-        type="button"
-        className="logInOut-btn-login"
-        onClick={() => navigate("/login")}
-      >
+      <Link className="logInOut-link-login" to="/login">
         <img className="logInOut-avatar" src={avatar} alt="avatar" />
-      </button>
-      <button
-        type="button"
-        className="logInOut-btn-signup"
-        onClick={() => navigate("/signup")}
-      >
+      </Link>
+      <Link className="logInOut-link-signup" to="/signup">
         S'inscrire
-      </button>
+      </Link>
     </div>
   );
 }

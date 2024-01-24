@@ -10,6 +10,7 @@ import Map from "../components/map/map";
 import RegistrationForm from "../components/user/RegistrationPage/RegistrationForm";
 import Home from "../pages/home/Home";
 import Logout from "../pages/Logout";
+import Profil from "../components/profil/Profil";
 
 function AppRoutes() {
   return (
@@ -22,6 +23,7 @@ function AppRoutes() {
         <Route element={<Logout />} path="/logout" />
         <Route element={<RegistrationForm />} path="/signup" />
         <Route element={<Map />} path="/map" />
+        <Route element={<Profil />} path="/profil" />
       </Route>
 
       {/* routes pour l'administrateur */}

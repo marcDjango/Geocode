@@ -1,6 +1,7 @@
 .navbar {
   position: absolute;
-  button:hover {
+  a:hover,
+  .hamburger:hover {
     transform: scale(1.1);
     transition: all 0.3s ease;
   }
@@ -36,12 +37,16 @@
     transform: translateY(-8px) rotate(-45deg);
   }
 
-  .navbar-buttons-navigate {
+  .navbar-links-navigate {
     margin-inline: 10px;
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
-    button {
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
       width: clamp(160px, 70vw, 260px);
       height: 40px;
       border-radius: 10px;
@@ -62,7 +67,10 @@
     height: 40px;
     background-color: rgba(40, 49, 49, 0.7);
 
-    .navbar-buttons-desktop {
+    .navbar-links-desktop {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
       color: #fff;
       text-shadow: 0px 2px 4px #10fffe;
     }
