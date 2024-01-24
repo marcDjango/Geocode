@@ -1,14 +1,16 @@
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { React, useState } from "react";
+import ContactPage from "../user/ContactPage/ContactPage";
 import "./navbar.scss";
 import { useCurrentUserContext } from "../../contexte/CurrentUserContext";
 import avatar from "../../assets/Vector.svg";
 
-function navbar() {
+function Navbar() {
   const navigate = useNavigate();
+  const [buttonClicked, setButtonClick] = React.useState(false);
+  const [isContactModal, setIsContactModal] = useState(false);
   const location = useLocation();
   const { auth } = useCurrentUserContext();
-  const [buttonClicked, setButtonClick] = useState(false);
   const navbarData = [
     { name: "Accueil", route: "/" },
     { name: "Carte", route: "/map" },
@@ -18,14 +20,10 @@ function navbar() {
     { name: "Contact", route: "/contact" },
     { name: "A propos de nous", route: "/" },
   ];
-  if (window.innerWidth >= 480 && location.pathname === "/") {
-    return null;
-  }
   return (
     <div className="navbar">
       {window.innerWidth < 480 ? (
         <>
-          {" "}
           <button
             type="button"
             className={`hamburger ${buttonClicked ? "active" : ""}`}
@@ -46,12 +44,22 @@ function navbar() {
                 <button
                   type="button"
                   key={item.name}
-                  onClick={() => navigate(item.route)}
+                  onClick={() =>
+                    item.name === "Contact"
+                      ? setIsContactModal(!isContactModal)
+                      : navigate(item.route)
+                  }
                 >
                   {item.name}
                 </button>
               ))}
           </button>
+          {isContactModal && (
+            <ContactPage
+              isContactModal={isContactModal}
+              setIsContactModal={setIsContactModal}
+            />
+          )}
         </>
       ) : (
         <div className="navbar-desktop">
@@ -60,11 +68,21 @@ function navbar() {
               className="navbar-buttons-desktop"
               type="button"
               key={item.name}
-              onClick={() => navigate(item.route)}
+              onClick={() =>
+                item.name === "Contact"
+                  ? setIsContactModal(!isContactModal)
+                  : navigate(item.route)
+              }
             >
               {item.name}
             </button>
           ))}
+          {isContactModal && (
+            <ContactPage
+              isContactModal={isContactModal}
+              setIsContactModal={setIsContactModal}
+            />
+          )}
           {!auth && location.pathname !== "/login" && (
             <>
               <button
@@ -93,4 +111,4 @@ function navbar() {
   );
 }
 
-export default navbar;
+export default Navbar;
