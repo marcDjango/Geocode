@@ -1,13 +1,16 @@
-import { Link, useLocation } from "react-router-dom";
-import { React, useState } from "react";
+import React, { useState } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import ContactPage from "../user/ContactPage/ContactPage";
 import "./navbar.scss";
 import { useCurrentUserContext } from "../../contexte/CurrentUserContext";
 import avatar from "../../assets/Vector.svg";
 
-function navbar() {
+function Navbar() {
+  const navigate = useNavigate();
+  const [buttonClicked, setButtonClick] = React.useState(false);
+  const [isContactModal, setIsContactModal] = useState(false);
   const location = useLocation();
   const { auth } = useCurrentUserContext();
-  const [buttonClicked, setButtonClick] = useState(false);
   const navbarData = [
     { name: "Accueil", route: "/" },
     { name: "Carte", route: "/map" },
@@ -24,7 +27,6 @@ function navbar() {
     <div className="navbar">
       {window.innerWidth < 600 ? (
         <>
-          {" "}
           <button
             type="button"
             className={`hamburger ${buttonClicked ? "active" : ""}`}
@@ -42,23 +44,48 @@ function navbar() {
           >
             {buttonClicked &&
               navbarData.map((item) => (
-                <Link key={item.name} to={item.route}>
+                <button
+                  type="button"
+                  key={item.name}
+                  onClick={() =>
+                    item.name === "Contact"
+                      ? setIsContactModal(!isContactModal)
+                      : navigate(item.route)
+                  }
+                >
                   {item.name}
-                </Link>
+                </button>
               ))}
           </button>
+          {isContactModal && (
+            <ContactPage
+              isContactModal={isContactModal}
+              setIsContactModal={setIsContactModal}
+            />
+          )}
         </>
       ) : (
         <div className="navbar-desktop">
           {navbarData.map((item) => (
-            <Link
+            <button
+              type="button"
               className="navbar-links-desktop"
               key={item.name}
-              to={item.route}
+              onClick={() =>
+                item.name === "Contact"
+                  ? setIsContactModal(!isContactModal)
+                  : navigate(item.route)
+              }
             >
               {item.name}
-            </Link>
+            </button>
           ))}
+          {isContactModal && (
+            <ContactPage
+              isContactModal={isContactModal}
+              setIsContactModal={setIsContactModal}
+            />
+          )}
           {!auth && location.pathname !== "/login" && (
             <>
               <Link className="navbar-links-desktop" to="/signup">
@@ -79,4 +106,4 @@ function navbar() {
   );
 }
 
-export default navbar;
+export default Navbar;

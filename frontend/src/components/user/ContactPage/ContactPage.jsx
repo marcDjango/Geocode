@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useCurrentUserContext } from "../../../contexte/CurrentUserContext";
 import contact from "./config.json";
 import Form from "../../form/form";
+import Alert from "../../alert/alert";
 import "../RegistrationPage/RegistrationForm.scss";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
-function ContactPage() {
+function ContactPage({ isContactModal, setIsContactModal }) {
   const { auth } = useCurrentUserContext();
-  const userItem = JSON.parse(localStorage.getItem("user"));
-  console.info(userItem);
+  const [isErrors, setIsErrors] = useState(null);
+  const [isSubmit, setIsSubmit] = useState(false);
 
+  const handleOnClickCloseModal = () => {
+    setIsContactModal(!isContactModal);
+  };
   const isConnected = () => {
     if (auth) {
       contact.name.value = auth.firstname + auth.name;
@@ -34,22 +39,53 @@ function ContactPage() {
         },
         body: JSON.stringify(data), // Convertir l'objet data en chaîne JSON
       });
-      const dataresponse = await response.json();
-      console.info(dataresponse);
       if (!response.ok) {
+        const dataresponse = await response.json();
+        if (dataresponse.validationErrors.length > 0) {
+          setIsErrors(dataresponse.validationErrors);
+        }
         throw new Error("Erreur lors de l'inscription");
+      } else {
+        setIsErrors(null);
+        setIsSubmit(true);
       }
-      // Traiter la réponse ici si nécessaire
     } catch (error) {
       console.error(error);
     }
   };
   const verfiAuth = isConnected();
+  useEffect(() => {
+    if (isSubmit) {
+      const timerId = setTimeout(() => {
+        setIsContactModal(false);
+      }, 2000);
+
+      return () => {
+        // Assurez-vous de nettoyer le timer si le composant est démonté avant l'expiration du délai
+        clearTimeout(timerId);
+      };
+    }
+    return undefined;
+  }, [isSubmit, setIsContactModal]);
   return (
-    <div className="registration-contain">
-      <Form data={contact} FormPostData={FormPostData} isAuth={verfiAuth} />
+    <div className="background-modal">
+      {(isErrors || isSubmit) && <Alert errors={isErrors} submit={isSubmit} />}
+      <div className="registration-contain">
+        <button
+          type="button"
+          className="contact-btn-close"
+          onClick={handleOnClickCloseModal}
+        >
+          close
+        </button>
+        <Form data={contact} FormPostData={FormPostData} isAuth={verfiAuth} />
+      </div>
     </div>
   );
 }
-
 export default ContactPage;
+
+ContactPage.propTypes = {
+  isContactModal: PropTypes.bool.isRequired,
+  setIsContactModal: PropTypes.func.isRequired,
+};
