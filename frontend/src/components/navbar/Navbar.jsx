@@ -68,11 +68,21 @@ function Navbar() {
               className="navbar-buttons-desktop"
               type="button"
               key={item.name}
-              onClick={() => navigate(item.route)}
+              onClick={() =>
+                item.name === "Contact"
+                  ? setIsContactModal(!isContactModal)
+                  : navigate(item.route)
+              }
             >
               {item.name}
             </button>
           ))}
+          {isContactModal && (
+            <ContactPage
+              isContactModal={isContactModal}
+              setIsContactModal={setIsContactModal}
+            />
+          )}
           {!auth && location.pathname !== "/login" && (
             <>
               <button
