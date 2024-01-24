@@ -1,5 +1,9 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 import RootLayout from "../layout/RootLayout";
 import ContactPage from "../components/user/ContactPage/ContactPage";
 import LoginPage from "../components/user/LoginPage/LoginPage";
@@ -10,11 +14,12 @@ import Map from "../components/map/map";
 import RegistrationForm from "../components/user/RegistrationPage/RegistrationForm";
 import Home from "../pages/home/Home";
 import Logout from "../pages/Logout";
+import AdminLayout from "../layout/AdminLayout";
 import Profil from "../components/profil/Profil";
 
-function AppRoutes() {
-  return (
-    <Routes>
+const AppRoutes = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
       {/* routes pour l'utilisateur ou visiteur  */}
       <Route element={<RootLayout />} path="/" id="rootlayout">
         <Route index element={<Home />} />
@@ -27,13 +32,15 @@ function AppRoutes() {
       </Route>
 
       {/* routes pour l'administrateur */}
-      <Route
-        element={<ChargingStationManagement />}
-        path="/admin/charging-station"
-        loader={fetchdata}
-      />
-    </Routes>
-  );
-}
+      <Route element={<AdminLayout />} path="/admin">
+        <Route
+          element={<ChargingStationManagement />}
+          path="/admin/charging-station"
+          loader={fetchdata}
+        />
+      </Route>
+    </Route>
+  )
+);
 
 export default AppRoutes;
