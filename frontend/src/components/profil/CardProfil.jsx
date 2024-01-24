@@ -20,7 +20,6 @@ function CardProfil({ item, dataUser }) {
           ))}
         </div>
       </div>
-
       <CartContent item={item} dataUser={dataUser} />
     </div>
   );
