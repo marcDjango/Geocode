@@ -36,6 +36,7 @@ function Navbar() {
             <span className="bar" />
             <span className="bar" />
             <span className="bar" />
+            <span className="bar" />
           </button>
           <button
             type="button"
