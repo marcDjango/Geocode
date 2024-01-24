@@ -6,7 +6,7 @@ const { VITE_BACKEND_URL } = import.meta.env;
 
 export const fetchdata = async () => {
   try {
-    const reponse = await fetch(`${VITE_BACKEND_URL}/api/charging-station`);
+    const reponse = await fetch(`${VITE_BACKEND_URL}/api/charging-stations`);
     const data = await reponse.json();
     return data;
   } catch (error) {

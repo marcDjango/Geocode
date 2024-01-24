@@ -7,14 +7,14 @@ import hidden from "../../assets/images/Hidden.png";
 import show from "../../assets/images/Show.png";
 import "./input.scss";
 
-function Input({ name, placeholder, type, isAuth }) {
+function Input({ name, placeholder, type, isAuth, route }) {
   const [valueInput, setValueInput] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const handleOnChange = (e) => {
     setValueInput(e.target.value);
   };
   const location = useLocation();
-  const autocompleted = location.pathname === "/contact" && true;
+  const autocompleted = route === "contact";
   const style = location.pathname === "/login";
   return type === "textArea" ? (
     <textarea
@@ -55,10 +55,12 @@ function Input({ name, placeholder, type, isAuth }) {
 export default Input;
 Input.defaultProps = {
   isAuth: false,
+  route: null,
 };
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   isAuth: PropTypes.bool,
+  route: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
 };
