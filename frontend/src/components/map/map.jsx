@@ -26,6 +26,7 @@ function Map() {
   const [chargingStations, setChargingStations] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
   const [isRoutingActive, setRoutingActive] = useState(false);
+  const [selectedStationLocation, setSelectedStationLocation] = useState(null);
 
   // Fonction pour récupérer les stations de recharge depuis le backend
   const fetchChargingStations = useCallback(async () => {
@@ -34,7 +35,7 @@ function Map() {
       const data = await response.json();
 
       // Limitez le nombre de lignes à 1000
-      const limitedData = data.slice(0, 500);
+      const limitedData = data.slice(0, 100);
 
       setChargingStations(limitedData);
     } catch (error) {
@@ -77,8 +78,20 @@ function Map() {
     fetchChargingStations();
   }, [getUserLocation, fetchChargingStations]);
 
+  const handleMarkerClick = (location) => {
+    setSelectedStationLocation(location);
+  };
+
+  const handlePopupClose = () => {
+    setSelectedStationLocation(null);
+  };
+
   const handleActivateRoute = () => {
     setRoutingActive(true);
+  };
+
+  const handleStopRoute = () => {
+    setRoutingActive(false);
   };
 
   return (
@@ -92,6 +105,7 @@ function Map() {
         chunkedLoading
         iconCreateFunction={createClusterCustomIcon}
         maxClusterRadius={100}
+        disableClusteringAtZoom={15}
       >
         {chargingStations.map((station) => (
           <Marker
@@ -101,30 +115,41 @@ function Map() {
               station.consolidated_longitude,
             ]}
             icon={customIcon}
+            eventHandlers={{
+              click: () =>
+                handleMarkerClick([
+                  station.consolidated_latitude,
+                  station.consolidated_longitude,
+                ]),
+            }}
           >
-            <Popup>
-              <Modal station={station} />
+            <Popup onClose={handlePopupClose}>
+              <Modal
+                station={station}
+                handleActivateRoute={handleActivateRoute}
+                handleStopRoute={handleStopRoute}
+                isRoutingActive={isRoutingActive}
+              />
             </Popup>
           </Marker>
         ))}
       </MarkerClusterGroup>
       <LocationMarker />
-      {userLocation && (
+      {userLocation && selectedStationLocation && (
         <Itinerary
           userLocation={userLocation}
           isActive={isRoutingActive}
-          chargingStations={chargingStations}
+          chargingStations={[
+            {
+              consolidated_latitude: selectedStationLocation[0],
+              consolidated_longitude: selectedStationLocation[1],
+            },
+          ]}
+          handleStopRoute={handleStopRoute}
         />
       )}
       <ZoomControl position="topright" />
       <LeafletGeocoder />
-      <button
-        type="button"
-        className="itinerary-button"
-        onClick={handleActivateRoute}
-      >
-        Activer l'itinéraire
-      </button>
     </MapContainer>
   );
 }

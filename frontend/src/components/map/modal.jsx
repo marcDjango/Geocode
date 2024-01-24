@@ -12,7 +12,8 @@ import horloge from "../../assets/mdi_clock-outline.svg";
 import prise from "../../assets/lucide_plug.svg";
 
 function Modal(props) {
-  const { station } = props;
+  const { station, handleActivateRoute, handleStopRoute, isRoutingActive } =
+    props;
 
   const [expanded, setExpanded] = useState(false);
 
@@ -32,15 +33,14 @@ function Modal(props) {
       </div>
       <div className="part-charging-station">
         <div className="part-one-charging-station">
-          <div className="station-nom-operateur">
-            {decodeURIComponent(escape(station.nom_operateur))}
-          </div>
-          <div>{decodeURIComponent(escape(station.nom_enseigne))}</div>
-          <div>{decodeURIComponent(escape(station.adresse_station))}</div>
+          <div className="station-nom-operateur">{station.nom_operateur}</div>
+          <div>{station.nom_enseigne}</div>
+          <div>{station.adresse_station}</div>
+
           <div>
             {station.implatation_station === undefined
               ? ""
-              : decodeURIComponent(escape(station.implatation_station))}
+              : station.implatation_station}
           </div>
         </div>
         <div className="part-two-charging-station">
@@ -90,9 +90,9 @@ function Modal(props) {
         </div>
         <div className="part-information-charging-station">
           <h3>Informations</h3>
-          <div>{decodeURIComponent(escape(station.restriction_gabarit))}</div>
-          <div>{decodeURIComponent(escape(station.condition_acces))}</div>
-          <div>{decodeURIComponent(escape(station.accessibilite_pmr))}</div>
+          <div>{station.restriction_gabarit}</div>
+          <div>{station.condition_acces}</div>
+          <div>{station.accessibilite_pmr}</div>
         </div>
         <button
           type="button"
@@ -102,6 +102,13 @@ function Modal(props) {
           Réserver
         </button>
       </div>
+      <button
+        type="button"
+        className="itinerary-button"
+        onClick={isRoutingActive ? handleStopRoute : handleActivateRoute}
+      >
+        {isRoutingActive ? "Arrêter l'itinéraire" : "Activer l'itinéraire"}
+      </button>
     </div>
   );
 }
@@ -127,4 +134,7 @@ Modal.propTypes = {
     accessibilite_pmr: PropTypes.string,
     reservation: PropTypes.string,
   }).isRequired,
+  handleActivateRoute: PropTypes.func.isRequired,
+  handleStopRoute: PropTypes.func.isRequired,
+  isRoutingActive: PropTypes.bool.isRequired,
 };

@@ -10,11 +10,16 @@ function Itinerary({ userLocation, isActive, chargingStations }) {
   const markerRef = useRef(null);
   const routingControlRef = useRef(null);
 
-  useEffect(() => {
-    // Crée un marqueur à la position de l'utilisateur et l'ajoute à la carte
+  // Fonction pour enlever l'itinéraire
+  const removeRoutingControl = () => {
+    if (routingControlRef.current) {
+      map.removeControl(routingControlRef.current);
+    }
+  };
 
+  useEffect(() => {
     if (isActive) {
-      // Récupère les coordonnées des stations de recharge
+      // Récupère les coordonnées de la station de recharge
       const waypoints = chargingStations.map((station) => {
         return L.latLng(
           station.consolidated_latitude,
@@ -24,22 +29,35 @@ function Itinerary({ userLocation, isActive, chargingStations }) {
 
       // Crée un contrôle de routage avec des options
       const routingControl = L.Routing.control({
-        waypoints: [L.latLng(userLocation[0], userLocation[1]), ...waypoints],
+        waypoints: [
+          {
+            latLng: L.latLng(userLocation[0], userLocation[1]),
+            name: "Ma localisation",
+          },
+          ...waypoints,
+        ],
         lineOptions: { color: "blue", weight: 4, opacity: 0.7 },
         routeWhileDragging: false,
         geocoder: L.Control.Geocoder.nominatim(),
         addWaypoints: false,
         draggableWaypoints: false,
         fitSelectedRoutes: true,
-        showAlternatives: true,
+        showAlternatives: false,
+        language: "fr",
       })
         // Événement déclenché lorsque des routes sont trouvées
         .on("routesfound", (e) => {
           const currentMarker = markerRef.current;
-          // Anime le déplacement du marqueur le long des coordonnées de l'itinéraire
-          e.routes[0].coordinates.forEach((c, i) => {
-            setTimeout(() => currentMarker.setLatLng([c.lat, c.lng]), 1000 * i);
-          });
+
+          if (currentMarker) {
+            // Anime le déplacement du marqueur le long des coordonnées de l'itinéraire
+            e.routes[0].coordinates.forEach((c, i) => {
+              setTimeout(
+                () => currentMarker.setLatLng([c.lat, c.lng]),
+                1000 * i
+              );
+            });
+          }
         })
         // Ajoute le contrôle de routage à la carte
         .addTo(map);
@@ -50,7 +68,7 @@ function Itinerary({ userLocation, isActive, chargingStations }) {
 
     // Nettoie la carte lorsque le composant est démonté
     return () => {
-      if (routingControlRef.current) routingControlRef.current.removeFrom(map);
+      removeRoutingControl();
     };
   }, [map, userLocation, isActive, chargingStations]);
 
