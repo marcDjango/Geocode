@@ -1,5 +1,9 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import {
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
 import RootLayout from "../layout/RootLayout";
 import ContactPage from "../components/user/ContactPage/ContactPage";
 import LoginPage from "../components/user/LoginPage/LoginPage";
@@ -11,9 +15,9 @@ import RegistrationForm from "../components/user/RegistrationPage/RegistrationFo
 import Home from "../pages/home/Home";
 import Logout from "../pages/Logout";
 
-function AppRoutes() {
-  return (
-    <Routes>
+const AppRoutes = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
       {/* routes pour l'utilisateur ou visiteur  */}
       <Route element={<RootLayout />} path="/" id="rootlayout">
         <Route index element={<Home />} />
@@ -30,8 +34,8 @@ function AppRoutes() {
         path="/admin/charging-station"
         loader={fetchdata}
       />
-    </Routes>
-  );
-}
+    </Route>
+  )
+);
 
 export default AppRoutes;

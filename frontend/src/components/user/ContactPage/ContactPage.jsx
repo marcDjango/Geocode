@@ -78,14 +78,22 @@ function ContactPage({ isContactModal, setIsContactModal }) {
         >
           close
         </button>
-        <Form data={contact} FormPostData={FormPostData} isAuth={verfiAuth} />
+        <Form
+          data={contact}
+          FormPostData={FormPostData}
+          isAuth={verfiAuth}
+          route="contact"
+        />
       </div>
     </div>
   );
 }
 export default ContactPage;
-
+ContactPage.defaultProps = {
+  isContactModal: false,
+  setIsContactModal: null,
+};
 ContactPage.propTypes = {
-  isContactModal: PropTypes.bool.isRequired,
-  setIsContactModal: PropTypes.func.isRequired,
+  isContactModal: PropTypes.bool,
+  setIsContactModal: PropTypes.func,
 };
