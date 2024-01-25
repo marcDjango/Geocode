@@ -1,12 +1,90 @@
 .adminlayout-content {
+  position: relative;
   width: 100%;
   height: 100%;
-  background: black;
+  background: var(--Color-5, #283131);
 
   .admin-side {
-    width: 30%;
-    max-width: 350px;
+    position: absolute;
+    width: 20%;
     height: 100%;
-    background: white;
+
+    .side-menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      background: #1a1f1f;
+      box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.25);
+
+      .top-side-menu {
+        width: 100%;
+        height: 100%;
+        .header-side-menu {
+          width: 100%;
+          height: 150px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .text-profil-admin {
+            margin-left: 1rem;
+            font-size: 24px;
+            color: white;
+          }
+        }
+        .main-side-menu {
+          width: 100%;
+          height: 500px;
+          // background: yellow;
+          .side-menu-navigation {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-around;
+            gap: 1rem;
+
+            .menu-navigation-link {
+              display: flex;
+              width: 50%;
+              align-items: center;
+              justify-content: space-between;
+              margin-inline: auto;
+              font-size: 24px;
+              cursor: pointer;
+              color: white;
+            }
+          }
+        }
+      }
+      .bottom-side-menu {
+        width: 100%;
+        height: 60px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .footer-side-menu {
+          display: flex;
+          width: 50%;
+          align-items: center;
+          justify-content: space-between;
+
+          .logout-link {
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+  .admin-body {
+    position: relative;
+    background-color: #283131;
+    height: 100%;
+    width: 100dvh;
+    margin-left: 20%;
   }
 } //Parent
