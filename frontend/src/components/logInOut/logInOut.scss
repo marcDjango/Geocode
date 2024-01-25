@@ -9,11 +9,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  button:hover {
+  a:hover {
     transform: scale(1.1);
     transition: all 0.3s ease;
   }
-  button {
+  a {
+    text-decoration: none;
     cursor: pointer;
     background-color: rgba(40, 49, 49, 1);
     border: 1px solid #10fffe;
@@ -25,12 +26,12 @@
     }
   }
 
-  .logInOut-btn-login {
+  .logInOut-link-login {
     border-radius: 100%;
     width: clamp(30px, 10vw, 50px);
     height: clamp(30px, 10vw, 50px);
   }
-  .logInOut-btn-signup {
+  .logInOut-link-signup {
     border-radius: 10px;
     color: white;
     padding: 0.1rem 0.5rem;

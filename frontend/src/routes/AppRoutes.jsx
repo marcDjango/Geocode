@@ -20,6 +20,7 @@ import CarsManagement, { fetchDataCars } from "../pages/admin/CarsManagement";
 import DocumentManagement, {
   fetchDataMessage,
 } from "../pages/admin/DocumentManagement";
+import Profil from "../components/profil/Profil";
 
 const AppRoutes = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +33,7 @@ const AppRoutes = createBrowserRouter(
         <Route element={<Logout />} path="/logout" />
         <Route element={<RegistrationForm />} path="/signup" />
         <Route element={<Map />} path="/map" />
+        <Route element={<Profil />} path="/profil" />
       </Route>
 
       {/* routes pour l'administrateur */}
