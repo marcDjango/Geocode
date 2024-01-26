@@ -15,6 +15,11 @@ import RegistrationForm from "../components/user/RegistrationPage/RegistrationFo
 import Home from "../pages/home/Home";
 import Logout from "../pages/Logout";
 import AdminLayout from "../layout/AdminLayout";
+import UsersManagement, { fetchDataUsers } from "../pages/admin/UserManagement";
+import CarsManagement, { fetchDataCars } from "../pages/admin/CarsManagement";
+import DocumentManagement, {
+  fetchDataMessage,
+} from "../pages/admin/DocumentManagement";
 import Profil from "../components/profil/Profil";
 
 const AppRoutes = createBrowserRouter(
@@ -37,6 +42,21 @@ const AppRoutes = createBrowserRouter(
           element={<ChargingStationManagement />}
           path="/admin/charging-station"
           loader={fetchdata}
+        />
+        <Route
+          element={<UsersManagement />}
+          path="/admin/users"
+          loader={fetchDataUsers}
+        />
+        <Route
+          element={<CarsManagement />}
+          path="/admin/cars"
+          loader={fetchDataCars}
+        />
+        <Route
+          element={<DocumentManagement />}
+          path="/admin/message"
+          loader={fetchDataMessage}
         />
       </Route>
     </Route>
