@@ -1,6 +1,11 @@
 .navbar {
   position: absolute;
-  a:hover,
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  .category-btn:hover,
   .hamburger:hover {
     transform: scale(1.1);
     transition: all 0.3s ease;
@@ -42,7 +47,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
-    a {
+    .category-btn {
       display: flex;
       justify-content: center;
       align-items: center;

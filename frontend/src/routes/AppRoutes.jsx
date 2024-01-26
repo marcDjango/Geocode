@@ -20,7 +20,7 @@ import CarsManagement, { fetchDataCars } from "../pages/admin/CarsManagement";
 import DocumentManagement, {
   fetchDataMessage,
 } from "../pages/admin/DocumentManagement";
-import Profil from "../components/profil/Profil";
+import Profile, { fetcCarUser } from "../components/profile/Profile";
 import verifyTokenOnServer from "../services/authVerify";
 
 const AppRoutes = createBrowserRouter(
@@ -34,7 +34,7 @@ const AppRoutes = createBrowserRouter(
         <Route element={<Logout />} path="/logout" />
         <Route element={<RegistrationForm />} path="/signup" />
         <Route element={<Map />} path="/map" />
-        <Route element={<Profil />} path="/profil" />
+        <Route element={<Profile />} path="/profile" loader={fetcCarUser} />
       </Route>
 
       {/* routes pour l'administrateur */}

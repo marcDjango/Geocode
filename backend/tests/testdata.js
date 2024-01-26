@@ -108,13 +108,13 @@ const reservationKeys = [
 ];
 // *****************************************************************************
 const userCreate = {
-  name: "bob",
-  firstname: "herman",
-  email: "wXnJt@examplexs.com",
-  gender: "male",
-  date_of_birth: "1997-01-01",
-  postal_code: "75000",
-  city: "paris",
+  name: "Sahakyan",
+  firstname: "Khachik",
+  email: "khachiksahakyan@gmail.com",
+  gender: "home",
+  date_of_birth: "1990-09-09",
+  postal_code: "31100",
+  city: "toulouse",
   number_vehicles: 1,
   profil_image: "coucou.jpeg",
   is_admin: 1,
@@ -126,16 +126,16 @@ const createUserWithHashedPassword = async () => {
 };
 
 const userUpdate = {
-  name: "bob",
-  firstname: "herman",
-  email: "wXnJt@examplexs.com",
-  gender: "male",
-  date_of_birth: "1997-01-01",
-  postal_code: "31000",
+  name: "Sahakyan",
+  firstname: "Khachik",
+  email: "khachiksahakyan@gmail.com",
+  gender: "home",
+  date_of_birth: "1990-09-09",
+  postal_code: "31100",
   city: "toulouse",
   number_vehicles: 2,
   profil_image: "coucou.jpeg",
-  is_admin: 0,
+  is_admin: 1,
 };
 const updateUserWithHashedPassword = async () => {
   const hash = await argon2.hash("1234567890");
