@@ -14,7 +14,7 @@ function Navbar() {
   const navbarData = [
     { name: "Accueil", route: "/" },
     { name: "Carte", route: "/map" },
-    { name: "Profil", route: "/profil" },
+    { name: "Profil", route: "/profile" },
     { name: "Informations", route: "/" },
     { name: "Actualités", route: "/" },
     { name: "Contact", route: "/contact" },
@@ -36,7 +36,6 @@ function Navbar() {
             <span className="bar" />
             <span className="bar" />
             <span className="bar" />
-            <span className="bar" />
           </button>
           <button
             type="button"
@@ -48,6 +47,7 @@ function Navbar() {
                 <button
                   type="button"
                   key={item.name}
+                  className="category-btn"
                   onClick={() =>
                     item.name === "Contact"
                       ? setIsContactModal(!isContactModal)
