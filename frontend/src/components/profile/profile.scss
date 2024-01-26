@@ -1,0 +1,115 @@
+.profile {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("../../assets/images/bckground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+
+  .profile-garage {
+    background-image: url("../../assets/images/garage.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    width: 100%;
+    height: 25vh;
+
+    img {
+      width: 100%;
+    }
+    .profile-garage-text {
+      margin-top: 60px;
+      margin-left: 50px;
+      p,
+      h1 {
+        font-size: clamp(1rem, 5vw, 2rem);
+      }
+      ul {
+        margin-bottom: 10px;
+        display: flex;
+        gap: 8px;
+      }
+    }
+  }
+
+  .card-profile {
+    border: 1px solid #465454;
+    width: 80%;
+    height: 23vh;
+    background-color: rgba(40, 49, 49, 1);
+    margin: 0 auto;
+    padding: 8px 3%;
+    border-radius: 10px;
+    .card-profile-header {
+      height: 4vh;
+      display: flex;
+      justify-content: space-between;
+      .card-profile-button-title {
+        height: 100%;
+        display: flex;
+
+        align-items: center;
+        gap: 10px;
+        h1 {
+          color: white;
+          margin: auto 0;
+          font-size: clamp(1rem, 3vw, 2rem);
+        }
+        .card-profile-header-button {
+          img {
+            height: 110%;
+          }
+        }
+      }
+      .card-profile-header-icons {
+        gap: 3px;
+        display: flex;
+        justify-content: end;
+      }
+    }
+
+    .card-profile-line {
+      margin: 3px 0;
+      width: 100%;
+    }
+    .cart-content {
+      height: 12vh;
+      margin: 1vh 2%;
+      display: flex;
+      flex-direction: row;
+
+      .cart-content-text {
+        width: 70%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        margin-left: 16px;
+        color: white;
+        font-size: clamp(1rem, 2vw, 1.5rem);
+      }
+    }
+    .cart-content-show {
+      height: 12vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      margin: 1vh 0 0.5vh 0;
+      li {
+        font-size: clamp(1rem, 2vw, 1.5rem);
+      }
+    }
+  }
+  .card-profile-show {
+    height: 40vh;
+  }
+}
