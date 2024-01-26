@@ -113,7 +113,7 @@ const verifyTokenValid = (req, res, next) => {
     req.user = token;
     next();
   } catch (error) {
-    return res.status(401).json({ error: "Invalid token" });
+    return res.sendStatus(401);
   }
   return null;
 };

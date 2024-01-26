@@ -1,5 +1,3 @@
-import React from "react";
-import "./AdminLayout.scss";
 import { Link, Outlet } from "react-router-dom";
 import Avatar from "../assets/images/avatar.png";
 import Email from "../assets/images/clarity_email-solid.svg";
@@ -8,11 +6,9 @@ import User from "../assets/images/fa-solid_users.svg";
 import Setting from "../assets/images/ion_settings.svg";
 import Logout from "../assets/images/solar_logout-2-bold.svg";
 import Calender from "../assets/images/uis_schedule.svg";
-import verifyTokenOnServer from "../services/authVerify";
+import "./AdminLayout.scss";
 
 function AdminLayout() {
-  const istoken = verifyTokenOnServer();
-  console.info(istoken);
   return (
     <div className="adminlayout-content">
       <div className="admin-side">
@@ -30,15 +26,21 @@ function AdminLayout() {
               <ul className="side-menu-navigation">
                 <li className="menu-navigation-link">
                   <img src={User} alt="icon-link" />
-                  <Link to="/admin/users">Liste Users</Link>
+                  <Link className="navigation-link" to="/admin/users">
+                    Liste Users
+                  </Link>
                 </li>
                 <li className="menu-navigation-link">
                   <img src={Car} alt="icon-link" />
-                  <Link to="/admin/cars">Voitures</Link>
+                  <Link className="navigation-link" to="/admin/cars">
+                    Voitures
+                  </Link>
                 </li>
                 <li className="menu-navigation-link">
                   <img src={Email} alt="icon-link" />
-                  <Link to="/admin/message">Documents</Link>
+                  <Link className="navigation-link" to="/admin/message">
+                    Documents
+                  </Link>
                 </li>
                 <li className="menu-navigation-link">
                   <img src={Calender} alt="icon-link" />

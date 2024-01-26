@@ -4,13 +4,15 @@ import PropTypes from "prop-types";
 function TableBody({ dataLoad }) {
   return (
     <tbody>
-      {dataLoad.map((item) => (
-        <tr key={item}>
-          {Object.values(item).map((value, index) => (
-            <td key={(value, index)}>{value}</td>
-          ))}
-        </tr>
-      ))}
+      {dataLoad.map((item) => {
+        return (
+          <tr key={item.id}>
+            {Object.values(item).map((value) => (
+              <td key={`${value}_${item.id}`}>{value}</td>
+            ))}
+          </tr>
+        );
+      })}
     </tbody>
   );
 }
