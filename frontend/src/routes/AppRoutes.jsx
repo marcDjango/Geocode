@@ -21,6 +21,7 @@ import DocumentManagement, {
   fetchDataMessage,
 } from "../pages/admin/DocumentManagement";
 import Profil from "../components/profil/Profil";
+import verifyTokenOnServer from "../services/authVerify";
 
 const AppRoutes = createBrowserRouter(
   createRoutesFromElements(
@@ -37,7 +38,11 @@ const AppRoutes = createBrowserRouter(
       </Route>
 
       {/* routes pour l'administrateur */}
-      <Route element={<AdminLayout />} path="/admin">
+      <Route
+        element={<AdminLayout />}
+        path="/admin"
+        loader={verifyTokenOnServer}
+      >
         <Route
           element={<ChargingStationManagement />}
           path="/admin/charging-station"
