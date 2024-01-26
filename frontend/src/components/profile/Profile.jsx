@@ -11,8 +11,7 @@ import chargingImage from "../../assets/guidance_charging-station.svg";
 export const fetcCarUser = async () => {
   try {
     const { VITE_BACKEND_URL } = import.meta.env;
-    // const { id } = JSON.parse(localStorage.getItem("user"));
-    const id = 1;
+    const { id } = JSON.parse(localStorage.getItem("user"));
 
     const response = await fetch(`${VITE_BACKEND_URL}/api/users/cars/${id}`, {
       method: "GET",
