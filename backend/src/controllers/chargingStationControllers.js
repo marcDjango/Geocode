@@ -3,8 +3,15 @@ const tables = require("../tables");
 const browse = async (req, res, next) => {
   try {
     const stations = await tables.charging_station.readAll();
-
-    res.status(200).json(stations);
+    const newStations = stations.map((row) => {
+      const newRow = { ...row };
+      newRow.adresse_station = Buffer.from(
+        newRow.adresse_station,
+        "latin1"
+      ).toString("utf8");
+      return newRow;
+    });
+    res.status(200).json(newStations);
   } catch (error) {
     next(error);
   }

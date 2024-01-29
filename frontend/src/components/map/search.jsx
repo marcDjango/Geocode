@@ -11,7 +11,7 @@ function LeafletGeocoder() {
     // Utilisation de la bibliothèque Leaflet pour créer un contrôle de géocodage
     L.Control.geocoder({
       defaultMarkGeocode: false,
-      position: "topleft",
+      position: "bottomleft",
       placeholder: "Rechercher une ville ou une adresse",
     })
       // Gestionnaire d'événement pour le marquage géocodé
