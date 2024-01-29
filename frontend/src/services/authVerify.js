@@ -1,15 +1,9 @@
-// verifyTokenOnServer.js
+import { redirect } from "react-router-dom";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
 const verifyTokenOnServer = async () => {
   const token = localStorage.getItem("token");
-
-  if (!token) {
-    console.error("Pas de token trouvé dans le localStorage");
-    return;
-  }
-
   try {
     const response = await fetch(`${VITE_BACKEND_URL}/api/verify-token`, {
       method: "GET",
@@ -17,18 +11,14 @@ const verifyTokenOnServer = async () => {
         Authorization: `Bearer ${token}`,
       },
     });
-
     if (response.ok) {
       const data = await response.json();
-      console.info("Token vérifié avec succès :", data);
-    } else {
-      console.error(
-        "Erreur lors de la vérification du token :",
-        response.statusText
-      );
+      console.info("Token vérifié avec succès :", data.token);
+      return token; // Retourne le token une fois vérifié avec succès
     }
+    return redirect("/logout");
   } catch (error) {
-    console.error("Erreur lors de la vérification du token :", error.message);
+    throw Error("Erreur lors de la vérification :", error.message);
   }
 };
 

@@ -50,6 +50,7 @@ const validateMessage = require("./middlewares/validateMessage");
 // Route to get a list of charging station
 router.get("/users", verifyToken, userControllers.browse);
 router.get("/users/:id", verifyToken, userControllers.read);
+router.get("/users/cars/:id", userControllers.readUserCar);
 router.post("/users/", validateUser, hashPassword, userControllers.add);
 router.post(
   "/users/login",
@@ -67,11 +68,11 @@ router.put(
 router.delete("/users/:id", verifyToken, userControllers.destroy);
 
 // Route to get a list of cars
-router.get("/cars", carControllers.browse);
-router.get("/cars/:id", carControllers.read);
-router.put("/cars/:id", validateCar, carControllers.edit);
-router.post("/cars/", validateCar, carControllers.add);
-router.delete("/cars/:id", carControllers.destroy);
+router.get("/cars", verifyToken, carControllers.browse);
+router.get("/cars/:id", verifyToken, carControllers.read);
+router.put("/cars/:id", verifyToken, validateCar, carControllers.edit);
+router.post("/cars/", verifyToken, validateCar, carControllers.add);
+router.delete("/cars/:id", verifyToken, carControllers.destroy);
 
 // Route to get a list of reservations
 router.get("/reservations", reservationControllers.browse);
@@ -87,8 +88,8 @@ router.delete("/reservations/:id", reservationControllers.destroy);
 // Route to get a list of cars
 router.get("/contacts", contactControllers.browse);
 router.get("/contacts/:id", contactControllers.read);
-router.post("/contacts", validateMessage, contactControllers.add);
-router.delete("/contacts/:id", contactControllers.destroy);
+router.post("/contacts", validateMessage, verifyToken, contactControllers.add);
+router.delete("/contacts/:id", verifyToken, contactControllers.destroy);
 router.get("/verify-token", verifyTokenValid, (req, res) => {
   // Si le middleware passe, vous pouvez renvoyer une réponse appropriée
   res.status(200).json({ token: req.user });

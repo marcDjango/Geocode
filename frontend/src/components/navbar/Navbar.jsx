@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import ContactPage from "../user/ContactPage/ContactPage";
 import "./navbar.scss";
 import { useCurrentUserContext } from "../../contexte/CurrentUserContext";
@@ -14,15 +14,18 @@ function Navbar() {
   const navbarData = [
     { name: "Accueil", route: "/" },
     { name: "Carte", route: "/map" },
-    { name: "Profil", route: "/" },
+    { name: "Profil", route: "/profile" },
     { name: "Informations", route: "/" },
     { name: "Actualités", route: "/" },
     { name: "Contact", route: "/contact" },
     { name: "A propos de nous", route: "/" },
   ];
+  if (window.innerWidth >= 600 && location.pathname === "/") {
+    return null;
+  }
   return (
     <div className="navbar">
-      {window.innerWidth < 480 ? (
+      {window.innerWidth < 600 ? (
         <>
           <button
             type="button"
@@ -36,7 +39,7 @@ function Navbar() {
           </button>
           <button
             type="button"
-            className="navbar-buttons-navigate"
+            className="navbar-links-navigate"
             onClick={() => setButtonClick(false)}
           >
             {buttonClicked &&
@@ -44,6 +47,7 @@ function Navbar() {
                 <button
                   type="button"
                   key={item.name}
+                  className="category-btn"
                   onClick={() =>
                     item.name === "Contact"
                       ? setIsContactModal(!isContactModal)
@@ -65,8 +69,8 @@ function Navbar() {
         <div className="navbar-desktop">
           {navbarData.map((item) => (
             <button
-              className="navbar-buttons-desktop"
               type="button"
+              className="navbar-links-desktop"
               key={item.name}
               onClick={() =>
                 item.name === "Contact"
@@ -85,24 +89,16 @@ function Navbar() {
           )}
           {!auth && location.pathname !== "/login" && (
             <>
-              <button
-                type="button"
-                className="navbar-buttons-desktop"
-                onClick={() => navigate("/")}
-              >
+              <Link className="navbar-links-desktop" to="/signup">
                 S'inscrire
-              </button>
-              <button
-                type="button"
-                className="navbar-buttons-desktop"
-                onClick={() => navigate("/login")}
-              >
+              </Link>
+              <Link className="navbar-links-desktop" to="/login">
                 <img
                   className="logInOut-avatar-desktop "
                   src={avatar}
                   alt="avatar"
                 />
-              </button>
+              </Link>
             </>
           )}
         </div>

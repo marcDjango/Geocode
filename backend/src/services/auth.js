@@ -51,7 +51,7 @@ const verifyPassword = async (req, res, next) => {
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      expiresIn: 60 * 60,
+      expiresIn: 24 * 60 * 60,
     });
 
     delete req.user.hashed_password;
@@ -113,7 +113,7 @@ const verifyTokenValid = (req, res, next) => {
     req.user = token;
     next();
   } catch (error) {
-    return res.status(401).json({ error: "Invalid token" });
+    return res.sendStatus(401);
   }
   return null;
 };
