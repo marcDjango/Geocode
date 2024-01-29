@@ -44,6 +44,7 @@ function Itinerary({ userLocation, isActive, chargingStations }) {
         fitSelectedRoutes: true,
         showAlternatives: false,
         language: "fr",
+        position: "bottomright",
       })
         // Événement déclenché lorsque des routes sont trouvées
         .on("routesfound", (e) => {

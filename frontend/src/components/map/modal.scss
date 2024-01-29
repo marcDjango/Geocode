@@ -113,20 +113,35 @@
         font-weight: bolder;
       }
     }
-    .button-reservation {
-      padding: 16px;
+    .button-charging-station {
       display: flex;
-      width: 105px;
-      height: 38px;
-      justify-content: center;
-      align-items: center;
-      border-radius: 20px;
-      background: var(--Color-3, #10fffe);
-      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
-      cursor: pointer;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 20px;
+      justify-content: space-around;
+
+      .button-reservation {
+        padding: 16px;
+        display: flex;
+        height: 38px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        background: var(--Color-3, #10fffe);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+      .itinerary-button {
+        padding: 16px;
+        display: flex;
+        height: 38px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        background: var(--Color-3, #10fffe);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        font-size: 20px;
+      }
     }
   }
 }

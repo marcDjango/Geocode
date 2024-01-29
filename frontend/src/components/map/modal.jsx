@@ -33,14 +33,16 @@ function Modal(props) {
       </div>
       <div className="part-charging-station">
         <div className="part-one-charging-station">
-          <div className="station-nom-operateur">{station.nom_operateur}</div>
-          <div>{station.nom_enseigne}</div>
+          <div className="station-nom-operateur">
+            {decodeURIComponent(escape(station.nom_operateur))}
+          </div>
+          <div>{decodeURIComponent(escape(station.nom_enseigne))}</div>
           <div>{station.adresse_station}</div>
 
           <div>
             {station.implatation_station === undefined
               ? ""
-              : station.implatation_station}
+              : decodeURIComponent(escape(station.implatation_station))}
           </div>
         </div>
         <div className="part-two-charging-station">
@@ -86,29 +88,31 @@ function Modal(props) {
           <h3>Tarifs</h3>
           {station.tarification === ""
             ? "Pas d'informations"
-            : `Coût de l'énergie : ${station.tarification}`}
+            : `Coût de l'énergie : ${station.tarification}€`}
         </div>
         <div className="part-information-charging-station">
           <h3>Informations</h3>
-          <div>{station.restriction_gabarit}</div>
-          <div>{station.condition_acces}</div>
-          <div>{station.accessibilite_pmr}</div>
+          <div>{decodeURIComponent(escape(station.restriction_gabarit))}</div>
+          <div>{decodeURIComponent(escape(station.condition_acces))}</div>
+          <div>{decodeURIComponent(escape(station.accessibilite_pmr))}</div>
         </div>
-        <button
-          type="button"
-          className="button-reservation"
-          disabled={station.reservation !== "1"}
-        >
-          Réserver
-        </button>
+        <div className="button-charging-station">
+          <button
+            type="button"
+            className="button-reservation"
+            disabled={station.reservation !== "1"}
+          >
+            Réserver
+          </button>
+          <button
+            type="button"
+            className="itinerary-button"
+            onClick={isRoutingActive ? handleStopRoute : handleActivateRoute}
+          >
+            {isRoutingActive ? "Arrêter l'itinéraire" : "Activer l'itinéraire"}
+          </button>
+        </div>
       </div>
-      <button
-        type="button"
-        className="itinerary-button"
-        onClick={isRoutingActive ? handleStopRoute : handleActivateRoute}
-      >
-        {isRoutingActive ? "Arrêter l'itinéraire" : "Activer l'itinéraire"}
-      </button>
     </div>
   );
 }
