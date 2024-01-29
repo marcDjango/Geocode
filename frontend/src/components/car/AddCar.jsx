@@ -56,17 +56,7 @@ function AddCar() {
   return (
     <div className="add-car">
       <h1>{(plugId, brandId)}</h1>
-      <br />
-      <br />
-      <br />
       <button type="button">close</button>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <section>
         <h2>vehicule1</h2>
         <div>
