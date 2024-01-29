@@ -20,7 +20,7 @@ const chargingStationControllers = require("./controllers/chargingStationControl
 const carControllers = require("./controllers/carControllers");
 const reservationControllers = require("./controllers/reservationControllers");
 const contactControllers = require("./controllers/contactControllers");
-const brundControllers = require("./controllers/brundControllers");
+const brandControllers = require("./controllers/brandControllers");
 const plugControllers = require("./controllers/plugControllers");
 
 // Import Middlewares
@@ -97,7 +97,7 @@ router.get("/verify-token", verifyTokenValid, (req, res) => {
   res.status(200).json({ token: req.user });
 });
 // Route to get a list of brands
-router.get("/brands", brundControllers.browse);
+router.get("/brands", brandControllers.browse);
 
 // Route to get a list of plug
 router.get("/plugs", plugControllers.browse);
