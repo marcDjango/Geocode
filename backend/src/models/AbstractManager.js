@@ -26,7 +26,6 @@ class AbstractManager {
   async readAll() {
     // Performing a database query to select all records from the charging station table
     const [rows] = await this.database.query(`select * from ${this.table}`);
-    // console.log(rows);
     // Returning all rows
     return rows;
   }

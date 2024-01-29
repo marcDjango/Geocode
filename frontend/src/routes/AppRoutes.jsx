@@ -20,8 +20,9 @@ import CarsManagement, { fetchDataCars } from "../pages/admin/CarsManagement";
 import DocumentManagement, {
   fetchDataMessage,
 } from "../pages/admin/DocumentManagement";
-import Profile, { fetcCarUser } from "../components/profile/Profile";
+import Profile, { fetchCarUser } from "../components/profile/Profile";
 import verifyTokenOnServer from "../services/authVerify";
+import AddCar, { fetchBrands } from "../components/car/AddCar";
 
 const AppRoutes = createBrowserRouter(
   createRoutesFromElements(
@@ -34,9 +35,9 @@ const AppRoutes = createBrowserRouter(
         <Route element={<Logout />} path="/logout" />
         <Route element={<RegistrationForm />} path="/signup" />
         <Route element={<Map />} path="/map" />
-        <Route element={<Profile />} path="/profile" loader={fetcCarUser} />
+        <Route element={<Profile />} path="/profile" loader={fetchCarUser} />
       </Route>
-
+      <Route element={<AddCar />} path="/add-car" loader={fetchBrands} />
       {/* routes pour l'administrateur */}
       <Route
         element={<AdminLayout />}
