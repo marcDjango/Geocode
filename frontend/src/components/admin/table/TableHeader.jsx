@@ -5,6 +5,11 @@ function TableHeader({ keys, sortOrder, sortColumn, onSort }) {
   return (
     <thead>
       <tr>
+        <th>
+          <div className="field-table">
+            <p>Action</p>
+          </div>
+        </th>
         {keys.map((key) => (
           <th key={key} onClick={() => onSort(key)}>
             <div className="field-table">

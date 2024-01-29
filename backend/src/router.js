@@ -88,7 +88,7 @@ router.delete("/reservations/:id", reservationControllers.destroy);
 // Route to get a list of cars
 router.get("/contacts", contactControllers.browse);
 router.get("/contacts/:id", contactControllers.read);
-router.post("/contacts", validateMessage, verifyToken, contactControllers.add);
+router.post("/contacts", validateMessage, contactControllers.add);
 router.delete("/contacts/:id", verifyToken, contactControllers.destroy);
 router.get("/verify-token", verifyTokenValid, (req, res) => {
   // Si le middleware passe, vous pouvez renvoyer une réponse appropriée

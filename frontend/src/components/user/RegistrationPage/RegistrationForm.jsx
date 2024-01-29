@@ -25,7 +25,6 @@ function RegistrationForm() {
       );
       return;
     }
-
     // Supprimer la clé 'confirm_password' de l'objet data avant l'envoi
     const { [confirPassword]: _, ...dataWithoutConfirmPassword } = data;
 

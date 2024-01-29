@@ -38,7 +38,7 @@ function AdminLayout() {
                 </li>
                 <li className="menu-navigation-link">
                   <img src={Email} alt="icon-link" />
-                  <Link className="navigation-link" to="/admin/message">
+                  <Link className="navigation-link" to="/admin/contacts">
                     Documents
                   </Link>
                 </li>

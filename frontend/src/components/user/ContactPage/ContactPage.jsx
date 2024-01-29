@@ -31,11 +31,13 @@ function ContactPage({ isContactModal, setIsContactModal }) {
     // Créer un objet FormData à partir de l'événement de formulaire
     const form = new FormData(e.target);
     const data = Object.fromEntries(form);
+    const token = localStorage.getItem("token");
     try {
       const response = await fetch(`${VITE_BACKEND_URL}/api/contacts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Spécifier le type de contenu JSON
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(data), // Convertir l'objet data en chaîne JSON
       });

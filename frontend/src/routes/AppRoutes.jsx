@@ -22,6 +22,7 @@ import DocumentManagement, {
 } from "../pages/admin/DocumentManagement";
 import Profile, { fetcCarUser } from "../components/profile/Profile";
 import verifyTokenOnServer from "../services/authVerify";
+import Delete from "../pages/admin/ActionAdmin/delete";
 
 const AppRoutes = createBrowserRouter(
   createRoutesFromElements(
@@ -60,8 +61,13 @@ const AppRoutes = createBrowserRouter(
         />
         <Route
           element={<DocumentManagement />}
-          path="/admin/message"
+          path="/admin/contacts"
           loader={fetchDataMessage}
+        />
+        <Route
+          element={<Delete />}
+          path="/admin/delete/:id"
+          // loader={fetchDataDelete}
         />
       </Route>
     </Route>
