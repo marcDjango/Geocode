@@ -3,20 +3,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function TableBody({ dataLoad }) {
+function TableBody({ dataLoad, setIsEditModal, EditDataById }) {
   const location = useLocation();
   const navigate = useNavigate();
   return (
     <tbody>
       {dataLoad.map((item) => {
         return (
-          <tr key={item.id}>
+          <tr key={item.id} className="actionButtons">
             <td className="actionButtons">
               <button
                 type="button"
                 aria-label="edit"
                 className="edit-button"
-                // onClick={() => setIsEditModal(true)}
+                onClick={() => {
+                  setIsEditModal(true);
+                  EditDataById(item.id);
+                }}
               >
                 <i className="fi fi-rr-edit" />
               </button>
@@ -47,6 +50,8 @@ function TableBody({ dataLoad }) {
 
 TableBody.propTypes = {
   dataLoad: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any)).isRequired,
+  setIsEditModal: PropTypes.func.isRequired,
+  EditDataById: PropTypes.func.isRequired,
 };
 
 export default TableBody;

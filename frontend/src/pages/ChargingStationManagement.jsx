@@ -21,7 +21,6 @@ function ChargingStationManagement() {
   return (
     <div>
       <RegistrationForm />
-      {/* {dataLoad.map((item) => item.nom_operateur)} */}
     </div>
   );
 }

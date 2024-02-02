@@ -10,7 +10,7 @@ import "./AdminLayout.scss";
 
 function AdminLayout() {
   return (
-    <div className="adminlayout-content">
+    <div className="admin-layout-content">
       <div className="admin-side">
         <div className="side-menu">
           <div className="top-side-menu">
@@ -40,6 +40,12 @@ function AdminLayout() {
                   <img src={Email} alt="icon-link" />
                   <Link className="navigation-link" to="/admin/contacts">
                     Documents
+                  </Link>
+                </li>
+                <li className="menu-navigation-link">
+                  <img src={Calender} alt="icon-link" />
+                  <Link className="navigation-link" to="/admin/stations">
+                    Bornes de Recharge
                   </Link>
                 </li>
                 <li className="menu-navigation-link">

@@ -7,9 +7,10 @@ import {
 import RootLayout from "../layout/RootLayout";
 import ContactPage from "../components/user/ContactPage/ContactPage";
 import LoginPage from "../components/user/LoginPage/LoginPage";
-import ChargingStationManagement, {
-  fetchdata,
-} from "../pages/ChargingStationManagement";
+// import ChargingStationManagement, {
+//   fetchDataStations,
+// } from "../pages/admin/ChargingStationManagement";
+import StationManagement, { fetchdata } from "../pages/admin/StationManagement";
 import Map from "../components/map/map";
 import RegistrationForm from "../components/user/RegistrationPage/RegistrationForm";
 import Home from "../pages/home/Home";
@@ -21,7 +22,7 @@ import DocumentManagement, {
   fetchDataMessage,
 } from "../pages/admin/DocumentManagement";
 import Profile, { fetcCarUser } from "../components/profile/Profile";
-import verifyTokenOnServer from "../services/authVerify";
+// import verifyTokenOnServer from "../services/authVerify";
 import Delete from "../pages/admin/ActionAdmin/delete";
 
 const AppRoutes = createBrowserRouter(
@@ -39,20 +40,21 @@ const AppRoutes = createBrowserRouter(
       </Route>
 
       {/* routes pour l'administrateur */}
-      <Route
-        element={<AdminLayout />}
-        path="/admin"
-        loader={verifyTokenOnServer}
-      >
-        <Route
+      <Route element={<AdminLayout />} path="/admin">
+        {/* <Route
           element={<ChargingStationManagement />}
-          path="/admin/charging-station"
-          loader={fetchdata}
-        />
+          path="/admin/charging-stations"
+          loader={fetchDataStations}
+        /> */}
         <Route
           element={<UsersManagement />}
           path="/admin/users"
           loader={fetchDataUsers}
+        />
+        <Route
+          element={<StationManagement />}
+          path="/admin/stations"
+          loader={fetchdata}
         />
         <Route
           element={<CarsManagement />}
@@ -64,11 +66,7 @@ const AppRoutes = createBrowserRouter(
           path="/admin/contacts"
           loader={fetchDataMessage}
         />
-        <Route
-          element={<Delete />}
-          path="/admin/delete/:id"
-          // loader={fetchDataDelete}
-        />
+        <Route element={<Delete />} path="/admin/delete/:id" />
       </Route>
     </Route>
   )

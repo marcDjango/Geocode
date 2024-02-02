@@ -98,17 +98,18 @@ td {
         td {
           vertical-align: middle;
           color: white;
+        }
+        .actionButtons {
+          padding: 0.5em;
+          display: flex;
+          align-items: center;
+          padding: 1em 1.5em;
+          border-radius: 5px;
 
-          .actionButtons {
-            display: flex;
-            gap: 10em;
-            padding: 0.3em;
-            border-radius: 5px;
-          }
           .edit-button,
           .delete-button {
             position: relative;
-            padding: 0 1em;
+            padding-right: 1.5em;
             cursor: pointer;
             color: white;
             transition: scale 0.2s ease-in-out;
@@ -123,16 +124,31 @@ td {
             content: "";
             position: absolute;
             top: -60%;
-            left: 10%;
+            left: -30%;
             height: 40px;
             width: 40px;
             background-color: #46545462;
             border-radius: 30px;
-            border: 2px solid red;
+            border: 1px solid grey;
           }
         }
       }
     }
+  }
+}
+.pagination {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  // background: red;
+  color: white;
+  padding: 1rem;
+  button {
+    border: 1px solid white;
+    padding: 1rem;
+    margin-inline: 2rem;
+    color: white;
+    cursor: pointer;
   }
 }
 

@@ -1,0 +1,55 @@
+.content-modal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  height: 100dvh;
+  width: 100dvw;
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(3px);
+  z-index: 99;
+
+  .body-modal {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-image: url("../../../assets/images/bckground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 1rem;
+    .btn-close-modal {
+      position: relative;
+      right: -90%;
+      height: 30px;
+      width: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px;
+      border: 1px solid grey;
+      color: white;
+      font-family: sans-serif;
+      transition: scale 0.2s ease-in-out;
+    }
+    .btn-close-modal:hover {
+      scale: 1.2;
+      cursor: pointer;
+    }
+    .signin-btn-submit {
+      margin-block: 1rem;
+      width: 220px;
+      height: 43px;
+      border-radius: 24px;
+      background: var(--Color-3, #10fffe);
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+    }
+  }
+}
+@media screen and (min-width: 1024px) {
+  .body-modal {
+    height: 70%;
+    max-width: 450px;
+  }
+}

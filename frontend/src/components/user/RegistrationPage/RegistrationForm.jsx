@@ -55,8 +55,10 @@ function RegistrationForm() {
   };
 
   return (
-    <div className="registration-contain">
-      <Form data={user} FormPostData={FormPostData} />;
+    <div className="background-modal">
+      <div className="registration-contain">
+        <Form data={user} FormPostData={FormPostData} />;
+      </div>
     </div>
   );
 }
