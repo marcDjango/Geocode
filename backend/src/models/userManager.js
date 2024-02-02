@@ -40,9 +40,9 @@ class UserManager extends AbstractManager {
     // Performing a database query to select all records from the charging station table
     const [rows] = await this.database.query(
       `select  user.name, user.firstname, user.email, user.gender, DATE_FORMAT(user.date_of_birth, '%Y-%m-%d') AS date_of_birth , user.postal_code,user.city,user.number_vehicles, user.hashed_password, user.profil_image,car.car_image,brand.model,brand.Marque,plug.type from ${this.table}
-      INNER JOIN car ON user.id = car.user_id  
-      INNER JOIN brand ON car.brand_id = brand.id 
-      INNER JOIN plug ON car.plug_id = plug.id where user.id = ?`,
+      LEFT JOIN car ON user.id = car.user_id  
+      LEFT JOIN brand ON car.brand_id = brand.id 
+      LEFT JOIN plug ON car.plug_id = plug.id where user.id = ?`,
       [id]
     );
     // Returning all rows

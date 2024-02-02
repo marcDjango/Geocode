@@ -20,6 +20,8 @@ const chargingStationControllers = require("./controllers/chargingStationControl
 const carControllers = require("./controllers/carControllers");
 const reservationControllers = require("./controllers/reservationControllers");
 const contactControllers = require("./controllers/contactControllers");
+const brandControllers = require("./controllers/brandControllers");
+const plugControllers = require("./controllers/plugControllers");
 
 // Import Middlewares
 const validateCar = require("./middlewares/validateCar");
@@ -50,7 +52,7 @@ const validateMessage = require("./middlewares/validateMessage");
 // Route to get a list of charging station
 router.get("/users", verifyToken, userControllers.browse);
 router.get("/users/:id", verifyToken, userControllers.read);
-router.get("/users/cars/:id", userControllers.readUserCar);
+router.get("/users/cars/:id", verifyToken, userControllers.readUserCar);
 router.post("/users/", validateUser, hashPassword, userControllers.add);
 router.post(
   "/users/login",
@@ -96,4 +98,9 @@ router.get("/verify-token", verifyTokenValid, (req, res) => {
   // Si le middleware passe, vous pouvez renvoyer une réponse appropriée
   res.status(200).json({ token: req.user });
 });
+// Route to get a list of brands
+router.get("/brands", brandControllers.browse);
+
+// Route to get a list of plug
+router.get("/plugs", plugControllers.browse);
 module.exports = router;
