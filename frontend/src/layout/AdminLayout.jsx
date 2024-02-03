@@ -70,7 +70,6 @@ function AdminLayout() {
           </div>
         </div>
       </div>
-      {/* fin side menu navigation */}
       <div className="admin-body">
         <Outlet />
       </div>

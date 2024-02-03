@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import ContactPage from "../user/ContactPage/ContactPage";
-import "./navbar.scss";
 import { useCurrentUserContext } from "../../contexte/CurrentUserContext";
 import avatar from "../../assets/Vector.svg";
+import "./navbar.scss";
 
 function Navbar() {
   const navigate = useNavigate();

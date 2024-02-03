@@ -22,7 +22,7 @@ import DocumentManagement, {
   fetchDataMessage,
 } from "../pages/admin/DocumentManagement";
 import Profile, { fetchCarUser } from "../components/profile/Profile";
-// import verifyTokenOnServer from "../services/authVerify";
+import verifyTokenOnServer from "../services/authVerify";
 import AddCar, { fetchBrands } from "../components/car/AddCar";
 import Delete from "../pages/admin/ActionAdmin/delete";
 
@@ -41,7 +41,11 @@ const AppRoutes = createBrowserRouter(
       </Route>
       <Route element={<AddCar />} path="/add-car" loader={fetchBrands} />
       {/* routes pour l'administrateur */}
-      <Route element={<AdminLayout />} path="/admin">
+      <Route
+        element={<AdminLayout />}
+        path="/admin"
+        loader={verifyTokenOnServer}
+      >
         {/* <Route
           element={<ChargingStationManagement />}
           path="/admin/charging-stations"

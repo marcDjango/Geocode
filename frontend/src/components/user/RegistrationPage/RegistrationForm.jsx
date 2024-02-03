@@ -31,7 +31,7 @@ function RegistrationForm() {
     // Ajouter une nouvelle clé au nouvel objet
     const newDataWithAdditionalKey = {
       ...dataWithoutConfirmPassword,
-      isAdmin: 0,
+      is_admin: 0,
       profil_image: null,
     };
     try {
