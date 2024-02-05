@@ -11,8 +11,8 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
   const [dataPlugs, setDataPlugs] = useState([]);
   const [newDataModifyCar, setNewDataModifyCar] = useState(dataModifyCar);
 
-  const [valueModal, setValueModal] = useState(() =>
-    newDataModifyCar ? newDataModifyCar.Marque : []
+  const [valueModal, setValueModal] = useState(
+    dataModifyCar ? dataModifyCar.Marque : []
   );
   const [propose, setPropose] = useState([]);
   const [marque, setMarque] = useState([]);
@@ -20,7 +20,6 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
   const [plugId, setPlugId] = useState([]);
   const [brandId, setBrandId] = useState([]);
   const [data, setData] = useState();
-
   useEffect(() => {
     const fetchBrands = async () => {
       try {
@@ -83,7 +82,7 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
         state(false);
         navigate("/profile");
       }
-    } else alert("Veuillez renseigner tous les champs");
+    }
   };
   useEffect(() => {
     if (plugId.length === 1 && brandId.length === 1) {
@@ -102,7 +101,7 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
     });
   }, [dataBrands]);
   useEffect(() => {
-    if (valueModal.length > 1 || newDataModifyCar) {
+    if (valueModal.length > 1) {
       setPropose(marque.filter((item) => item.includes(valueModal)));
     } else {
       setPropose([]);
@@ -110,7 +109,7 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
   }, [valueModal]);
 
   useEffect(() => {
-    if ((propose === valueModal && valueModal) || newDataModifyCar) {
+    if (propose === valueModal && valueModal) {
       setModele(dataBrands.filter((item) => item.Marque === valueModal));
       setPropose([]);
     } else if (propose !== valueModal && propose.length !== 0) {
@@ -221,8 +220,10 @@ AddCar.propTypes = {
   setModalCar: PropTypes.func.isRequired,
   dataModifyCar: PropTypes.shape({
     id: PropTypes.number,
+    Marque: PropTypes.string,
     model: PropTypes.string,
     type: PropTypes.string,
+    plug_id: PropTypes.number,
   }).isRequired,
 };
 export default AddCar;
