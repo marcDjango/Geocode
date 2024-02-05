@@ -31,6 +31,7 @@ function Profile() {
     <div className="profile">
       <section className="profile-garage">
         <div className="profile-garage-text">
+          <div className="picture-car" />
           {dataUser && (
             <ul>
               <h1>{dataUser.name} </h1>

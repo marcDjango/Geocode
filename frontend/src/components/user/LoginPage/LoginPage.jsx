@@ -45,8 +45,7 @@ function LoginPage() {
         setAuth(user.user);
         localStorage.setItem("user", JSON.stringify(user.user));
         localStorage.setItem("token", user.token);
-
-        navigate(-1);
+        navigate("/");
       } else {
         if (user.validationErrors.length > 0) {
           setIsErrors(user.validationErrors);

@@ -2,7 +2,14 @@ const tables = require("../tables");
 
 const browse = async (req, res, next) => {
   try {
-    const stations = await tables.charging_station.readAll();
+    let limit = parseInt(req.params.limit, 10) || 100; // Utilisez le paramètre limit, par défaut à 100 si non fourni ou s'il n'est pas un nombre valide
+
+    if (limit < 1) {
+      limit = 1;
+    }
+
+    const stations = await tables.charging_station.readAll({ limit });
+
     const newStations = stations.map((row) => {
       const newRow = { ...row };
       newRow.adresse_station = Buffer.from(

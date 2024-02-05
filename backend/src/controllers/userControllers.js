@@ -3,7 +3,9 @@ const tables = require("../tables");
 const browse = async (req, res, next) => {
   try {
     const users = await tables.user.readAllUser();
-    res.status(200).json(users);
+    const modifiedUsers = users.map(({ is_admin: isAdmin, ...rest }) => rest);
+
+    res.status(200).json(modifiedUsers);
   } catch (error) {
     next(error);
   }

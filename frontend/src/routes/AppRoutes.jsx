@@ -7,9 +7,7 @@ import {
 import RootLayout from "../layout/RootLayout";
 import ContactPage from "../components/user/ContactPage/ContactPage";
 import LoginPage from "../components/user/LoginPage/LoginPage";
-import ChargingStationManagement, {
-  fetchdata,
-} from "../pages/ChargingStationManagement";
+import StationManagement, { fetchdata } from "../pages/admin/StationManagement";
 import Map from "../components/map/map";
 import RegistrationForm from "../components/user/RegistrationPage/RegistrationForm";
 import Home from "../pages/home/Home";
@@ -22,6 +20,7 @@ import DocumentManagement, {
 } from "../pages/admin/DocumentManagement";
 import Profile, { fetchCarUser } from "../components/profile/Profile";
 import verifyTokenOnServer from "../services/authVerify";
+import Delete from "../pages/admin/ActionAdmin/delete";
 
 const AppRoutes = createBrowserRouter(
   createRoutesFromElements(
@@ -43,14 +42,14 @@ const AppRoutes = createBrowserRouter(
         loader={verifyTokenOnServer}
       >
         <Route
-          element={<ChargingStationManagement />}
-          path="/admin/charging-station"
-          loader={fetchdata}
-        />
-        <Route
           element={<UsersManagement />}
           path="/admin/users"
           loader={fetchDataUsers}
+        />
+        <Route
+          element={<StationManagement />}
+          path="/admin/stations"
+          loader={fetchdata}
         />
         <Route
           element={<CarsManagement />}
@@ -59,9 +58,10 @@ const AppRoutes = createBrowserRouter(
         />
         <Route
           element={<DocumentManagement />}
-          path="/admin/message"
+          path="/admin/contacts"
           loader={fetchDataMessage}
         />
+        <Route element={<Delete />} path="/admin/delete/:id" />
       </Route>
     </Route>
   )
