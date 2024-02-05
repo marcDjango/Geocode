@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useLocation } from "react-router-dom";
 import email from "../../assets/images/email.png";
@@ -7,8 +7,14 @@ import hidden from "../../assets/images/Hidden.png";
 import show from "../../assets/images/Show.png";
 import "./input.scss";
 
-function Input({ name, placeholder, type, isAuth, route }) {
+function Input({ name, placeholder, type, isAuth, route, isAdmin }) {
   const [valueInput, setValueInput] = useState("");
+  useEffect(() => {
+    if (isAdmin) {
+      setValueInput(placeholder);
+    }
+  }, [isAdmin]);
+
   const [isVisible, setIsVisible] = useState(false);
   const handleOnChange = (e) => {
     setValueInput(e.target.value);
@@ -55,11 +61,13 @@ function Input({ name, placeholder, type, isAuth, route }) {
 export default Input;
 Input.defaultProps = {
   isAuth: false,
+  isAdmin: false,
   route: null,
 };
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  isAdmin: PropTypes.bool,
   isAuth: PropTypes.bool,
   route: PropTypes.string,
   placeholder: PropTypes.string.isRequired,

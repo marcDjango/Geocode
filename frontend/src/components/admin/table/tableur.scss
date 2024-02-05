@@ -4,11 +4,14 @@
   --whiteColor: #fffbef;
   --shadow: 0px 5px 6px 2px rgba(18, 17, 11, 0.3);
 }
-
+button {
+  border: none;
+  background: none;
+}
 table,
 th,
 td {
-  padding: 1em 1em;
+  padding: 1em 0 1em 1em;
   border-collapse: collapse;
   text-align: left;
 }
@@ -95,17 +98,57 @@ td {
         td {
           vertical-align: middle;
           color: white;
+        }
+        .actionButtons {
+          padding: 0.5em;
+          display: flex;
+          align-items: center;
+          padding: 1em 1.5em;
+          border-radius: 5px;
 
-          .actionButtons {
-            display: flex;
-            gap: 1em;
-            background-color: rgba(209, 181, 103, 0.1);
-            padding: 0.3em;
-            border-radius: 5px;
+          .edit-button,
+          .delete-button {
+            position: relative;
+            padding-right: 1.5em;
+            cursor: pointer;
+            color: white;
+            transition: scale 0.2s ease-in-out;
+          }
+          .edit-button:hover,
+          .delete-button:hover {
+            position: relative;
+            scale: 1.2;
+          }
+          .edit-button:hover::after,
+          .delete-button:hover::after {
+            content: "";
+            position: absolute;
+            top: -60%;
+            left: -30%;
+            height: 40px;
+            width: 40px;
+            background-color: #46545462;
+            border-radius: 30px;
+            border: 1px solid grey;
           }
         }
       }
     }
+  }
+}
+.pagination {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  // background: red;
+  color: white;
+  padding: 1rem;
+  button {
+    border: 1px solid white;
+    padding: 1rem;
+    margin-inline: 2rem;
+    color: white;
+    cursor: pointer;
   }
 }
 

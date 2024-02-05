@@ -105,8 +105,8 @@ function Alert({ errors, submit }) {
                     <span className="sr-only">Close</span>
                   </button>
                   <i className="start-icon far fa-times-circle faa-pulse animated" />
-                  <strong className="font__weight-semibold">Oh snap!</strong>{" "}
-                  Change a few things up and try submitting again. <br />
+                  <strong className="font__weight-semibold"> Oops !</strong>{" "}
+                  Modifiez et réessayez. <br />
                   {errors &&
                     errors.length > 0 &&
                     errors.map((type) => (
