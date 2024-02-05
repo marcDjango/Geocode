@@ -84,7 +84,7 @@ router.put(
   validateReservation,
   reservationControllers.edit
 );
-router.post("/reservations/", validateReservation, reservationControllers.add);
+router.post("/reservations/", reservationControllers.add);
 router.delete("/reservations/:id", reservationControllers.destroy);
 
 // Route to get a list of cars
