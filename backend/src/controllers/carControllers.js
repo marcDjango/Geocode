@@ -21,6 +21,18 @@ const read = async (req, res, next) => {
     next(error);
   }
 };
+const readCar = async (req, res, next) => {
+  try {
+    const car = await tables.car.readCar(req.params.id);
+    if (car == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(car);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 const edit = async (req, res, next) => {
   try {
@@ -64,6 +76,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
   browse,
   read,
+  readCar,
   edit,
   add,
   destroy,
