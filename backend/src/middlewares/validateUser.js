@@ -22,20 +22,20 @@ const validateUser = (req, res, next) => {
 
   // Validation pour le champ 'name'
   if (name == null) {
-    errors.push({ field: "name", message: "Ce champ est obligatoire" });
+    errors.push({ field: "Nom", message: "Ce champ est obligatoire" });
   } else if (name.length >= 100) {
     errors.push({
-      field: "name",
+      field: "Nom",
       message: "Doit contenir moins de 100 caractères",
     });
   }
 
   // Validation pour le champ 'firstname'
   if (firstname == null) {
-    errors.push({ field: "firstname", message: "Ce champ est obligatoire" });
+    errors.push({ field: "Prénom", message: "Ce champ est obligatoire" });
   } else if (firstname.length >= 100) {
     errors.push({
-      field: "firstname",
+      field: "Prénom",
       message: "Doit contenir moins de 45 caractères",
     });
   }
@@ -54,10 +54,10 @@ const validateUser = (req, res, next) => {
 
   // Validation pour le champ 'gender'
   if (gender == null) {
-    errors.push({ field: "gender", message: "Ce champ est obligatoire" });
+    errors.push({ field: "Sexe", message: "Ce champ est obligatoire" });
   } else if (gender.length >= 45) {
     errors.push({
-      field: "gender",
+      field: "Sexe",
       message: "Doit contenir moins de 45 caractères",
     });
   }
@@ -65,12 +65,12 @@ const validateUser = (req, res, next) => {
   // Validation pour le champ 'date_of_birth'
   if (dateOfBirth == null) {
     errors.push({
-      field: "dateOfBirth",
+      field: "Anniversaire",
       message: "Ce champ est obligatoire",
     });
   } else if (!dateRegex.test(dateOfBirth)) {
     errors.push({
-      field: "dateOfBirth",
+      field: "Anniversaire",
       message: "Format de date invalide. Utilisez le format YYYY-MM-DD",
     });
   }
@@ -80,7 +80,7 @@ const validateUser = (req, res, next) => {
     errors.push({ field: "postalCode", message: "Ce champ est obligatoire" });
   } else if (!/^[0-9]{5}$/.test(postalCode)) {
     errors.push({
-      field: "postalCode",
+      field: "Code Postal",
       message: "Code postal invalide (doit contenir 5 chiffres)",
     });
   }
@@ -90,7 +90,7 @@ const validateUser = (req, res, next) => {
     errors.push({ field: "city", message: "Ce champ est obligatoire" });
   } else if (city.length >= 45) {
     errors.push({
-      field: "city",
+      field: "Ville",
       message: "Doit contenir moins de 45 caractères",
     });
   }
@@ -106,7 +106,7 @@ const validateUser = (req, res, next) => {
     numberVehicles < 0
   ) {
     errors.push({
-      field: "number_vehicles",
+      field: "Nonmbre de véhicules",
       message: "Le nombre de véhicules doit être un entier positif",
     });
   }
