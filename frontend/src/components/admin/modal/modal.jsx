@@ -30,7 +30,7 @@ function ModalEdit({ dataEdit, action, id, setIsEditModal }) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(data), // Convertir l'objet data en chaîne JSON
+        body: JSON.stringify(data),
       });
       if (!response.ok) {
         const dataresponse = await response.json();
@@ -106,24 +106,24 @@ function ModalEdit({ dataEdit, action, id, setIsEditModal }) {
         role="button"
         tabIndex={0}
       >
-        <div className="btn-close-modal">
-          <button type="button" onClick={() => setIsEditModal(false)}>
+        <div>
+          <button
+            className="btn-close-modal"
+            type="button"
+            onClick={() => setIsEditModal(false)}
+          >
             X
           </button>
         </div>
-
-        {/* Autre contenu de votre modal */}
+        <Form
+          data={dataFormEdit}
+          FormPostData={FormPostData}
+          isAuth={false}
+          isAdmin
+        />
 
         {(isErrors || isSubmit) && (
-          <>
-            <Alert errors={isErrors} submit={isSubmit} />
-            <Form
-              data={dataFormEdit}
-              FormPostData={FormPostData}
-              isAuth={false}
-              isAdmin
-            />
-          </>
+          <Alert errors={isErrors} submit={isSubmit} />
         )}
       </div>
     </div>

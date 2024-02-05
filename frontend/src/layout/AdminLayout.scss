@@ -32,7 +32,7 @@
           .text-profil-admin {
             margin-left: 1rem;
             font-family: sans-serif;
-            font-size: 22px;
+            font-size: clamp(16px, 2vw, 20px);
             color: white;
           }
         }
@@ -53,25 +53,31 @@
               align-items: center;
               gap: 1rem;
               padding: 1rem 2rem;
-              font-size: 20px;
+              font-size: clamp(12px, 2vw, 20px);
               font-family: sans-serif;
               cursor: pointer;
               color: white;
               border: 1px solid black;
               transition: 0.5s ease-in-out;
 
+              .icon-link {
+                width: 2dvw;
+                min-width: 20px;
+                height: 2dvw;
+                min-height: 20px;
+              }
               .navigation-link {
+                display: flex;
                 text-decoration: none;
                 cursor: pointer;
                 color: white;
+                gap: 1rem;
               }
             }
             .menu-navigation-link:hover {
               background: #2b3636f8;
 
               .navigation-link {
-                text-decoration: none;
-                cursor: pointer;
                 color: aqua;
               }
             }
@@ -102,11 +108,17 @@
       }
     }
   }
+
   .admin-body {
-    // position: relative;
     background-color: #283131;
     height: 100%;
     width: 100dvh;
     margin-left: 20%;
   }
 } //Parent
+
+// @media screen and (min-width: 768px) {
+//   .navigation-link{
+//     display: none;
+//   }
+// }

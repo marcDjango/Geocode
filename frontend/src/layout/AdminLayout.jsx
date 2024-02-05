@@ -25,35 +25,35 @@ function AdminLayout() {
             <div className="main-side-menu">
               <ul className="side-menu-navigation">
                 <li className="menu-navigation-link">
-                  <img src={User} alt="icon-link" />
                   <Link className="navigation-link" to="/admin/users">
+                    <img className="icon-link" src={User} alt="icon-link" />
                     Liste Users
                   </Link>
                 </li>
                 <li className="menu-navigation-link">
-                  <img src={Car} alt="icon-link" />
                   <Link className="navigation-link" to="/admin/cars">
+                    <img className="icon-link" src={Car} alt="icon-link" />
                     Voitures
                   </Link>
                 </li>
                 <li className="menu-navigation-link">
-                  <img src={Email} alt="icon-link" />
                   <Link className="navigation-link" to="/admin/contacts">
+                    <img className="icon-link" src={Email} alt="icon-link" />
                     Documents
                   </Link>
                 </li>
                 <li className="menu-navigation-link">
-                  <img src={Calender} alt="icon-link" />
                   <Link className="navigation-link" to="/admin/stations">
+                    <img className="icon-link" src={Calender} alt="icon-link" />
                     Bornes de Recharge
                   </Link>
                 </li>
                 <li className="menu-navigation-link">
-                  <img src={Calender} alt="icon-link" />
+                  <img className="icon-link" src={Calender} alt="icon-link" />
                   <p>Réservations</p>
                 </li>
                 <li className="menu-navigation-link">
-                  <img src={Setting} alt="icon-link" />
+                  <img className="icon-link" src={Setting} alt="icon-link" />
                   <p>Options</p>
                 </li>
               </ul>

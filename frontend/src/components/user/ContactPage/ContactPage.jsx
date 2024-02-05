@@ -73,13 +73,15 @@ function ContactPage({ isContactModal, setIsContactModal }) {
     <div className="background-modal">
       {(isErrors || isSubmit) && <Alert errors={isErrors} submit={isSubmit} />}
       <div className="registration-contain">
-        <button
-          type="button"
-          className="contact-btn-close"
-          onClick={handleOnClickCloseModal}
-        >
-          close
-        </button>
+        <div>
+          <button
+            className="btn-close-modal"
+            type="button"
+            onClick={handleOnClickCloseModal}
+          >
+            X
+          </button>
+        </div>
         <Form
           data={contact}
           FormPostData={FormPostData}
