@@ -36,7 +36,7 @@ function AdminLayout() {
                   <Link className="navigation-link" to="/admin/cars">
                     <img className="icon-link" src={Car} alt="icon-link" />
                   </Link>
-                  <Link className="navigation-link" to="/admin/users">
+                  <Link className="navigation-link" to="/admin/cars">
                     <p className="text-link">Voitures</p>
                   </Link>
                 </li>
@@ -44,7 +44,7 @@ function AdminLayout() {
                   <Link className="navigation-link" to="/admin/contacts">
                     <img className="icon-link" src={Email} alt="icon-link" />
                   </Link>
-                  <Link className="navigation-link" to="/admin/users">
+                  <Link className="navigation-link" to="/admin/contacts">
                     <p className="text-link">Documents</p>
                   </Link>
                 </li>
@@ -52,7 +52,7 @@ function AdminLayout() {
                   <Link className="navigation-link" to="/admin/stations">
                     <img className="icon-link" src={Calender} alt="icon-link" />
                   </Link>
-                  <Link className="navigation-link" to="/admin/users">
+                  <Link className="navigation-link" to="/admin/stations">
                     <p className="text-link">Bornes de Recharge</p>
                   </Link>
                 </li>
@@ -74,9 +74,11 @@ function AdminLayout() {
 
           <div className="bottom-side-menu">
             <div className="footer-side-menu">
-              <img src={Logout} alt="" />
               <Link className="logout-link" to="/logout">
-                Se déconnecter
+                <img className="icon-link" src={Logout} alt="" />
+              </Link>
+              <Link className="navigation-link" to="/logout">
+                <p className="text-link">Se déconnecter</p>
               </Link>
             </div>
           </div>
