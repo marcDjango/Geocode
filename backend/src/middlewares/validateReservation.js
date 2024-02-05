@@ -14,7 +14,7 @@ const validateReservation = (req, res, next) => {
   const errors = [];
 
   // Validation pour le champ 'user_id'
-  if (userId == null) {
+  if (userId === null) {
     errors.push({ field: "userId", message: "Ce champ est obligatoire" });
   }
 

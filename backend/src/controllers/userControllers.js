@@ -43,18 +43,6 @@ const readByEmailAndPassToNext = async (req, res, next) => {
     next(err);
   }
 };
-const readUserCar = async (req, res, next) => {
-  try {
-    const userCar = await tables.user.readCarUser(req.params.id);
-    if (!userCar) {
-      res.sendStatus(404);
-    } else {
-      res.status(200).json(userCar);
-    }
-  } catch (error) {
-    next(error);
-  }
-};
 
 const edit = async (req, res, next) => {
   try {
@@ -99,7 +87,6 @@ module.exports = {
   browse,
   read,
   readByEmailAndPassToNext,
-  readUserCar,
   edit,
   add,
   destroy,

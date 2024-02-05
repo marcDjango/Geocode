@@ -115,7 +115,7 @@ const userCreate = {
   date_of_birth: "1990-09-09",
   postal_code: "31100",
   city: "toulouse",
-  number_vehicles: 1,
+  number_vehicles: 3,
   profil_image: "coucou.jpeg",
   is_admin: 1,
 };
@@ -133,7 +133,7 @@ const userUpdate = {
   date_of_birth: "1990-09-09",
   postal_code: "31100",
   city: "toulouse",
-  number_vehicles: 2,
+  number_vehicles: 3,
   profil_image: "coucou.jpeg",
   is_admin: 1,
 };
