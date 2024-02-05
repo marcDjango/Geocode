@@ -52,7 +52,6 @@ const validateMessage = require("./middlewares/validateMessage");
 // Route to get a list of charging station
 router.get("/users", verifyToken, userControllers.browse);
 router.get("/users/:id", verifyToken, userControllers.read);
-router.get("/users/cars/:id", verifyToken, userControllers.readUserCar);
 router.post("/users/", validateUser, hashPassword, userControllers.add);
 router.post(
   "/users/login",
@@ -60,14 +59,21 @@ router.post(
   userControllers.readByEmailAndPassToNext,
   verifyPassword
 );
-router.put("/users/:id", verifyToken, validateUser, userControllers.edit);
+router.put(
+  "/users/:id",
+  verifyToken,
+  validateUser,
+  hashPassword,
+  userControllers.edit
+);
 router.delete("/users/:id", verifyToken, userControllers.destroy);
 
 // Route to get a list of cars
 router.get("/cars", verifyToken, carControllers.browse);
 router.get("/cars/:id", verifyToken, carControllers.read);
-router.put("/cars/:id", verifyToken, validateCar, carControllers.edit);
-router.post("/cars/", verifyToken, validateCar, carControllers.add);
+router.get("/cars-user/:id", verifyToken, carControllers.readCar);
+router.put("/cars/:id", validateCar, carControllers.edit);
+router.post("/cars/", validateCar, carControllers.add);
 router.delete("/cars/:id", verifyToken, carControllers.destroy);
 
 // Route to get a list of reservations

@@ -20,7 +20,6 @@ import DocumentManagement, {
 } from "../pages/admin/DocumentManagement";
 import Profile, { fetchCarUser } from "../components/profile/Profile";
 import verifyTokenOnServer from "../services/authVerify";
-import AddCar, { fetchBrands } from "../components/car/AddCar";
 import Delete from "../pages/admin/ActionAdmin/delete";
 
 const AppRoutes = createBrowserRouter(
@@ -28,7 +27,7 @@ const AppRoutes = createBrowserRouter(
     <Route>
       {/* routes pour l'utilisateur ou visiteur  */}
       <Route element={<RootLayout />} path="/" id="rootlayout">
-        <Route index element={<Home />} />
+        <Route index element={<Home />} path="/" />
         <Route element={<ContactPage />} path="/contact" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<Logout />} path="/logout" />
@@ -36,7 +35,6 @@ const AppRoutes = createBrowserRouter(
         <Route element={<Map />} path="/map" />
         <Route element={<Profile />} path="/profile" loader={fetchCarUser} />
       </Route>
-      <Route element={<AddCar />} path="/add-car" loader={fetchBrands} />
       {/* routes pour l'administrateur */}
       <Route
         element={<AdminLayout />}
