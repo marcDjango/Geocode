@@ -6,7 +6,6 @@
   background-image: url("../../assets/images/bckground.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -41,7 +40,6 @@
   .card-profile {
     border: 1px solid #465454;
     width: 80%;
-    height: 23vh;
     background-color: rgba(40, 49, 49, 1);
     margin: 0 auto;
     padding: 8px 3%;
@@ -79,37 +77,159 @@
       width: 100%;
     }
     .cart-content {
-      height: 12vh;
-      margin: 1vh 2%;
       display: flex;
-      flex-direction: row;
-
+      flex-direction: column;
+      .cart-content-up {
+        height: 12vh;
+        margin: 1vh 2%;
+        display: flex;
+        flex-direction: row;
+      }
+      .cart-content-down {
+        height: 12vh;
+        margin: 0 2% 2vh 2%;
+        padding-left: 3px;
+        display: flex;
+        flex-direction: row;
+      }
       .cart-content-text {
         width: 70%;
         height: 100%;
-
+        margin: 8px 16px;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-
-        margin-left: 16px;
-        color: white;
-        font-size: clamp(1rem, 2vw, 1.5rem);
-      }
-    }
-    .cart-content-show {
-      height: 12vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-
-      margin: 1vh 0 0.5vh 0;
-      li {
+        gap: 6px;
         font-size: clamp(1rem, 2vw, 1.5rem);
       }
     }
   }
-  .card-profile-show {
-    height: 40vh;
+  .add-car,
+  .modify-car {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 130vh;
+    z-index: 10002;
+    backdrop-filter: blur(1.5px);
+    background-color: rgba(255, 255, 255, 0.162);
+
+    .add-car-modal,
+    .modify-car-modal {
+      position: relative;
+      background-image: url("../../assets/images/bckground.jpg");
+      width: 100%;
+      height: 100dvh;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: white;
+      animation: slide 1s ease-in-out;
+      .add-car-modal-close {
+        margin: 20px;
+      }
+      section {
+        margin-block-start: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 30vh;
+        border: 1px solid #10fffe;
+        border-radius: 8px;
+        margin: 130px 20px 100px 20px;
+        padding-inline: 10px;
+        h2 {
+          text-align: center;
+        }
+        .proposition {
+          color: white;
+
+          margin-left: 16px;
+          height: 18.5px;
+        }
+      }
+
+      .add-car-button,
+      .modify-car-button {
+        display: block;
+        margin: 0 auto;
+        width: 220px;
+        height: 43px;
+        border-radius: 24px;
+        background: var(--Color-3, #10fffe);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+      }
+    }
+  }
+  .modify-delete-car {
+    height: 12vh;
+    display: flex;
+
+    .modify-delete-car-content {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: auto 0;
+      div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        button {
+          text-align: start;
+          color: white;
+        }
+      }
+    }
+    .delete-car-modal {
+      width: 100%;
+      h1 {
+        text-align: center;
+        font-size: clamp(0.9rem, 2vw, 1.5rem);
+        margin-block: 10px;
+        color: red;
+      }
+      .delete-car-modal-content {
+        width: 100%;
+        display: flex;
+        gap: 100px;
+
+        .delete-car-modal-content-text {
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+          li {
+            font-size: clamp(0.7rem, 1.5vw, 1.2rem);
+          }
+        }
+        .buttons-content {
+          margin-top: 15px;
+          display: flex;
+          gap: 30px;
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .add-car-modal,
+    .modify-car-modal {
+      width: 40%;
+      max-width: 450px;
+    }
+  }
+  @keyframes slide {
+    0% {
+      // opacity: 0;
+      left: -100%;
+    }
+    94% {
+      // opacity: 1;
+      left: 0;
+    }
+    98% {
+      width: 110%;
+    }
+    to {
+      width: 100%;
+    }
   }
 }
