@@ -19,6 +19,7 @@ function Reservation() {
   const payload = JSON.parse(localStorage.getItem("user"));
   const location = useLocation();
   const data = location.state;
+  const [isFormValidated, setIsFormValidated] = useState(false);
   const tarification =
     data.station.tarification !== "" ? data.station.tarification : 0;
 
@@ -82,6 +83,10 @@ function Reservation() {
 
   const handleHourChange = (event) => {
     setSelectedHour(event.target.value);
+  };
+
+  const handleValidation = () => {
+    setIsFormValidated(true);
   };
 
   return (
@@ -151,9 +156,7 @@ function Reservation() {
               onChange={handleHourChange}
               value={selectedHour}
             >
-              <option value="" disabled>
-                Sélectionnez un créneau
-              </option>
+              <option value="">Sélectionnez un créneau</option>
               {[
                 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14,
                 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5,
@@ -178,32 +181,40 @@ function Reservation() {
             </select>
           </div>
           <div>
-            <button type="button" className="button-validation-calendar">
+            <button
+              type="button"
+              className="button-validation-calendar"
+              onClick={handleValidation}
+            >
               Valider
             </button>
           </div>
-          <div className="reservation-price">
-            {reservationDateTime && (
-              <>
-                Vous avez choisi de réserver une borne{" "}
-                <strong>{data.station.nom_enseigne}</strong> le{" "}
-                <strong>{formatDate(reservationDateTime)} à </strong>
-                <strong>
-                  <strong>{selectedHour}</strong>
-                </strong>{" "}
-                pour une durée de 30 min, votre montant est de{" "}
-                <strong>{tarification}</strong>€{" "}
-              </>
-            )}
-          </div>
+          {isFormValidated && (
+            <>
+              <div className="reservation-price">
+                {reservationDateTime && (
+                  <>
+                    Vous avez choisi de réserver une borne{" "}
+                    <strong>{data.station.nom_enseigne}</strong> le{" "}
+                    <strong>{formatDate(reservationDateTime)} à </strong>
+                    <strong>
+                      <strong>{selectedHour}</strong>
+                    </strong>{" "}
+                    pour une durée de 30 min, votre montant est de{" "}
+                    <strong>{tarification}</strong> €{" "}
+                  </>
+                )}
+              </div>
 
-          <button
-            type="button"
-            className="reservation-button"
-            onClick={() => handleReservation(data.station.id)}
-          >
-            Réserver et Payer
-          </button>
+              <button
+                type="button"
+                className="reservation-button"
+                onClick={() => handleReservation(data.station.id)}
+              >
+                Réserver et Payer
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>

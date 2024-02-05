@@ -28,6 +28,15 @@ function Modal(props) {
     ? station.horaires
     : `${station.horaires.slice(0, 25)}`;
 
+  const changeCharacter = {
+    "â‚¬": "cts",
+  };
+
+  const tarificationWithReplacement = station.tarification.replace(
+    new RegExp(Object.keys(changeCharacter).join("|"), "g"),
+    (replace) => changeCharacter[replace]
+  );
+
   return (
     <div className="popup-charging-station">
       <div className="part-user">
@@ -91,7 +100,7 @@ function Modal(props) {
           <h3>Tarifs</h3>
           {station.tarification === ""
             ? "Pas d'informations"
-            : `Coût de l'énergie : ${station.tarification}€`}
+            : `Coût de l'énergie : ${tarificationWithReplacement}`}
         </div>
         <div className="part-information-charging-station">
           <h3>Informations</h3>
