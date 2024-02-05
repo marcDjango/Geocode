@@ -27,11 +27,16 @@ function CartContent({ item, show }) {
     }
   }
   if (item.status === "Vehicule") {
-    data1 = [
-      { id: 1, line: `Marque: ${dataUser.Marque}` },
-      { id: 2, line: `Modele: ${dataUser.model}` },
-      { id: 3, line: `Type de prise: ${dataUser.type}` },
-    ];
+    if (dataUser.Marque && dataUser.model && dataUser.type) {
+      data1 = [
+        { id: 1, line: `Marque: ${dataUser.Marque}` },
+        { id: 2, line: `Modele: ${dataUser.model}` },
+        { id: 3, line: `Type de prise: ${dataUser.type}` },
+      ];
+    } else {
+      data1 = [];
+      data2 = [];
+    }
   }
   if (item.status === "Borne") {
     data1 = [

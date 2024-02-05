@@ -20,6 +20,8 @@ const chargingStationControllers = require("./controllers/chargingStationControl
 const carControllers = require("./controllers/carControllers");
 const reservationControllers = require("./controllers/reservationControllers");
 const contactControllers = require("./controllers/contactControllers");
+const brandControllers = require("./controllers/brandControllers");
+const plugControllers = require("./controllers/plugControllers");
 
 // Import Middlewares
 const validateCar = require("./middlewares/validateCar");
@@ -50,7 +52,7 @@ const validateMessage = require("./middlewares/validateMessage");
 // Route to get a list of charging station
 router.get("/users", verifyToken, userControllers.browse);
 router.get("/users/:id", verifyToken, userControllers.read);
-router.get("/users/cars/:id", userControllers.readUserCar);
+router.get("/users/cars/:id", verifyToken, userControllers.readUserCar);
 router.post("/users/", validateUser, hashPassword, userControllers.add);
 router.post(
   "/users/login",
@@ -58,13 +60,7 @@ router.post(
   userControllers.readByEmailAndPassToNext,
   verifyPassword
 );
-router.put(
-  "/users/:id",
-  verifyToken,
-  validateUser,
-  hashPassword,
-  userControllers.edit
-);
+router.put("/users/:id", verifyToken, validateUser, userControllers.edit);
 router.delete("/users/:id", verifyToken, userControllers.destroy);
 
 // Route to get a list of cars
@@ -88,10 +84,17 @@ router.delete("/reservations/:id", reservationControllers.destroy);
 // Route to get a list of cars
 router.get("/contacts", contactControllers.browse);
 router.get("/contacts/:id", contactControllers.read);
-router.post("/contacts", validateMessage, verifyToken, contactControllers.add);
+router.post("/contacts", validateMessage, contactControllers.add);
+router.put("/contacts/:id", validateMessage, contactControllers.edit);
+router.post("/contacts", validateMessage, contactControllers.add);
 router.delete("/contacts/:id", verifyToken, contactControllers.destroy);
 router.get("/verify-token", verifyTokenValid, (req, res) => {
   // Si le middleware passe, vous pouvez renvoyer une réponse appropriée
   res.status(200).json({ token: req.user });
 });
+// Route to get a list of brands
+router.get("/brands", brandControllers.browse);
+
+// Route to get a list of plug
+router.get("/plugs", plugControllers.browse);
 module.exports = router;

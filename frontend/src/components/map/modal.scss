@@ -7,6 +7,16 @@
   border: 2px solid var(--Color-3, #10fffe);
   background: var(--Color-2, #525b5a);
 
+  .picture-car {
+    position: absolute;
+    top: -40px;
+    right: 10px;
+    height: 200px;
+    width: 200px;
+    background-image: url("../../assets/carspicture/audi-e-tron-55-quattro-408-ch_001-removebg-preview.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   .part-user {
     display: flex;
     margin: 16px;

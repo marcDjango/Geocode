@@ -5,7 +5,7 @@ import Select from "../select/select";
 import Input from "../input/input";
 import User from "../../assets/images/Vector.svg";
 
-function Form({ data, FormPostData, isAuth, action, route }) {
+function Form({ data, FormPostData, isAuth, action, route, isAdmin }) {
   return (
     <div>
       <form className="df-column" onSubmit={FormPostData}>
@@ -24,6 +24,7 @@ function Form({ data, FormPostData, isAuth, action, route }) {
               required={data[fieldName].option === "required"}
               isAuth={isAuth}
               route={route}
+              isAdmin={isAdmin}
             />
           ) : (
             <Select
@@ -61,6 +62,7 @@ const dataShape = PropTypes.shape({
 });
 Form.defaultProps = {
   isAuth: false,
+  isAdmin: false,
   action: false,
   route: null,
 };
@@ -68,6 +70,7 @@ Form.propTypes = {
   route: PropTypes.string,
   data: PropTypes.objectOf(dataShape).isRequired,
   FormPostData: PropTypes.func.isRequired,
+  isAdmin: PropTypes.bool,
   isAuth: PropTypes.bool,
   action: PropTypes.bool,
 };

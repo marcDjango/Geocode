@@ -26,6 +26,19 @@
     .profile-garage-text {
       margin-top: 60px;
       margin-left: 50px;
+      display: flex;
+
+      .picture-car {
+        position: relative;
+        top: -80px;
+        right: -70%;
+        height: 300px;
+        width: 300px;
+        background-image: url("../../assets/carspicture/audi-e-tron-55-quattro-408-ch_001-removebg-preview.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
       p,
       h1 {
         font-size: clamp(1rem, 5vw, 2rem);

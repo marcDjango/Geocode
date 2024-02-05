@@ -32,7 +32,7 @@ function Modal(props) {
     <div className="popup-charging-station">
       <div className="part-user">
         <div>UserName</div>
-        <div>UserImage</div>
+        <div className="picture-car" />
       </div>
       <div className="part-charging-station">
         <div className="part-one-charging-station">

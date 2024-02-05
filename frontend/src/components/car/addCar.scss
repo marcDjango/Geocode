@@ -1,0 +1,22 @@
+.add-car {
+  background-image: url("../../assets/images/bckground.jpg");
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  button {
+    color: white;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 30vh;
+    border: 1px solid #10fffe;
+    border-radius: 8px;
+    margin: 20px;
+    padding-inline: 10px;
+  }
+}

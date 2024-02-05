@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import user from "./config.json";
 import Form from "../../form/form";
 import "./RegistrationForm.scss";
+import Alert from "../../alert/alert";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
-function RegistrationForm() {
+function RegistrationForm({ isSignupModal, setIsSignupModal }) {
+  const [isErrors, setIsErrors] = useState(null);
+  const [isSubmit, setIsSubmit] = useState(false);
+  const handleOnClickCloseModal = () => {
+    setIsSignupModal(!isSignupModal);
+  };
+
   const FormPostData = async (e) => {
     e.preventDefault();
 
@@ -25,14 +33,13 @@ function RegistrationForm() {
       );
       return;
     }
-
     // Supprimer la clé 'confirm_password' de l'objet data avant l'envoi
     const { [confirPassword]: _, ...dataWithoutConfirmPassword } = data;
 
     // Ajouter une nouvelle clé au nouvel objet
     const newDataWithAdditionalKey = {
       ...dataWithoutConfirmPassword,
-      isAdmin: 0,
+      is_admin: 0,
       profil_image: null,
     };
     try {
@@ -43,23 +50,49 @@ function RegistrationForm() {
         },
         body: JSON.stringify(newDataWithAdditionalKey), // Convertir l'objet data en chaîne JSON
       });
-      const dataresponse = await response.json();
       if (!response.ok) {
-        console.info(dataresponse);
+        const dataresponse = await response.json();
+        if (dataresponse.validationErrors.length > 0) {
+          setIsErrors(dataresponse.validationErrors);
+        }
         throw new Error("Erreur lors de l'inscription");
+      } else {
+        setIsErrors(null);
+        setIsSubmit(true);
       }
-
-      // Traiter la réponse ici si nécessaire
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div className="registration-contain">
-      <Form data={user} FormPostData={FormPostData} />;
+    <div className="background-modal">
+      <div className="registration-contain">
+        {(isErrors || isSubmit) && (
+          <Alert errors={isErrors} submit={isSubmit} />
+        )}
+        <div>
+          <button
+            className="btn-close-modal"
+            type="button"
+            onClick={handleOnClickCloseModal}
+          >
+            X
+          </button>
+        </div>
+        <Form data={user} FormPostData={FormPostData} />;
+      </div>
     </div>
   );
 }
 
 export default RegistrationForm;
+
+RegistrationForm.defaultProps = {
+  isSignupModal: false,
+  setIsSignupModal: null,
+};
+RegistrationForm.propTypes = {
+  isSignupModal: PropTypes.bool,
+  setIsSignupModal: PropTypes.func,
+};

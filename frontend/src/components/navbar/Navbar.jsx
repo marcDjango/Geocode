@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import ContactPage from "../user/ContactPage/ContactPage";
-import "./navbar.scss";
 import { useCurrentUserContext } from "../../contexte/CurrentUserContext";
 import avatar from "../../assets/Vector.svg";
+import "./navbar.scss";
+import RegistrationForm from "../user/RegistrationPage/RegistrationForm";
 
 function Navbar() {
   const navigate = useNavigate();
   const [buttonClicked, setButtonClick] = useState(false);
   const [isContactModal, setIsContactModal] = useState(false);
+  const [isSignupModal, setIsSignupModal] = useState(false);
+
   const location = useLocation();
   const { auth } = useCurrentUserContext();
   const navbarData = [
@@ -64,6 +67,12 @@ function Navbar() {
               setIsContactModal={setIsContactModal}
             />
           )}
+          {isSignupModal && (
+            <RegistrationForm
+              isSignupModal={isSignupModal}
+              setIsSignupModal={setIsSignupModal}
+            />
+          )}
         </>
       ) : (
         <div className="navbar-desktop">
@@ -87,11 +96,21 @@ function Navbar() {
               setIsContactModal={setIsContactModal}
             />
           )}
+          {isSignupModal && (
+            <RegistrationForm
+              isSignupModal={isSignupModal}
+              setIsSignupModal={setIsSignupModal}
+            />
+          )}
           {!auth && location.pathname !== "/login" && (
             <>
-              <Link className="navbar-links-desktop" to="/signup">
+              <button
+                type="button"
+                className="navbar-links-desktop"
+                onClick={() => setIsSignupModal(!isSignupModal)}
+              >
                 S'inscrire
-              </Link>
+              </button>
               <Link className="navbar-links-desktop" to="/login">
                 <img
                   className="logInOut-avatar-desktop "
