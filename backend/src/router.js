@@ -60,13 +60,7 @@ router.post(
   userControllers.readByEmailAndPassToNext,
   verifyPassword
 );
-router.put(
-  "/users/:id",
-  verifyToken,
-  validateUser,
-  // hashPassword,
-  userControllers.edit
-);
+router.put("/users/:id", verifyToken, validateUser, userControllers.edit);
 router.delete("/users/:id", verifyToken, userControllers.destroy);
 
 // Route to get a list of cars

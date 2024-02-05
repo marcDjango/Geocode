@@ -7,9 +7,6 @@ import {
 import RootLayout from "../layout/RootLayout";
 import ContactPage from "../components/user/ContactPage/ContactPage";
 import LoginPage from "../components/user/LoginPage/LoginPage";
-// import ChargingStationManagement, {
-//   fetchDataStations,
-// } from "../pages/admin/ChargingStationManagement";
 import StationManagement, { fetchdata } from "../pages/admin/StationManagement";
 import Map from "../components/map/map";
 import RegistrationForm from "../components/user/RegistrationPage/RegistrationForm";
@@ -46,11 +43,6 @@ const AppRoutes = createBrowserRouter(
         path="/admin"
         loader={verifyTokenOnServer}
       >
-        {/* <Route
-          element={<ChargingStationManagement />}
-          path="/admin/charging-stations"
-          loader={fetchDataStations}
-        /> */}
         <Route
           element={<UsersManagement />}
           path="/admin/users"
