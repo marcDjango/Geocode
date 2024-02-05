@@ -31,12 +31,12 @@
       border: 1px solid grey;
       color: white;
       font-family: sans-serif;
-      transition: scale 0.2s ease-in-out;
       cursor: pointer;
+      transition: scale 0.2s ease-in-out;
     }
     .btn-close-modal:hover {
-      scale: 1.2;
       cursor: pointer;
+      scale: 1.2;
     }
 
     .df-column {
