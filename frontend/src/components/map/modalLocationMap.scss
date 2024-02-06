@@ -1,32 +1,49 @@
 .background-modal-map {
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   backdrop-filter: blur(2px);
   background-color: rgba(11, 11, 11, 0.118);
-  z-index: 1004;
+  z-index: 1000;
   display: flex;
-  justify-content: center;
-  align-items: center;
 
   .main-background-modal-map {
+    position: relative;
+    top: 50%;
+    left: 50%;
     width: 400px;
+    height: 180px;
     color: white;
     background-color: gray;
     border-radius: 20px;
     font-size: 16px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: top;
     padding: 24px;
     border: 2px solid black;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
   }
 }
 
-.leaflet-control {
-  .leaflet-control-geocoder {
-    background-color: red;
+.leaflet-left {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 10%);
+  z-index: 1004;
+}
+.leaflet-top {
+  left: 10px;
+  top: 100%;
+  transform: translate(0%, -100%);
+  z-index: 1000;
+}
+.leaflet-control-geocoder-form {
+  position: relative;
+  left: 250px;
+  input {
     position: relative;
-    z-index: 1004;
+    left: -250px;
   }
 }
