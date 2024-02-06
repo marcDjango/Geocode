@@ -58,7 +58,7 @@ function AdminLayout() {
                 </li>
                 <li className="menu-navigation-link">
                   <img className="icon-link" src={Calender} alt="icon-link" />
-                  <Link className="navigation-link" to="/admin/users">
+                  <Link className="navigation-link" to="/admin/reservations">
                     <p className="text-link">Réservations</p>
                   </Link>
                 </li>

@@ -1,4 +1,3 @@
-// UsersManagement.jsx
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import SortableTable from "../../components/admin/table/SortableTable";
@@ -30,8 +29,7 @@ export const fetchDataCars = async () => {
 
 function CarsManagement() {
   const dataLoad = useLoaderData();
-
-  return <SortableTable dataLoad={dataLoad} />;
+  return dataLoad.length > 0 && <SortableTable dataLoad={dataLoad} />;
 }
 
 export default CarsManagement;
