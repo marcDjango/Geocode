@@ -5,11 +5,9 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import RootLayout from "../layout/RootLayout";
-import ContactPage from "../components/user/ContactPage/ContactPage";
 import LoginPage from "../components/user/LoginPage/LoginPage";
 import StationManagement, { fetchdata } from "../pages/admin/StationManagement";
 import Map from "../components/map/map";
-import RegistrationForm from "../components/user/RegistrationPage/RegistrationForm";
 import Home from "../pages/home/Home";
 import Logout from "../pages/Logout";
 import AdminLayout from "../layout/AdminLayout";
@@ -22,6 +20,9 @@ import Profile, { fetchCarUser } from "../components/profile/Profile";
 import verifyTokenOnServer from "../services/authVerify";
 import Reservation from "../components/user/Reservation/Reservation";
 import Delete from "../pages/admin/ActionAdmin/delete";
+import ReservationManagement, {
+  fetchDataReservation,
+} from "../pages/admin/ReservationManagement";
 
 const AppRoutes = createBrowserRouter(
   createRoutesFromElements(
@@ -29,10 +30,8 @@ const AppRoutes = createBrowserRouter(
       {/* routes pour l'utilisateur ou visiteur  */}
       <Route element={<RootLayout />} path="/" id="rootlayout">
         <Route index element={<Home />} path="/" />
-        <Route element={<ContactPage />} path="/contact" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<Logout />} path="/logout" />
-        <Route element={<RegistrationForm />} path="/signup" />
         <Route element={<Map />} path="/map" />
         <Route element={<Profile />} path="/profile" loader={fetchCarUser} />
         <Route element={<Reservation />} path="/reservation" />
@@ -52,6 +51,11 @@ const AppRoutes = createBrowserRouter(
           element={<StationManagement />}
           path="/admin/stations"
           loader={fetchdata}
+        />
+        <Route
+          element={<ReservationManagement />}
+          path="/admin/reservations"
+          loader={fetchDataReservation}
         />
         <Route
           element={<CarsManagement />}

@@ -15,7 +15,7 @@ function AdminLayout() {
         <div className="side-menu">
           <div className="top-side-menu">
             <div className="header-side-menu">
-              <img src={Avatar} alt="" />
+              <img className="icon-avatar" src={Avatar} alt="" />
               <span className="text-profil-admin">
                 <h3>Administrateur</h3>
                 <p>Bonjour</p>
@@ -27,34 +27,46 @@ function AdminLayout() {
                 <li className="menu-navigation-link">
                   <Link className="navigation-link" to="/admin/users">
                     <img className="icon-link" src={User} alt="icon-link" />
-                    Liste Users
+                  </Link>
+                  <Link className="navigation-link" to="/admin/users">
+                    <p className="text-link">Liste Users</p>
                   </Link>
                 </li>
                 <li className="menu-navigation-link">
                   <Link className="navigation-link" to="/admin/cars">
                     <img className="icon-link" src={Car} alt="icon-link" />
-                    Voitures
+                  </Link>
+                  <Link className="navigation-link" to="/admin/cars">
+                    <p className="text-link">Voitures</p>
                   </Link>
                 </li>
                 <li className="menu-navigation-link">
                   <Link className="navigation-link" to="/admin/contacts">
                     <img className="icon-link" src={Email} alt="icon-link" />
-                    Documents
+                  </Link>
+                  <Link className="navigation-link" to="/admin/contacts">
+                    <p className="text-link">Documents</p>
                   </Link>
                 </li>
                 <li className="menu-navigation-link">
                   <Link className="navigation-link" to="/admin/stations">
                     <img className="icon-link" src={Calender} alt="icon-link" />
-                    Bornes de Recharge
+                  </Link>
+                  <Link className="navigation-link" to="/admin/stations">
+                    <p className="text-link">Bornes de Recharge</p>
                   </Link>
                 </li>
                 <li className="menu-navigation-link">
                   <img className="icon-link" src={Calender} alt="icon-link" />
-                  <p>Réservations</p>
+                  <Link className="navigation-link" to="/admin/reservations">
+                    <p className="text-link">Réservations</p>
+                  </Link>
                 </li>
                 <li className="menu-navigation-link">
                   <img className="icon-link" src={Setting} alt="icon-link" />
-                  <p>Options</p>
+                  <Link className="navigation-link" to="/admin/users">
+                    <p className="text-link">Options</p>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -62,9 +74,11 @@ function AdminLayout() {
 
           <div className="bottom-side-menu">
             <div className="footer-side-menu">
-              <img src={Logout} alt="" />
               <Link className="logout-link" to="/logout">
-                Se déconnecter
+                <img className="icon-link" src={Logout} alt="" />
+              </Link>
+              <Link className="navigation-link" to="/logout">
+                <p className="text-link">Se déconnecter</p>
               </Link>
             </div>
           </div>

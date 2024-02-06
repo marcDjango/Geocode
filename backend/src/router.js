@@ -92,7 +92,6 @@ router.get("/contacts", contactControllers.browse);
 router.get("/contacts/:id", contactControllers.read);
 router.post("/contacts", validateMessage, contactControllers.add);
 router.put("/contacts/:id", validateMessage, contactControllers.edit);
-router.post("/contacts", validateMessage, contactControllers.add);
 router.delete("/contacts/:id", verifyToken, contactControllers.destroy);
 router.get("/verify-token", verifyTokenValid, (req, res) => {
   // Si le middleware passe, vous pouvez renvoyer une réponse appropriée

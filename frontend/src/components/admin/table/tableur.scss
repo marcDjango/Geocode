@@ -20,7 +20,7 @@ td {
   background-color: #1a1f1f;
   box-shadow: var(--shadow);
   border-radius: 5px;
-  width: 90dvw;
+  width: 100dvw;
   height: 100dvh;
   margin-bottom: 2em;
   overflow: auto;
@@ -152,10 +152,10 @@ td {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   .tableSection {
     margin-left: 5%;
-    width: 75vw;
+    width: 79vw;
     height: 100dvh;
   }
 }
