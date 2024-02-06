@@ -1,11 +1,12 @@
 .calendar-container {
   .react-datetime-picker__wrapper {
     border-radius: 20px;
-    padding: 8px;
+    padding: 6px;
     border: 1px solid #10fffe;
     background: rgba(40, 49, 49, 1);
     color: white;
     margin: 8px;
+    z-index: 1400;
   }
 
   svg {

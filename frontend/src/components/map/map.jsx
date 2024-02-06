@@ -8,8 +8,6 @@ import {
 } from "react-leaflet";
 import "./map.scss";
 import "leaflet/dist/leaflet.css";
-import "leaflet-control-geocoder/dist/Control.Geocoder.css";
-import "leaflet-control-geocoder";
 import { Icon, DivIcon, point } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import VectorImage from "../../assets/el_map-marker.svg";
@@ -17,16 +15,23 @@ import LocationMarker from "./location";
 import LeafletGeocoder from "./search";
 import Modal from "./modal";
 import Itinerary from "./itinerary";
+import Reservation from "../user/Reservation/Reservation";
+import ModalMap from "./modalLocationMap";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function Map() {
   // Position initiale de la carte
   const position = [46.6031, 1.8883];
+
   const [chargingStations, setChargingStations] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
   const [isRoutingActive, setRoutingActive] = useState(false);
   const [selectedStationLocation, setSelectedStationLocation] = useState(null);
+  const [isReservationModal, setIsReservationModal] = useState(false);
+  const [selectedStation, setSelectedStation] = useState(null);
+  const [isReservationButtonClicked, setIsReservationButtonClicked] =
+    useState(false);
 
   // Fonction pour récupérer les stations de recharge depuis le backend
   const fetchChargingStations = useCallback(async () => {
@@ -101,8 +106,12 @@ function Map() {
     fetchChargingStations();
   }, [getUserLocation, fetchChargingStations]);
 
-  const handleMarkerClick = (location) => {
-    setSelectedStationLocation(location);
+  const handleMarkerClick = (station) => {
+    setSelectedStation(station);
+    setSelectedStationLocation([
+      station.consolidated_latitude,
+      station.consolidated_longitude,
+    ]);
   };
 
   const handlePopupClose = () => {
@@ -115,6 +124,16 @@ function Map() {
 
   const handleStopRoute = () => {
     setRoutingActive(false);
+  };
+
+  const handleOpenReservationModal = () => {
+    setIsReservationModal(true);
+    setIsReservationButtonClicked(true);
+  };
+
+  const handleCloseReservationModal = () => {
+    setIsReservationModal(false);
+    setIsReservationButtonClicked(false);
   };
 
   return (
@@ -143,11 +162,7 @@ function Map() {
             ]}
             icon={customIcon}
             eventHandlers={{
-              click: () =>
-                handleMarkerClick([
-                  station.consolidated_latitude,
-                  station.consolidated_longitude,
-                ]),
+              click: () => handleMarkerClick(station),
             }}
           >
             <Popup onClose={handlePopupClose} autoPan autoPanPadding={[50, 50]}>
@@ -156,6 +171,7 @@ function Map() {
                 handleActivateRoute={handleActivateRoute}
                 handleStopRoute={handleStopRoute}
                 isRoutingActive={isRoutingActive}
+                onReservationButtonClick={handleOpenReservationModal}
               />
             </Popup>
           </Marker>
@@ -177,6 +193,13 @@ function Map() {
       )}
       <ZoomControl position="bottomright" />
       <LeafletGeocoder />
+      {isReservationButtonClicked && selectedStation && isReservationModal && (
+        <Reservation
+          handleCloseReservationModal={handleCloseReservationModal}
+          station={selectedStation}
+        />
+      )}
+      {!userLocation && <ModalMap />}
     </MapContainer>
   );
 }
