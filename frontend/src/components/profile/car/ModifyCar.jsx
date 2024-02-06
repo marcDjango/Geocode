@@ -6,8 +6,6 @@ import AddCar from "./AddCar";
 function ModifyCar({ setModalCar }) {
   const [dataModifyCar, setDataModifyCar] = useState();
   const [dataDeleteCar, setDataDeleteCar] = useState();
-
-  // const [delste, setDelete] = useState(false);
   const dataCars = useLoaderData();
   const navigate = useNavigate();
   const handlerClickModify = (index) => {
