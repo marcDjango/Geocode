@@ -1,29 +1,29 @@
 import React, { useState } from "react";
 import "./Reservation.scss";
-import { useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import MyCalendar from "./Schedule";
-import priseType2 from "../../../assets/Prise1.svg";
-import priseEf from "../../../assets/Prise2.svg";
-import priseChademo from "../../../assets/Prise3.svg";
-import priseComboCcs from "../../../assets/Prise4.svg";
-import priseAutre from "../../../assets/Prise5.svg";
+import priseType2 from "../../../assets/Prise1-2.svg";
+import priseEf from "../../../assets/Prise2-2.svg";
+import priseChademo from "../../../assets/Prise3-2.svg";
+import priseComboCcs from "../../../assets/Prise4-2.svg";
+import priseAutre from "../../../assets/Prise5-2.svg";
 import deplier from "../../../assets/Deplier.svg";
 import replier from "../../../assets/Replier.svg";
+import telephone from "../../../assets/Telephone.svg";
+import position from "../../../assets/position.svg";
+import horloge from "../../../assets/horloge-2.svg";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
-function Reservation() {
+function Reservation({ station, handleCloseReservationModal }) {
   const [reservationDateTime, setReservationDateTime] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
   const token = localStorage.getItem("token");
   const payload = JSON.parse(localStorage.getItem("user"));
-  const location = useLocation();
-  const data = location.state;
   const [isFormValidated, setIsFormValidated] = useState(false);
-  const tarification =
-    data.station.tarification !== "" ? data.station.tarification : 0;
+  const tarification = station.tarification !== "" ? station.tarification : 0;
 
-  const uploadReservation = async (station) => {
+  const uploadReservation = async (chargingStation) => {
     try {
       const isoDate = new Date(reservationDateTime);
       isoDate.setMinutes(
@@ -36,7 +36,7 @@ function Reservation() {
       const response = await fetch(`${VITE_BACKEND_URL}/api/reservations`, {
         method: "POST",
         body: JSON.stringify({
-          charging_station_id: station,
+          charging_station_id: chargingStation,
           user_id: payload.id,
           reservation_date: formattedDate,
           reservation_heure: selectedHour,
@@ -78,8 +78,8 @@ function Reservation() {
   };
 
   const displayText = expanded
-    ? data.station.horaires
-    : `${data.station.horaires.slice(0, 25)}`;
+    ? station.horaires
+    : `${station.horaires.slice(0, 25)}`;
 
   const handleHourChange = (event) => {
     setSelectedHour(event.target.value);
@@ -93,15 +93,31 @@ function Reservation() {
     <div className="reservation-modal">
       <div className="reservation-main">
         <div className="reservation-informations">
+          <div className="button-close-modal-main">
+            <button
+              className="boutton-close-modal-reservation"
+              type="button"
+              onClick={handleCloseReservationModal}
+            >
+              X
+            </button>
+          </div>
           <div className="informations-title">
-            <h2>{decodeURIComponent(escape(data.station.nom_enseigne))}</h2>
+            <h2>{decodeURIComponent(escape(station.nom_enseigne))}</h2>
           </div>
           <div className="informations-data">
-            <div>Adresse : {data.station.adresse_station}</div>
-            <div>Numéro de téléphone : {data.station.telephone_operateur}</div>
-            <div>
+            <div className="informations-adresse">
+              <img src={position} alt="adresse" />
+              Adresse : {station.adresse_station}
+            </div>
+            <div className="informations-telephone">
+              <img src={telephone} alt="telephone" />
+              Numéro de téléphone : {station.telephone_operateur}
+            </div>
+            <div className="informations-horloge">
+              <img src={horloge} alt="horloge" />
               Horaires : {displayText}
-              {data.station.horaires.length > 25 && (
+              {station.horaires.length > 25 && (
                 <button
                   type="button"
                   className="fold-out-button"
@@ -119,27 +135,27 @@ function Reservation() {
             <h3>Type de prises disponibles :</h3>
             <div>
               <img src={priseEf} alt="Type EF" /> Prise Ef :{" "}
-              {data.station.prise_type_ef === "TRUE" ? "Oui" : "Non"}
+              {station.prise_type_ef === "TRUE" ? "Oui" : "Non"}
             </div>
             <div>
               <img src={priseType2} alt="Type 2" /> Prise Type 2 :{" "}
-              {data.station.prise_type_2 === "TRUE" ? "Oui" : "Non"}
+              {station.prise_type_2 === "TRUE" ? "Oui" : "Non"}
             </div>
             <div>
               <img src={priseComboCcs} alt="Combo CCS" /> Prise Combo CCS :{" "}
-              {data.station.prise_type_combo_ccs === "TRUE" ? "Oui" : "Non"}
+              {station.prise_type_combo_ccs === "TRUE" ? "Oui" : "Non"}
             </div>
             <div>
               <img src={priseChademo} alt="Chademo" /> Prise Chademo :{" "}
-              {data.station.prise_type_chademo === "TRUE" ? "Oui" : "Non"}
+              {station.prise_type_chademo === "TRUE" ? "Oui" : "Non"}
             </div>
             <div>
               <img src={priseAutre} alt="Autre" /> Autre :{" "}
-              {data.station.prise_type_autre === "TRUE" ? "Oui" : "Non"}
+              {station.prise_type_autre === "TRUE" ? "Oui" : "Non"}
             </div>
           </div>
           <div className="informations-price">
-            Tarifs : {data.station.tarification}€
+            Tarifs : {station.tarification}€
           </div>
         </div>
         <div className="reservation-validation">
@@ -186,7 +202,7 @@ function Reservation() {
               className="button-validation-calendar"
               onClick={handleValidation}
             >
-              Valider
+              Validez
             </button>
           </div>
           {isFormValidated && (
@@ -195,7 +211,7 @@ function Reservation() {
                 {reservationDateTime && (
                   <>
                     Vous avez choisi de réserver une borne{" "}
-                    <strong>{data.station.nom_enseigne}</strong> le{" "}
+                    <strong>{station.nom_enseigne}</strong> le{" "}
                     <strong>{formatDate(reservationDateTime)} à </strong>
                     <strong>
                       <strong>{selectedHour}</strong>
@@ -209,9 +225,9 @@ function Reservation() {
               <button
                 type="button"
                 className="reservation-button"
-                onClick={() => handleReservation(data.station.id)}
+                onClick={() => handleReservation(station.id)}
               >
-                Réserver et Payer
+                Réservez et Payez
               </button>
             </>
           )}
@@ -222,3 +238,20 @@ function Reservation() {
 }
 
 export default Reservation;
+
+Reservation.propTypes = {
+  station: PropTypes.shape({
+    id: PropTypes.number,
+    nom_enseigne: PropTypes.string,
+    adresse_station: PropTypes.string,
+    telephone_operateur: PropTypes.string,
+    horaires: PropTypes.string,
+    tarification: PropTypes.number,
+    prise_type_ef: PropTypes.string,
+    prise_type_2: PropTypes.string,
+    prise_type_combo_ccs: PropTypes.string,
+    prise_type_autre: PropTypes.string,
+    prise_type_chademo: PropTypes.string,
+  }).isRequired,
+  handleCloseReservationModal: PropTypes.func.isRequired,
+};

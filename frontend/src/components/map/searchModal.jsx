@@ -5,7 +5,7 @@ import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import "leaflet-control-geocoder";
 
 // Création d'une fonction pour rechercher une ville à l'aide de leafle-control-geocoder
-function LeafletGeocoder() {
+function LeafletGeocoderModal() {
   // Obtention de l'instance de carte à partir de l'hook useMap
   const map = useMap();
 
@@ -15,6 +15,8 @@ function LeafletGeocoder() {
       defaultMarkGeocode: false,
       position: "bottomleft",
       placeholder: "Rechercher une ville ou une adresse",
+      collapsed: false,
+      showResultIcons: false,
     })
       // Gestionnaire d'événement pour le marquage géocodé
       .on("markgeocode", function handleMarkGeocodeEvent(e) {
@@ -34,4 +36,4 @@ function LeafletGeocoder() {
   return null;
 }
 
-export default LeafletGeocoder;
+export default LeafletGeocoderModal;
