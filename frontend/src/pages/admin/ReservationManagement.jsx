@@ -1,11 +1,10 @@
-// UsersManagement.jsx
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import SortableTable from "../../components/admin/table/SortableTable";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
-export const fetchDataMessage = async () => {
+export const fetchDataReservation = async () => {
   const token = localStorage.getItem("token");
 
   if (!token) {
@@ -14,7 +13,7 @@ export const fetchDataMessage = async () => {
   }
 
   try {
-    const response = await fetch(`${VITE_BACKEND_URL}/api/contacts`, {
+    const response = await fetch(`${VITE_BACKEND_URL}/api/reservations`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -28,10 +27,9 @@ export const fetchDataMessage = async () => {
   }
 };
 
-function DocumentManagement() {
+function ReservationManagement() {
   const dataLoad = useLoaderData();
-
   return dataLoad.length > 0 && <SortableTable dataLoad={dataLoad} />;
 }
 
-export default DocumentManagement;
+export default ReservationManagement;

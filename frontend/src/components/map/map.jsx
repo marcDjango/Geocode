@@ -40,7 +40,7 @@ function Map() {
       const data = await response.json();
 
       // Limitez le nombre de lignes de charging_stations
-      const limitedData = data.slice(0, 1);
+      const limitedData = data.slice(0, 1000);
 
       // Traitement des données garder 6 chiffres après la virgule
       const processedData = limitedData.map((station) => {

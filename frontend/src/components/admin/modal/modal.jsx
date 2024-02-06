@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import Form from "../../form/form";
 import contact from "../../user/ContactPage/config.json";
 import user from "../../user/RegistrationPage/config.json";
-import "./modal.scss";
+import { reservation } from "./data";
 import Alert from "../../alert/alert";
+import "./modal.scss";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -77,6 +78,13 @@ function ModalEdit({ dataEdit, action, id, setIsEditModal }) {
       }
 
       setDataformEdit(updatedUserData);
+    } else if (action === "reservations") {
+      for (const property in dataEdit) {
+        if (reservation[property] !== undefined) {
+          reservation[property].value = dataEdit[property];
+        }
+      }
+      setDataformEdit(reservation);
     }
   }, [action, dataEdit, user]);
 
@@ -133,7 +141,7 @@ function ModalEdit({ dataEdit, action, id, setIsEditModal }) {
 export default ModalEdit;
 
 ModalEdit.propTypes = {
-  dataEdit: PropTypes.shape.isRequired, // Remplacez le type par le type réel de dataEdit
+  dataEdit: PropTypes.shape.isRequired,
   action: PropTypes.string.isRequired,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   setIsEditModal: PropTypes.func.isRequired,

@@ -27,7 +27,7 @@ export const fetchDataUsers = async () => {
 function UsersManagement() {
   const dataLoad = useLoaderData();
 
-  return <SortableTable dataLoad={dataLoad} />;
+  return dataLoad.length > 0 && <SortableTable dataLoad={dataLoad} />;
 }
 
 export default UsersManagement;

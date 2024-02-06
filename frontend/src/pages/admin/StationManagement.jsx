@@ -42,7 +42,7 @@ export const fetchdata = async (limit) => {
 function StationManagement() {
   const dataLoad = useLoaderData();
 
-  return <SortableTable dataLoad={dataLoad} />;
+  return dataLoad.length > 0 && <SortableTable dataLoad={dataLoad} />;
 }
 
 export default StationManagement;
