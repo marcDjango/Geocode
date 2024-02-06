@@ -1,37 +1,44 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import L from "leaflet";
 import { useMap } from "react-leaflet";
 import "leaflet-control-geocoder/dist/Control.Geocoder.css";
 import "leaflet-control-geocoder";
 
-// Création d'une fonction pour rechercher une ville à l'aide de leafle-control-geocoder
 function LeafletGeocoderModal() {
-  // Obtention de l'instance de carte à partir de l'hook useMap
   const map = useMap();
+  const [latlng, setLatlng] = useState(null);
 
   useEffect(() => {
-    // Utilisation de la bibliothèque Leaflet pour créer un contrôle de géocodage
-    L.Control.geocoder({
+    const geocoderControl = L.Control.geocoder({
       defaultMarkGeocode: false,
       position: "bottomleft",
       placeholder: "Rechercher une ville ou une adresse",
       collapsed: false,
       showResultIcons: false,
-    })
-      // Gestionnaire d'événement pour le marquage géocodé
-      .on("markgeocode", function handleMarkGeocodeEvent(e) {
-        // Récupération des coordonnées du lieu géocodé
-        const latlng = e.geocode.center;
+    }).addTo(map);
 
-        // Ajout d'un marqueur à la position sur la carte
-        L.marker(latlng).addTo(map).bindPopup(e.geocode.name).openPopup();
+    geocoderControl.on("markgeocode", function handleMarkGeocodeEvent(e) {
+      const centerPosition = e.geocode.center;
+      setLatlng(centerPosition);
 
-        // Ajustement du zoom de la carte pour inclure la zone géocodée
-        map.fitBounds(e.geocode.bbox);
-      })
+      L.marker(centerPosition).addTo(map).bindPopup(e.geocode.name).openPopup();
+      map.fitBounds(e.geocode.bbox);
+    });
+  }, [map]);
 
-      .addTo(map);
-  }, []);
+  useEffect(() => {
+    const element = document.querySelector(
+      ".leaflet-control-geocoder-options-open"
+    );
+    const bodymodal = document.querySelector(".background-modal-map");
+
+    if (element) {
+      if (latlng) {
+        element.style.display = "none";
+        bodymodal.style.display = "none";
+      }
+    }
+  }, [latlng]);
 
   return null;
 }
