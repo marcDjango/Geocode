@@ -6,7 +6,15 @@
     background: rgba(40, 49, 49, 1);
     color: white;
     margin: 8px;
-    z-index: 1400;
+    z-index: 1004;
+  }
+
+  .react-datetime-picker__calendar {
+    &--open {
+      element {
+        inset: 100% auto auto -100%;
+      }
+    }
   }
 
   svg {

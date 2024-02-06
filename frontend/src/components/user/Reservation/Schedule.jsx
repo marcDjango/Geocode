@@ -14,14 +14,12 @@ function MyCalendar({ onDateTimeChange }) {
   };
 
   const minDate = new Date();
-
   return (
     <div className="calendar-container">
       <DateTimePicker
         onChange={handleDateTimeChange}
         value={dateTime}
         minDate={minDate}
-        minDetail="day"
         format="yyyy-MM-dd"
         disableClock
         calendarIcon={null}

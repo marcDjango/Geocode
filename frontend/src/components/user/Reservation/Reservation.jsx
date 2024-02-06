@@ -17,7 +17,7 @@ const { VITE_BACKEND_URL } = import.meta.env;
 
 function Reservation({ station, handleCloseReservationModal }) {
   const [reservationDateTime, setReservationDateTime] = useState(null);
-  const [selectedHour, setSelectedHour] = useState(null);
+  const [selectedHour, setSelectedHour] = useState("");
   const token = localStorage.getItem("token");
   const payload = JSON.parse(localStorage.getItem("user"));
   const [isFormValidated, setIsFormValidated] = useState(false);
@@ -49,6 +49,7 @@ function Reservation({ station, handleCloseReservationModal }) {
       });
 
       if (response.ok) {
+        handleCloseReservationModal();
         window.scrollTo(0, 0);
       } else {
         console.error("Échec de la réservation !");
@@ -196,40 +197,44 @@ function Reservation({ station, handleCloseReservationModal }) {
               })}
             </select>
           </div>
-          <div>
-            <button
-              type="button"
-              className="button-validation-calendar"
-              onClick={handleValidation}
-            >
-              Validez
-            </button>
-          </div>
-          {isFormValidated && (
-            <>
-              <div className="reservation-price">
-                {reservationDateTime && (
-                  <>
-                    Vous avez choisi de réserver une borne{" "}
-                    <strong>{station.nom_enseigne}</strong> le{" "}
-                    <strong>{formatDate(reservationDateTime)} à </strong>
-                    <strong>
-                      <strong>{selectedHour}</strong>
-                    </strong>{" "}
-                    pour une durée de 30 min, votre montant est de{" "}
-                    <strong>{tarification}</strong> €{" "}
-                  </>
-                )}
-              </div>
-
+          {reservationDateTime && selectedHour && (
+            <div>
               <button
                 type="button"
-                className="reservation-button"
-                onClick={() => handleReservation(station.id)}
+                className="button-validation-calendar"
+                onClick={handleValidation}
               >
-                Réservez et Payez
+                Validez
               </button>
-            </>
+            </div>
+          )}
+          {isFormValidated && (
+            <div className="background-modal-validation-reservation">
+              <div className="modal-validation-reservation">
+                <div className="reservation-price">
+                  {reservationDateTime && (
+                    <>
+                      Vous avez choisi de réserver une borne{" "}
+                      <strong>{station.nom_enseigne}</strong> le{" "}
+                      <strong>{formatDate(reservationDateTime)} à </strong>
+                      <strong>
+                        <strong>{selectedHour}</strong>
+                      </strong>{" "}
+                      pour une durée de 30 min, votre montant est de{" "}
+                      <strong>{tarification}</strong> €{" "}
+                    </>
+                  )}
+                </div>
+
+                <button
+                  type="button"
+                  className="reservation-button"
+                  onClick={() => handleReservation(station.id)}
+                >
+                  Réservez et Payez
+                </button>
+              </div>
+            </div>
           )}
         </div>
       </div>

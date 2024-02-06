@@ -40,7 +40,7 @@ function Map() {
       const data = await response.json();
 
       // Limitez le nombre de lignes de charging_stations
-      const limitedData = data.slice(0, 1000);
+      const limitedData = data.slice(0, 100);
 
       // Traitement des données garder 6 chiffres après la virgule
       const processedData = limitedData.map((station) => {
@@ -184,8 +184,8 @@ function Map() {
           isActive={isRoutingActive}
           chargingStations={[
             {
-              consolidated_latitude: selectedStationLocation[0],
-              consolidated_longitude: selectedStationLocation[1],
+              consolidated_latitude: parseFloat(selectedStationLocation[0]),
+              consolidated_longitude: parseFloat(selectedStationLocation[1]),
             },
           ]}
           handleStopRoute={handleStopRoute}
