@@ -1,10 +1,13 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, redirect } from "react-router-dom";
 import CardProfile from "./user/CardProfile";
 import CardCar from "./car/CardCar";
 import CardPlug from "./CardPlug";
 import "./profile.scss";
 
 export const fetchCarUser = async () => {
+  if (!localStorage.getItem("user")) {
+    return redirect("/logout");
+  }
   const { VITE_BACKEND_URL } = import.meta.env;
   const { id } = JSON.parse(localStorage.getItem("user"));
 
@@ -15,7 +18,10 @@ export const fetchCarUser = async () => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
-
+  if (response.status === 500) {
+    localStorage.clear();
+    return redirect("/logout");
+  }
   const data = await response.json();
 
   if (!data) {

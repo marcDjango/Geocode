@@ -16,6 +16,7 @@ function CardCar() {
   const [modifyCar, setModifyCar] = useState(false);
   const dataUser = JSON.parse(localStorage.getItem("user"));
   const dataCars = useLoaderData();
+  const dataProps = null;
   return (
     <div className={show ? "card-profile-show card-profile" : "card-profile"}>
       <div className="card-profile-header">
@@ -83,8 +84,8 @@ function CardCar() {
           </button>
         </div>
       )}
-      {modalCar && <AddCar state={setModalCar} />}
-      {modifyCar && <ModifyCar setModalCar={setModifyCar} />}
+      {modalCar && <AddCar state={setModalCar} dataProps={dataProps} />}
+      {modifyCar && <ModifyCar />}
     </div>
   );
 }

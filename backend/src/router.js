@@ -12,6 +12,8 @@ const {
   verifyPassword,
   verifyToken,
   verifyTokenValid,
+  verifyPasswordActual,
+  missingElements,
 } = require("./services/auth");
 
 // Import itemControllers module for handling item-related operations
@@ -64,6 +66,14 @@ router.put(
   verifyToken,
   validateUser,
   hashPassword,
+  userControllers.edit
+);
+router.put(
+  "/loggedusers/:id",
+
+  verifyPasswordActual,
+  hashPassword,
+  missingElements,
   userControllers.edit
 );
 router.delete("/users/:id", verifyToken, userControllers.destroy);

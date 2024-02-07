@@ -71,7 +71,7 @@ function Map() {
       const data = await response.json();
 
       // Limitez le nombre de lignes de charging_stations
-      const limitedData = data.slice(0, 10000);
+      const limitedData = data.slice(0, 1);
 
       // Traitement des données garder 6 chiffres après la virgule
       const processedData = limitedData.map((station) => {
@@ -193,20 +193,21 @@ function Map() {
                 handleStopRoute={handleStopRoute}
                 isRoutingActive={isRoutingActive}
                 onReservationButtonClick={handleOpenReservationModal}
+                userLocation={userLocation}
               />
             </Popup>
           </Marker>
         ))}
       </MarkerClusterGroup>
-      <LocationMarker />
+      {userLocation && <LocationMarker />}
       {userLocation && selectedStationLocation && (
         <Itinerary
           userLocation={userLocation}
           isActive={isRoutingActive}
           chargingStations={[
             {
-              consolidated_latitude: selectedStationLocation[0],
-              consolidated_longitude: selectedStationLocation[1],
+              consolidated_latitude: parseFloat(selectedStationLocation[0]),
+              consolidated_longitude: parseFloat(selectedStationLocation[1]),
             },
           ]}
           handleStopRoute={handleStopRoute}

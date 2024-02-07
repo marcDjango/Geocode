@@ -15,13 +15,14 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-calendar": "^4.8.0",
-    "react-datetime-picker": "^5.6.0",
+    "react-datepicker": "^6.1.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.1",
     "react-leaflet-cluster": "^2.1.0",
     "react-router-dom": "^6.21.1",
     "safer-buffer": "^2.1.2",
     "sass": "^1.69.7",
+    "sweetalert2": "^11.10.5",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
