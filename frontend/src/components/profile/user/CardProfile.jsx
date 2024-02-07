@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import ModyfyUser from "./ModyfyUser";
 import flachBase from "../../../assets/flachBase.svg";
 import flachHaute from "../../../assets/flachHaute.svg";
 import line from "../../../assets/Line.svg";
@@ -8,13 +8,41 @@ import stylo from "../../../assets/stylo.svg";
 
 function CardProfile() {
   const [show, setShow] = useState(false);
-  const dataUser = JSON.parse(localStorage.getItem("user"));
+  const [modal, setModal] = useState(false);
+  const [userData, setUserData] = useState({});
+
   const [age, setAge] = useState(null);
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { VITE_BACKEND_URL } = import.meta.env;
+      const { id } = JSON.parse(localStorage.getItem("user"));
+      const token = localStorage.getItem("token");
+
+      try {
+        const response = await fetch(`${VITE_BACKEND_URL}/api/users/${id}`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+
+        if (!data) {
+          return null;
+        }
+        setUserData(data);
+      } catch (error) {
+        console.error(error);
+      }
+      return null;
+    };
+    fetchUser();
+  }, [modal]);
 
   useEffect(() => {
     // Function to calculate age based on birthdate
     const calculateAge = () => {
-      const birthdateDate = new Date(dataUser.date_of_birth);
+      const birthdateDate = new Date(userData.date_of_birth);
       const currentDate = new Date();
 
       let calculatedAge =
@@ -33,7 +61,7 @@ function CardProfile() {
     };
 
     calculateAge();
-  }, [dataUser.date_of_birth]);
+  }, [userData.date_of_birth]);
 
   return (
     <div className={show ? "card-profile-show card-profile" : "card-profile"}>
@@ -54,30 +82,35 @@ function CardProfile() {
           <h1>Profil</h1>
         </div>
 
-        <Link className="card-profile-header-icons" to="/profile/">
+        <button
+          type="button"
+          className="card-profile-header-icons"
+          onClick={() => setModal(true)}
+        >
           <img src={stylo} alt="stylo" />
-        </Link>
+        </button>
       </div>
       <img className="card-profile-line" src={line} alt="line" />
       <div className="cart-content">
         <div className="cart-content-up">
           <img src={profileImage} alt="profile" />
           <ul className="cart-content-text">
-            <li>{`${dataUser.name} ${dataUser.firstname}`}</li>
+            <li>{`${userData.name} ${userData.firstname}`}</li>
             <li>{age} ans</li>
-            <li>{`${dataUser.postal_code} ${dataUser.city}`}</li>
+            <li>{`${userData.postal_code} ${userData.city}`}</li>
           </ul>
         </div>
         {show && (
           <div className="cart-content-up">
             <ul className="cart-content-text">
-              <li>{dataUser.email}</li>
-              <li>{dataUser.gender}</li>
-              <li>Nombre de véhicules : {dataUser.number_vehicles}</li>
+              <li>{userData.email}</li>
+              <li>{userData.gender}</li>
+              <li>Nombre de véhicules : {userData.number_vehicles}</li>
             </ul>
           </div>
         )}
       </div>
+      {modal && <ModyfyUser setModal={setModal} userData={userData} />}
     </div>
   );
 }
