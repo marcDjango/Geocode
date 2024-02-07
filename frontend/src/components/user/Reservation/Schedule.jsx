@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import DateTimePicker from "react-datetime-picker";
-import "react-datetime-picker/dist/DateTimePicker.css";
-import "react-calendar/dist/Calendar.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./Schedule.scss";
 import PropTypes from "prop-types";
 
@@ -14,17 +13,15 @@ function MyCalendar({ onDateTimeChange }) {
   };
 
   const minDate = new Date();
-
   return (
     <div className="calendar-container">
-      <DateTimePicker
+      <DatePicker
         onChange={handleDateTimeChange}
-        value={dateTime}
+        selected={dateTime}
         minDate={minDate}
-        minDetail="day"
-        format="yyyy-MM-dd"
-        disableClock
-        calendarIcon={null}
+        dateFormat="yyyy-MM-dd"
+        showTimeSelect={false}
+        placeholderText="Sélectionnez une date"
       />
     </div>
   );

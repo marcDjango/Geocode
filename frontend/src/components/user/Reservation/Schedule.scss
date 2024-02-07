@@ -1,16 +1,17 @@
 .calendar-container {
-  .react-datetime-picker__wrapper {
+  input {
     border-radius: 20px;
-    padding: 6px;
+    padding: 10px;
     border: 1px solid #10fffe;
     background: rgba(40, 49, 49, 1);
     color: white;
     margin: 8px;
-    z-index: 1400;
-  }
+    z-index: 1004;
 
-  svg {
-    stroke: white;
+    &::placeholder {
+      padding-left: 6px;
+      color: white;
+    }
   }
 
   .time-slot-container {
