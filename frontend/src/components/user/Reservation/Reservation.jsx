@@ -175,6 +175,7 @@ function Reservation({ station, handleCloseReservationModal }) {
               name="timeSlot"
               onChange={handleHourChange}
               value={selectedHour}
+              className="select-no-arrow"
             >
               <option value="">Sélectionnez un créneau</option>
               {[

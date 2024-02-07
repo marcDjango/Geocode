@@ -1,5 +1,6 @@
 .calendar-container {
   input {
+    width: 160px;
     border-radius: 20px;
     padding: 10px;
     border: 1px solid #10fffe;
@@ -7,15 +8,10 @@
     color: white;
     margin: 8px;
     z-index: 1004;
+    text-align: center;
 
     &::placeholder {
-      padding-left: 6px;
       color: white;
     }
-  }
-
-  .time-slot-container {
-    margin: 8px;
-    font-size: 16px;
   }
 }

@@ -130,12 +130,22 @@
 
       .time-slot-container {
         text-align: center;
+
+        .select-no-arrow {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          background-image: none;
+        }
+
         #timeSlot {
+          width: 160px;
           border-radius: 20px;
-          padding: 12px;
+          padding: 10px;
           border: 1px solid #10fffe;
           background: rgba(40, 49, 49, 1);
           color: white;
+          text-align: center;
         }
       }
 
@@ -210,6 +220,7 @@
           .reservation-button {
             display: flex;
             justify-content: space-around;
+
             .validation-reservation-button,
             .cancellation-reservation-button {
               padding: 16px;
@@ -251,7 +262,13 @@
   from {
     left: -100%;
   }
-  to {
+  94% {
     left: 0;
+  }
+  98% {
+    width: 110%;
+  }
+  to {
+    width: 100%;
   }
 }
