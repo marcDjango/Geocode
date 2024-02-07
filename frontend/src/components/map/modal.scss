@@ -1,6 +1,6 @@
 .popup-charging-station {
   width: 347px;
-  height: 512px;
+  height: 100%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -9,10 +9,10 @@
 
   .picture-car {
     position: absolute;
-    top: -40px;
-    right: 10px;
-    height: 200px;
-    width: 200px;
+    top: -30px;
+    right: 20px;
+    height: 150px;
+    width: 150px;
     background-image: url("../../assets/carspicture/audi-e-tron-55-quattro-408-ch_001-removebg-preview.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -20,6 +20,7 @@
   .part-user {
     display: flex;
     margin: 16px;
+    margin-bottom: 32px;
     color: white;
     justify-content: space-between;
   }
@@ -27,6 +28,7 @@
     width: 100%;
     height: 100%;
     padding: 16px;
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: start;

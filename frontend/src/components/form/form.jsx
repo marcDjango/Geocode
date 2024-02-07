@@ -5,7 +5,15 @@ import Select from "../select/select";
 import Input from "../input/input";
 import User from "../../assets/images/Vector.svg";
 
-function Form({ data, FormPostData, isAuth, action, route, isAdmin }) {
+function Form({
+  data,
+  FormPostData,
+  isAuth,
+  action,
+  route,
+  isAdmin,
+  setModal,
+}) {
   return (
     <div>
       <form className="df-column" onSubmit={FormPostData}>
@@ -44,9 +52,13 @@ function Form({ data, FormPostData, isAuth, action, route, isAdmin }) {
           {action ? "Se connecter" : "Valider"}
         </button>
         {action && (
-          <Link className="login-link-signup" to="/signup">
+          <button
+            type="button"
+            className="login-button-signup"
+            onClick={() => setModal(true)}
+          >
             S'inscrire
-          </Link>
+          </button>
         )}
       </form>
     </div>
@@ -65,11 +77,13 @@ Form.defaultProps = {
   isAdmin: false,
   action: false,
   route: null,
+  setModal: null,
 };
 Form.propTypes = {
   route: PropTypes.string,
   data: PropTypes.objectOf(dataShape).isRequired,
   FormPostData: PropTypes.func.isRequired,
+  setModal: PropTypes.func,
   isAdmin: PropTypes.bool,
   isAuth: PropTypes.bool,
   action: PropTypes.bool,

@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../../../contexte/CurrentUserContext";
 import Form from "../../form/form";
 import Alert from "../../alert/alert";
-
 import "./login.scss";
+import RegistrationForm from "../RegistrationPage/RegistrationForm";
 
 function LoginPage() {
   const { auth, setAuth } = useCurrentUserContext();
   const navigate = useNavigate();
   const [isErrors, setIsErrors] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isSignupModal, setIsSignupModal] = useState(false);
 
   const contact = {
     email: {
@@ -70,7 +71,13 @@ function LoginPage() {
           <div className="login-main">
             <section className="login-section-contain">
               <div className="login-form-contain">
-                <Form data={contact} FormPostData={FormPostData} action />
+                <Form
+                  data={contact}
+                  FormPostData={FormPostData}
+                  action
+                  route="/login"
+                  setModal={setIsSignupModal}
+                />
               </div>
             </section>
             <div className="pos-relative">
@@ -81,6 +88,12 @@ function LoginPage() {
           </div>
         )}
       </div>
+      {isSignupModal && (
+        <RegistrationForm
+          isSignupModal={isSignupModal}
+          setIsSignupModal={setIsSignupModal}
+        />
+      )}
     </section>
   );
 }
