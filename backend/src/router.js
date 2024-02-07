@@ -69,7 +69,7 @@ router.put(
   userControllers.edit
 );
 router.put(
-  "/usersModyfy/:id",
+  "/loggedusers/:id",
 
   verifyPasswordActual,
   hashPassword,

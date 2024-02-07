@@ -51,7 +51,7 @@ function ModyfyUser({ setModal, userData }) {
     }
     try {
       const response = await fetch(
-        `${VITE_BACKEND_URL}/api/usersModyfy/${data.id}`,
+        `${VITE_BACKEND_URL}/api/loggedusers/${data.id}`,
         {
           method: "PUT",
 
