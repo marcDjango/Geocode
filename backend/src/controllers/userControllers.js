@@ -56,6 +56,18 @@ const edit = async (req, res, next) => {
     next(error);
   }
 };
+const editUser = async (req, res, next) => {
+  try {
+    const user = await tables.user.editModify(req.body, req.params.id);
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 const add = async (req, res, next) => {
   try {
@@ -88,6 +100,7 @@ module.exports = {
   read,
   readByEmailAndPassToNext,
   edit,
+  editUser,
   add,
   destroy,
 };

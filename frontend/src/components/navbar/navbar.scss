@@ -1,4 +1,8 @@
 .navbar {
+  *,
+  button {
+    outline: none;
+  }
   position: absolute;
   padding: 0;
   display: flex;

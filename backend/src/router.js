@@ -12,6 +12,8 @@ const {
   verifyPassword,
   verifyToken,
   verifyTokenValid,
+  verifyPasswordActual,
+  missingElements,
 } = require("./services/auth");
 
 // Import itemControllers module for handling item-related operations
@@ -66,6 +68,15 @@ router.put(
   hashPassword,
   userControllers.edit
 );
+router.put(
+  "/usersModyfy/:id",
+
+  verifyPasswordActual,
+  hashPassword,
+  missingElements,
+  // validateUser,
+  userControllers.edit
+);
 router.delete("/users/:id", verifyToken, userControllers.destroy);
 
 // Route to get a list of cars
@@ -84,7 +95,7 @@ router.put(
   validateReservation,
   reservationControllers.edit
 );
-router.post("/reservations/", validateReservation, reservationControllers.add);
+router.post("/reservations/", reservationControllers.add);
 router.delete("/reservations/:id", reservationControllers.destroy);
 
 // Route to get a list of cars

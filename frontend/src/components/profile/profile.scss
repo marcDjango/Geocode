@@ -1,4 +1,8 @@
 .profile {
+  *,
+  button {
+    outline: none;
+  }
   margin: 0;
   padding: 0;
   width: 100%;
@@ -27,16 +31,16 @@
       margin-left: 50px;
       display: flex;
 
-      .picture-car {
-        position: relative;
-        top: -80px;
-        right: -70%;
-        height: 300px;
-        width: 300px;
-        background-image: url("../../assets/carspicture/audi-e-tron-55-quattro-408-ch_001-removebg-preview.png");
-        background-repeat: no-repeat;
-        background-size: cover;
-      }
+      // .picture-car {
+      //   position: relative;
+      //   top: -80px;
+      //   right: -70%;
+      //   height: 300px;
+      //   width: 300px;
+      //   background-image: url("../../assets/carspicture/audi-e-tron-55-quattro-408-ch_001-removebg-preview.png");
+      //   background-repeat: no-repeat;
+      //   background-size: cover;
+      // }
 
       p,
       h1 {
@@ -115,9 +119,40 @@
         font-size: clamp(1rem, 2vw, 1.5rem);
       }
     }
+    .modyfy-user {
+      .modyfy-user-modal-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        input {
+          width: 70%;
+          margin: 0 auto;
+          border: 1px solid #10fffe;
+          background: black;
+          color: white;
+          padding: 8px 12px;
+          border-radius: 8px;
+        }
+        button {
+          padding: 8px 12px;
+          color: #10fffe;
+          transition: ease-in-out 0.3s;
+        }
+        button:hover {
+          scale: 1.2;
+        }
+      }
+      .modyfy-user-modal-button {
+        position: absolute;
+        top: 80vh;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
   }
   .add-car,
-  .modify-car {
+  .modify-car,
+  .modyfy-user {
     position: absolute;
     top: 0;
     left: 0;
@@ -128,7 +163,8 @@
     background-color: rgba(255, 255, 255, 0.162);
 
     .add-car-modal,
-    .modify-car-modal {
+    .modify-car-modal,
+    .modyfy-user-modal {
       position: relative;
       background-image: url("../../assets/images/bckground.jpg");
       width: 100%;
@@ -162,7 +198,8 @@
       }
 
       .add-car-button,
-      .modify-car-button {
+      .modify-car-button,
+      .modyfy-user-modal-button {
         display: block;
         margin: 0 auto;
         width: 220px;
@@ -224,7 +261,8 @@
   }
   @media screen and (min-width: 768px) {
     .add-car-modal,
-    .modify-car-modal {
+    .modify-car-modal,
+    .modyfy-user-modal {
       width: 40%;
       max-width: 450px;
     }

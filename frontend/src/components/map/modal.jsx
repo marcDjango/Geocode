@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./modal.scss";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import priseType2 from "../../assets/Prise1.svg";
 import priseEf from "../../assets/Prise2.svg";
 import priseChademo from "../../assets/Prise3.svg";
@@ -15,6 +16,8 @@ function Modal(props) {
   const { station, handleActivateRoute, handleStopRoute, isRoutingActive } =
     props;
 
+  const navigate = useNavigate();
+
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpansion = () => {
@@ -24,6 +27,15 @@ function Modal(props) {
   const displayText = expanded
     ? station.horaires
     : `${station.horaires.slice(0, 25)}`;
+
+  const changeCharacter = {
+    "â‚¬": "cts",
+  };
+
+  const tarificationWithReplacement = station.tarification.replace(
+    new RegExp(Object.keys(changeCharacter).join("|"), "g"),
+    (replace) => changeCharacter[replace]
+  );
 
   return (
     <div className="popup-charging-station">
@@ -88,7 +100,7 @@ function Modal(props) {
           <h3>Tarifs</h3>
           {station.tarification === ""
             ? "Pas d'informations"
-            : `Coût de l'énergie : ${station.tarification}€`}
+            : `Coût de l'énergie : ${tarificationWithReplacement}`}
         </div>
         <div className="part-information-charging-station">
           <h3>Informations</h3>
@@ -100,7 +112,8 @@ function Modal(props) {
           <button
             type="button"
             className="button-reservation"
-            disabled={station.reservation !== "1"}
+            disabled={station.reservation !== "TRUE"}
+            onClick={() => navigate("/reservation", { state: { station } })}
           >
             Réserver
           </button>

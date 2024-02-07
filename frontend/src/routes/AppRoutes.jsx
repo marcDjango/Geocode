@@ -20,6 +20,7 @@ import DocumentManagement, {
 } from "../pages/admin/DocumentManagement";
 import Profile, { fetchCarUser } from "../components/profile/Profile";
 import verifyTokenOnServer from "../services/authVerify";
+import Reservation from "../components/user/Reservation/Reservation";
 import Delete from "../pages/admin/ActionAdmin/delete";
 
 const AppRoutes = createBrowserRouter(
@@ -34,6 +35,7 @@ const AppRoutes = createBrowserRouter(
         <Route element={<RegistrationForm />} path="/signup" />
         <Route element={<Map />} path="/map" />
         <Route element={<Profile />} path="/profile" loader={fetchCarUser} />
+        <Route element={<Reservation />} path="/reservation" />
       </Route>
       {/* routes pour l'administrateur */}
       <Route

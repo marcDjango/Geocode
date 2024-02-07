@@ -3,16 +3,14 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import croix from "../../../assets/croix.svg";
 
-function AddCar({ state, dataModifyCar, setModalCar }) {
+function AddCar({ state, dataProps }) {
   const { VITE_BACKEND_URL } = import.meta.env;
   const navigate = useNavigate();
   const { id } = JSON.parse(localStorage.getItem("user"));
   const [dataBrands, setDataBrands] = useState([]);
   const [dataPlugs, setDataPlugs] = useState([]);
-  const [newDataModifyCar, setNewDataModifyCar] = useState(dataModifyCar);
-
   const [valueModal, setValueModal] = useState(
-    dataModifyCar ? dataModifyCar.Marque : []
+    dataProps ? dataProps.Marque : []
   );
   const [propose, setPropose] = useState([]);
   const [marque, setMarque] = useState([]);
@@ -20,6 +18,7 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
   const [plugId, setPlugId] = useState([]);
   const [brandId, setBrandId] = useState([]);
   const [data, setData] = useState();
+
   useEffect(() => {
     const fetchBrands = async () => {
       try {
@@ -43,10 +42,10 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
 
   const handlePostCar = async () => {
     if (data) {
-      if (dataModifyCar) {
+      if (dataProps) {
         try {
           const response = await fetch(
-            `${VITE_BACKEND_URL}/api/cars/${dataModifyCar}`,
+            `${VITE_BACKEND_URL}/api/cars/${dataProps.id}`,
             {
               method: "PUT",
               headers: {
@@ -62,7 +61,6 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
           console.error(error);
         }
         state(false);
-        setModalCar(false);
         navigate("/profile");
       } else {
         try {
@@ -99,6 +97,10 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
       }
       return null;
     });
+    if (dataProps) {
+      setModele(dataBrands.filter((item) => item.Marque === dataProps.Marque));
+      setBrandId(modele.filter((item) => item.model === dataProps.model));
+    }
   }, [dataBrands]);
   useEffect(() => {
     if (valueModal.length > 1) {
@@ -109,7 +111,7 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
   }, [valueModal]);
 
   useEffect(() => {
-    if (propose === valueModal && valueModal) {
+    if (propose[0] === valueModal && valueModal) {
       setModele(dataBrands.filter((item) => item.Marque === valueModal));
       setPropose([]);
     } else if (propose !== valueModal && propose.length !== 0) {
@@ -138,7 +140,6 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
               value={valueModal}
               onChange={(e) => {
                 setValueModal(e.target.value.toUpperCase());
-                setNewDataModifyCar(null);
               }}
             />
             {propose &&
@@ -170,9 +171,7 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
                 )
               }
             >
-              <option value="">
-                {newDataModifyCar ? newDataModifyCar.model : "--Modèle--"}
-              </option>
+              <option value="">--Modèle--</option>
               {modele.map((item) => (
                 <option key={item.id} value={item.model}>
                   {item.model}
@@ -192,9 +191,7 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
                 )
               }
             >
-              <option value="">
-                {newDataModifyCar ? newDataModifyCar.type : "--prise--"}
-              </option>
+              <option value="">--prise--</option>
               {dataPlugs.map((item) => (
                 <option key={item.id} value={item.type}>
                   {item.type}
@@ -217,13 +214,11 @@ function AddCar({ state, dataModifyCar, setModalCar }) {
 
 AddCar.propTypes = {
   state: PropTypes.func.isRequired,
-  setModalCar: PropTypes.func.isRequired,
-  dataModifyCar: PropTypes.shape({
-    id: PropTypes.number,
-    Marque: PropTypes.string,
-    model: PropTypes.string,
-    type: PropTypes.string,
-    plug_id: PropTypes.number,
+  dataProps: PropTypes.shape({
+    Marque: PropTypes.string.isRequired,
+    model: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
 };
 export default AddCar;

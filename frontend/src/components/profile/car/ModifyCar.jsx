@@ -1,9 +1,9 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import propTypes from "prop-types";
+
 import AddCar from "./AddCar";
 
-function ModifyCar({ setModalCar }) {
+function ModifyCar() {
   const [dataModifyCar, setDataModifyCar] = useState();
   const [dataDeleteCar, setDataDeleteCar] = useState();
   const dataCars = useLoaderData();
@@ -29,6 +29,7 @@ function ModifyCar({ setModalCar }) {
         }
       );
       await response.json();
+
       setDataDeleteCar(null);
     } catch (error) {
       console.error(error);
@@ -73,19 +74,10 @@ function ModifyCar({ setModalCar }) {
         </div>
       )}
       {dataModifyCar && (
-        <AddCar
-          state={setDataModifyCar}
-          dataModifyCar={dataModifyCar}
-          setModalCar={setModalCar}
-          setDataModifyCar={setDataModifyCar}
-        />
+        <AddCar state={setDataModifyCar} dataProps={dataModifyCar} />
       )}
     </div>
   );
 }
-
-ModifyCar.propTypes = {
-  setModalCar: propTypes.func.isRequired,
-};
 
 export default ModifyCar;
