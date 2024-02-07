@@ -74,7 +74,6 @@ router.put(
   verifyPasswordActual,
   hashPassword,
   missingElements,
-  // validateUser,
   userControllers.edit
 );
 router.delete("/users/:id", verifyToken, userControllers.destroy);
