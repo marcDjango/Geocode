@@ -69,7 +69,11 @@
     .card-profile-header {
       height: 4vh;
       display: flex;
+
       justify-content: space-between;
+      .card-profile-anuler-button {
+        color: white;
+      }
       .card-profile-button-title {
         height: 100%;
         display: flex;
