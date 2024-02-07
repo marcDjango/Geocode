@@ -61,6 +61,11 @@
     margin: 0 auto;
     padding: 8px 3%;
     border-radius: 10px;
+
+    button {
+      cursor: pointer;
+    }
+
     .card-profile-header {
       height: 4vh;
       display: flex;
@@ -86,6 +91,7 @@
         gap: 3px;
         display: flex;
         justify-content: end;
+        cursor: pointer;
       }
     }
 
