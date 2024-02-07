@@ -42,7 +42,7 @@ function Modal(props) {
   return (
     <div className="popup-charging-station">
       <div className="part-user">
-        <div>UserName</div>
+        <div>{decodeURIComponent(escape(station.nom_operateur))}</div>
         <div className="picture-car" />
       </div>
       <div className="part-charging-station">

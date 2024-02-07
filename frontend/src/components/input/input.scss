@@ -8,6 +8,7 @@
   border: 1px solid var(--Color-3, #10fffe);
   background: rgba(0, 0, 0, 0.6);
   padding-inline: 1rem;
+  margin-top: 0.2rem;
   transition: all 0.3s ease; /* Ajoutez une transition pour une animation fluide si nécessaire */
 }
 
@@ -37,6 +38,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: 10px;
   border: 1px solid var(--Color-3, #10fffe);
   background: rgba(0, 0, 0, 0.6);
+  margin-top: 0.5rem;
   padding: 1rem;
   transition: all 0.3s ease; /* Ajoutez une transition pour une animation fluide si nécessaire */
 }
