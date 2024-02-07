@@ -89,6 +89,10 @@ function Reservation({ station, handleCloseReservationModal }) {
     setIsFormValidated(true);
   };
 
+  const handleCancellation = () => {
+    setIsFormValidated(false);
+  };
+
   return (
     <div className="reservation-modal">
       <div className="reservation-main">
@@ -220,18 +224,26 @@ function Reservation({ station, handleCloseReservationModal }) {
                         <strong>{selectedHour}</strong>
                       </strong>{" "}
                       pour une durée de 30 min, votre montant est de{" "}
-                      <strong>{tarification}</strong> €{" "}
+                      <strong>{tarification}</strong> €.
                     </>
                   )}
                 </div>
-
-                <button
-                  type="button"
-                  className="reservation-button"
-                  onClick={() => handleReservation(station.id)}
-                >
-                  Réservez et Payez
-                </button>
+                <div className="reservation-button">
+                  <button
+                    type="button"
+                    className="validation-reservation-button"
+                    onClick={() => handleReservation(station.id)}
+                  >
+                    Réservez et Payez
+                  </button>
+                  <button
+                    type="button"
+                    className="cancellation-reservation-button"
+                    onClick={handleCancellation}
+                  >
+                    Annuler
+                  </button>
+                </div>
               </div>
             </div>
           )}
