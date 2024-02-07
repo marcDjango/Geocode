@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useLocation } from "react-router-dom";
 import email from "../../assets/images/email.png";
 import password from "../../assets/images/password.png";
 import hidden from "../../assets/images/Hidden.png";
@@ -19,9 +18,8 @@ function Input({ name, placeholder, type, isAuth, route, isAdmin }) {
   const handleOnChange = (e) => {
     setValueInput(e.target.value);
   };
-  const location = useLocation();
   const autocompleted = route === "contact";
-  const style = location.pathname === "/login";
+  const style = route === "/login";
   return type === "textArea" ? (
     <textarea
       className="input-style-textarea typo"

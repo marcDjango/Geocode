@@ -4,8 +4,14 @@ import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import { useMap } from "react-leaflet";
 import PropTypes from "prop-types";
+import "./itinerary.scss";
 
-function Itinerary({ userLocation, isActive, chargingStations }) {
+function Itinerary({
+  userLocation,
+  isActive,
+  chargingStations,
+  handleStopRoute,
+}) {
   const map = useMap();
   const markerRef = useRef(null);
   const routingControlRef = useRef(null);
@@ -73,7 +79,19 @@ function Itinerary({ userLocation, isActive, chargingStations }) {
     };
   }, [map, userLocation, isActive, chargingStations]);
 
-  return null;
+  return (
+    <div>
+      {isActive && (
+        <button
+          type="button"
+          className="button-close-itinerary"
+          onClick={handleStopRoute}
+        >
+          Arrêter l'itinéraire
+        </button>
+      )}
+    </div>
+  );
 }
 
 Itinerary.propTypes = {
@@ -85,6 +103,7 @@ Itinerary.propTypes = {
       consolidated_longitude: PropTypes.number.isRequired,
     }).isRequired
   ),
+  handleStopRoute: PropTypes.func.isRequired,
 };
 
 Itinerary.defaultProps = {

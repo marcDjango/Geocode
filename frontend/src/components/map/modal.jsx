@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "./modal.scss";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 import priseType2 from "../../assets/Prise1.svg";
 import priseEf from "../../assets/Prise2.svg";
 import priseChademo from "../../assets/Prise3.svg";
@@ -13,10 +12,13 @@ import horloge from "../../assets/mdi_clock-outline.svg";
 import prise from "../../assets/lucide_plug.svg";
 
 function Modal(props) {
-  const { station, handleActivateRoute, handleStopRoute, isRoutingActive } =
-    props;
-
-  const navigate = useNavigate();
+  const {
+    station,
+    handleActivateRoute,
+    handleStopRoute,
+    isRoutingActive,
+    onReservationButtonClick,
+  } = props;
 
   const [expanded, setExpanded] = useState(false);
 
@@ -40,7 +42,7 @@ function Modal(props) {
   return (
     <div className="popup-charging-station">
       <div className="part-user">
-        <div>UserName</div>
+        <div>{decodeURIComponent(escape(station.nom_operateur))}</div>
         <div className="picture-car" />
       </div>
       <div className="part-charging-station">
@@ -113,7 +115,9 @@ function Modal(props) {
             type="button"
             className="button-reservation"
             disabled={station.reservation !== "TRUE"}
-            onClick={() => navigate("/reservation", { state: { station } })}
+            onClick={() => {
+              onReservationButtonClick();
+            }}
           >
             Réserver
           </button>
@@ -154,4 +158,5 @@ Modal.propTypes = {
   handleActivateRoute: PropTypes.func.isRequired,
   handleStopRoute: PropTypes.func.isRequired,
   isRoutingActive: PropTypes.bool.isRequired,
+  onReservationButtonClick: PropTypes.func.isRequired,
 };

@@ -1,0 +1,38 @@
+.button-close-itinerary {
+  padding: 14px;
+  display: flex;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 800;
+  position: fixed;
+  bottom: 12px;
+  right: 60px;
+  background-color: white;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.leaflet-routing-container {
+  border: 4px solid var(--Color-3, #10fffe);
+  border-radius: 20px;
+  background: var(--Color-1, rgba(229, 233, 231, 0.99));
+}
+
+@media screen and (max-width: 640px) {
+  .leaflet-routing-container {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+  }
+}

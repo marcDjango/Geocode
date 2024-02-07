@@ -1,4 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
 import {
   MapContainer,
   TileLayer,
@@ -8,8 +9,6 @@ import {
 } from "react-leaflet";
 import "./map.scss";
 import "leaflet/dist/leaflet.css";
-import "leaflet-control-geocoder/dist/Control.Geocoder.css";
-import "leaflet-control-geocoder";
 import { Icon, DivIcon, point } from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import VectorImage from "../../assets/el_map-marker.svg";
@@ -17,16 +16,53 @@ import LocationMarker from "./location";
 import LeafletGeocoder from "./search";
 import Modal from "./modal";
 import Itinerary from "./itinerary";
+import Reservation from "../user/Reservation/Reservation";
+import ModalMap from "./modalLocationMap";
 
 const { VITE_BACKEND_URL } = import.meta.env;
+
+export const getUserLocation = (setUserLocation) => {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (currentPosition) => {
+          resolve([
+            currentPosition.coords.latitude,
+            currentPosition.coords.longitude,
+          ]);
+          setUserLocation([
+            currentPosition.coords.latitude,
+            currentPosition.coords.longitude,
+          ]);
+        },
+        (error) => {
+          if (error.code === 1) {
+            // L'utilisateur a refusé la géolocalisation
+            console.warn("L'utilisateur a refusé la géolocalisation.");
+            resolve(false); // Retourner false en cas de refus
+          } else {
+            reject(error); // Autre erreur de géolocalisation
+          }
+        }
+      );
+    } else {
+      reject(new Error("Geolocation is not supported by this browser."));
+    }
+  });
+};
 
 function Map() {
   // Position initiale de la carte
   const position = [46.6031, 1.8883];
+  const userPosition = useLoaderData();
   const [chargingStations, setChargingStations] = useState([]);
-  const [userLocation, setUserLocation] = useState(null);
+  const [userLocation, setUserLocation] = useState(false);
   const [isRoutingActive, setRoutingActive] = useState(false);
   const [selectedStationLocation, setSelectedStationLocation] = useState(null);
+  const [isReservationModal, setIsReservationModal] = useState(false);
+  const [selectedStation, setSelectedStation] = useState(null);
+  const [isReservationButtonClicked, setIsReservationButtonClicked] =
+    useState(false);
 
   // Fonction pour récupérer les stations de recharge depuis le backend
   const fetchChargingStations = useCallback(async () => {
@@ -35,7 +71,7 @@ function Map() {
       const data = await response.json();
 
       // Limitez le nombre de lignes de charging_stations
-      const limitedData = data.slice(0, 10);
+      const limitedData = data.slice(0, 10000);
 
       // Traitement des données garder 6 chiffres après la virgule
       const processedData = limitedData.map((station) => {
@@ -85,24 +121,19 @@ function Map() {
     iconSize: [38, 38],
   });
 
-  const getUserLocation = useCallback(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((currentPosition) => {
-        setUserLocation([
-          currentPosition.coords.latitude,
-          currentPosition.coords.longitude,
-        ]);
-      });
-    }
-  }, []);
-
   useEffect(() => {
-    getUserLocation();
-    fetchChargingStations();
-  }, [getUserLocation, fetchChargingStations]);
+    const fetchData = async () => {
+      await getUserLocation(setUserLocation);
+    };
+    fetchData();
+  }, [setUserLocation]);
 
-  const handleMarkerClick = (location) => {
-    setSelectedStationLocation(location);
+  const handleMarkerClick = (station) => {
+    setSelectedStation(station);
+    setSelectedStationLocation([
+      station.consolidated_latitude,
+      station.consolidated_longitude,
+    ]);
   };
 
   const handlePopupClose = () => {
@@ -117,6 +148,15 @@ function Map() {
     setRoutingActive(false);
   };
 
+  const handleOpenReservationModal = () => {
+    setIsReservationModal(true);
+    setIsReservationButtonClicked(true);
+  };
+
+  const handleCloseReservationModal = () => {
+    setIsReservationModal(false);
+    setIsReservationButtonClicked(false);
+  };
   return (
     <MapContainer
       center={position}
@@ -132,7 +172,7 @@ function Map() {
       <MarkerClusterGroup
         chunkedLoading
         iconCreateFunction={createClusterCustomIcon}
-        maxClusterRadius={200}
+        maxClusterRadius={80}
       >
         {chargingStations.map((station) => (
           <Marker
@@ -143,11 +183,7 @@ function Map() {
             ]}
             icon={customIcon}
             eventHandlers={{
-              click: () =>
-                handleMarkerClick([
-                  station.consolidated_latitude,
-                  station.consolidated_longitude,
-                ]),
+              click: () => handleMarkerClick(station),
             }}
           >
             <Popup onClose={handlePopupClose} autoPan autoPanPadding={[50, 50]}>
@@ -156,6 +192,7 @@ function Map() {
                 handleActivateRoute={handleActivateRoute}
                 handleStopRoute={handleStopRoute}
                 isRoutingActive={isRoutingActive}
+                onReservationButtonClick={handleOpenReservationModal}
               />
             </Popup>
           </Marker>
@@ -177,6 +214,13 @@ function Map() {
       )}
       <ZoomControl position="bottomright" />
       <LeafletGeocoder />
+      {isReservationButtonClicked && selectedStation && isReservationModal && (
+        <Reservation
+          handleCloseReservationModal={handleCloseReservationModal}
+          station={selectedStation}
+        />
+      )}
+      <ModalMap userPosition={userPosition} />
     </MapContainer>
   );
 }

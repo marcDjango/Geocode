@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import L from "leaflet";
 import { useMap } from "react-leaflet";
+import "leaflet-control-geocoder/dist/Control.Geocoder.css";
+import "leaflet-control-geocoder";
 
 // Création d'une fonction pour rechercher une ville à l'aide de leafle-control-geocoder
 function LeafletGeocoder() {
@@ -11,7 +13,7 @@ function LeafletGeocoder() {
     // Utilisation de la bibliothèque Leaflet pour créer un contrôle de géocodage
     L.Control.geocoder({
       defaultMarkGeocode: false,
-      position: "bottomleft",
+      position: "topleft",
       placeholder: "Rechercher une ville ou une adresse",
     })
       // Gestionnaire d'événement pour le marquage géocodé
