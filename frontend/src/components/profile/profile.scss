@@ -31,16 +31,16 @@
       margin-left: 50px;
       display: flex;
 
-      // .picture-car {
-      //   position: relative;
-      //   top: -80px;
-      //   right: -70%;
-      //   height: 300px;
-      //   width: 300px;
-      //   background-image: url("../../assets/carspicture/audi-e-tron-55-quattro-408-ch_001-removebg-preview.png");
-      //   background-repeat: no-repeat;
-      //   background-size: cover;
-      // }
+      .picture-car {
+        position: relative;
+        top: -80px;
+        right: -70%;
+        height: 100px;
+        width: 100px;
+        background-image: url("../../assets/carspicture/audi-e-tron-55-quattro-408-ch_001-removebg-preview.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
 
       p,
       h1 {
