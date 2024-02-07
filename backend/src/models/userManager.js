@@ -21,7 +21,7 @@ class UserManager extends AbstractManager {
   async readUser(id) {
     // Performing a database query to select a record with the given ID
     const [row] = await this.database.query(
-      `select id , name, firstname, email, gender, DATE_FORMAT(date_of_birth, '%Y-%m-%d') AS date_of_birth , postal_code, city, number_vehicles, hashed_password, profil_image, is_admin, from ${this.table} where id = ?`,
+      `select id , name, firstname, email, gender, DATE_FORMAT(date_of_birth, '%Y-%m-%d') AS date_of_birth , postal_code, city, number_vehicles, profil_image, is_admin from ${this.table} where id = ?`,
       [id]
     );
     // Returning the first row (assuming there is only one result)
@@ -34,6 +34,49 @@ class UserManager extends AbstractManager {
       [email]
     );
     return rows[0];
+  }
+
+  async editModify(id, data) {
+    const {
+      name,
+      firstname,
+      email,
+      gender,
+      date_of_birth: dateOfBirth,
+      postal_code: postalCode,
+      city,
+      number_vehicles: numberVehicles,
+      hashed_password: hashedPassword,
+      is_admin: isAdmin,
+    } = data;
+    const [rows] = await this.database.query(
+      `UPDATE ${this.table} SET 
+                name = ?,
+                firstname = ?,
+                email = ?,
+                gender = ?,
+                date_of_birth = ?,
+                postal_code = ?,
+                city = ?,
+                number_vehicles = ?,
+                hashed_password = ?,
+                is_admin = ?
+            WHERE id = ?`,
+      [
+        name,
+        firstname,
+        email,
+        gender,
+        dateOfBirth,
+        postalCode,
+        city,
+        numberVehicles,
+        hashedPassword,
+        isAdmin,
+        id,
+      ]
+    );
+    return rows;
   }
 }
 

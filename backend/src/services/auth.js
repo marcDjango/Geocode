@@ -1,12 +1,10 @@
 const argon2 = require("argon2");
-
 const jwt = require("jsonwebtoken");
-
+const client = require("../../database/client");
 // Middleware pour hacher le mot de passe
 const hashPassword = async (req, res, next) => {
   try {
     const { password } = req.body;
-
     // Validation pour le champ 'password'
     if (password == null) {
       return res.status(400).json({
@@ -117,10 +115,53 @@ const verifyTokenValid = (req, res, next) => {
   }
   return null;
 };
+const verifyPasswordActual = async (req, res, next) => {
+  const { id } = req.params;
+  const { passwordActuel } = req.body;
+  const [rows] = await client.query(
+    "SELECT hashed_password FROM user WHERE id = ?",
+    [id]
+  );
+  const Password = rows[0].hashed_password;
 
+  try {
+    const reponse = await argon2.verify(Password, passwordActuel);
+
+    if (!reponse) {
+      return res.status(401).send("Le mot de passe actuel est incorrect.");
+    }
+    delete req.body.passwordActuel;
+    next();
+  } catch (error) {
+    console.error(
+      "Erreur lors de la vérification du mot de passe actuel :",
+      error
+    );
+  }
+  return null;
+};
+const missingElements = async (req, res, next) => {
+  const [rows] = await client.query("SELECT * FROM user WHERE id = ?", [
+    req.params.id,
+  ]);
+  if (!rows[0]) {
+    return res.status(404).send("User not found");
+  }
+
+  req.body.name = rows[0].name;
+  req.body.firstname = rows[0].firstname;
+  req.body.gender = rows[0].gender;
+  req.body.date_of_birth = rows[0].date_of_birth;
+  req.body.is_admin = rows[0].is_admin;
+
+  next();
+  return null;
+};
 module.exports = {
   hashPassword,
   verifyPassword,
   verifyToken,
   verifyTokenValid,
+  verifyPasswordActual,
+  missingElements,
 };
