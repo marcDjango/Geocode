@@ -11,7 +11,7 @@
     position: relative;
     top: 50%;
     left: 50%;
-    width: 400px;
+    width: 380px;
     height: 180px;
     color: white;
     background-color: gray;
@@ -20,9 +20,9 @@
     display: flex;
     justify-content: center;
     align-items: top;
-    padding: 24px;
+    padding: 16px;
     border: 2px solid black;
-    z-index: 10000;
+    z-index: 1000;
     transform: translate(-50%, -50%);
   }
 }
@@ -30,12 +30,14 @@
 .leaflet-left {
   left: 50%;
   top: 50%;
-  transform: translate(-50%, 10%);
+  transform: translate(-50%, 5%);
   z-index: 1004;
 }
 .leaflet-top {
-  left: 10px;
+  left: 0;
   top: 100%;
+  width: 100%;
+  margin: 0;
   transform: translate(0%, -100%);
   z-index: 1000;
 }

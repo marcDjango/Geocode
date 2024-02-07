@@ -50,7 +50,6 @@ function Reservation({ station, handleCloseReservationModal }) {
 
       if (response.ok) {
         handleCloseReservationModal();
-        window.scrollTo(0, 0);
       } else {
         console.error("Échec de la réservation !");
       }
