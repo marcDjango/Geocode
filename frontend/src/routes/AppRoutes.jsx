@@ -7,7 +7,7 @@ import {
 import RootLayout from "../layout/RootLayout";
 import LoginPage from "../components/user/LoginPage/LoginPage";
 import StationManagement, { fetchdata } from "../pages/admin/StationManagement";
-import Map from "../components/map/map";
+import Map, { getUserLocation } from "../components/map/map";
 import Home from "../pages/home/Home";
 import Logout from "../pages/Logout";
 import AdminLayout from "../layout/AdminLayout";
@@ -31,7 +31,7 @@ const AppRoutes = createBrowserRouter(
         <Route index element={<Home />} path="/" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<Logout />} path="/logout" />
-        <Route element={<Map />} path="/map" />
+        <Route element={<Map />} path="/map" loader={getUserLocation} />
         <Route element={<Profile />} path="/profile" loader={fetchCarUser} />
       </Route>
       {/* routes pour l'administrateur */}

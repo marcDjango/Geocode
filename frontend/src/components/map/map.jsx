@@ -1,4 +1,5 @@
 import { useCallback, useState, useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
 import {
   MapContainer,
   TileLayer,
@@ -20,12 +21,42 @@ import ModalMap from "./modalLocationMap";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
+export const getUserLocation = (setUserLocation) => {
+  return new Promise((resolve, reject) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (currentPosition) => {
+          resolve([
+            currentPosition.coords.latitude,
+            currentPosition.coords.longitude,
+          ]);
+          setUserLocation([
+            currentPosition.coords.latitude,
+            currentPosition.coords.longitude,
+          ]);
+        },
+        (error) => {
+          if (error.code === 1) {
+            // L'utilisateur a refusé la géolocalisation
+            console.warn("L'utilisateur a refusé la géolocalisation.");
+            resolve(false); // Retourner false en cas de refus
+          } else {
+            reject(error); // Autre erreur de géolocalisation
+          }
+        }
+      );
+    } else {
+      reject(new Error("Geolocation is not supported by this browser."));
+    }
+  });
+};
+
 function Map() {
   // Position initiale de la carte
   const position = [46.6031, 1.8883];
-
+  const userPosition = useLoaderData();
   const [chargingStations, setChargingStations] = useState([]);
-  const [userLocation, setUserLocation] = useState(null);
+  const [userLocation, setUserLocation] = useState(false);
   const [isRoutingActive, setRoutingActive] = useState(false);
   const [selectedStationLocation, setSelectedStationLocation] = useState(null);
   const [isReservationModal, setIsReservationModal] = useState(false);
@@ -90,21 +121,12 @@ function Map() {
     iconSize: [38, 38],
   });
 
-  const getUserLocation = useCallback(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((currentPosition) => {
-        setUserLocation([
-          currentPosition.coords.latitude,
-          currentPosition.coords.longitude,
-        ]);
-      });
-    }
-  }, []);
-
   useEffect(() => {
-    getUserLocation();
-    fetchChargingStations();
-  }, [getUserLocation, fetchChargingStations]);
+    const fetchData = async () => {
+      await getUserLocation(setUserLocation);
+    };
+    fetchData();
+  }, [setUserLocation]);
 
   const handleMarkerClick = (station) => {
     setSelectedStation(station);
@@ -135,7 +157,6 @@ function Map() {
     setIsReservationModal(false);
     setIsReservationButtonClicked(false);
   };
-
   return (
     <MapContainer
       center={position}
@@ -199,7 +220,7 @@ function Map() {
           station={selectedStation}
         />
       )}
-      {!userLocation && <ModalMap />}
+      <ModalMap userPosition={userPosition} />
     </MapContainer>
   );
 }

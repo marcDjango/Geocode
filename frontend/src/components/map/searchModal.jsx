@@ -7,7 +7,6 @@ import "leaflet-control-geocoder";
 function LeafletGeocoderModal() {
   const map = useMap();
   const [latlng, setLatlng] = useState(null);
-
   useEffect(() => {
     const geocoderControl = L.Control.geocoder({
       defaultMarkGeocode: false,
