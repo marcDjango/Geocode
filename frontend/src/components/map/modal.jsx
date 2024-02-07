@@ -18,9 +18,11 @@ function Modal(props) {
     handleStopRoute,
     isRoutingActive,
     onReservationButtonClick,
+    userLocation,
   } = props;
 
   const [expanded, setExpanded] = useState(false);
+  const token = JSON.parse(localStorage.getItem("user"));
 
   const toggleExpansion = () => {
     setExpanded(!expanded);
@@ -114,7 +116,7 @@ function Modal(props) {
           <button
             type="button"
             className="button-reservation"
-            disabled={station.reservation !== "TRUE"}
+            disabled={!token || station.reservation !== "TRUE"}
             onClick={() => {
               onReservationButtonClick();
             }}
@@ -125,6 +127,7 @@ function Modal(props) {
             type="button"
             className="itinerary-button"
             onClick={isRoutingActive ? handleStopRoute : handleActivateRoute}
+            disabled={!userLocation}
           >
             {isRoutingActive ? "Arrêter l'itinéraire" : "Activer l'itinéraire"}
           </button>
@@ -159,4 +162,8 @@ Modal.propTypes = {
   handleStopRoute: PropTypes.func.isRequired,
   isRoutingActive: PropTypes.bool.isRequired,
   onReservationButtonClick: PropTypes.func.isRequired,
+  userLocation: PropTypes.shape({
+    latitude: PropTypes.number,
+    longitude: PropTypes.number,
+  }).isRequired,
 };
