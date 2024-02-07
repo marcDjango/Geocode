@@ -87,7 +87,6 @@ const verifyToken = async (req, res, next) => {
 
 const verifyTokenValid = (req, res, next) => {
   const authorization = req.get("Authorization");
-
   if (!authorization) {
     throw new Error("Merci de vous identifier !");
   }
