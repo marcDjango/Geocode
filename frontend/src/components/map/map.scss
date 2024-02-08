@@ -4,19 +4,27 @@
   padding: 0;
 }
 
-.leaflet-popup {
-  width: 347px;
-}
 .leaflet-container {
   width: 100vw;
   height: 100vh;
 
-  .leaflet-popup-content-wrapper {
-    padding: 0px;
-    border-radius: 20px;
+  .leaflet-popup {
+    width: 460px;
 
-    .leaflet-popup-content {
-      margin: 0px;
+    .leaflet-popup-content-wrapper {
+      border-radius: 20px;
+      width: 100%;
+      padding: 8px;
+      border: 2px solid var(--Color-3, #10fffe);
+      background: var(--Color-2, #525b5a);
+      color: white;
+      text-align: center;
+      font-size: 16px;
+
+      .leaflet-popup-content {
+        margin: 0px;
+        width: 100% !important;
+      }
     }
   }
 }
@@ -46,4 +54,18 @@
 
 .leaflet-routing-container {
   bottom: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .leaflet-container {
+    .leaflet-popup {
+      width: 300px;
+      .leaflet-popup-content-wrapper {
+        width: 100%;
+        .leaflet-popup-content {
+          width: 100% !important;
+        }
+      }
+    }
+  }
 }

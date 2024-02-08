@@ -11,11 +11,16 @@
     transform: scale(1.1);
     transition: all 0.3s ease;
   }
+
+  .main-image-home {
+    position: absolute;
+    top: 25%;
+  }
+
   .home-btn {
     background-color: rgba(40, 49, 49, 1);
-    width: clamp(160px, 75%, 260px);
     height: 40px;
-    border-radius: 20px;
+    border-radius: 25px;
     border: 2px solid #10fffe;
     background-color: rgba(40, 49, 49, 1);
     box-shadow: 0px 2px 8px 0px #10fffe;
@@ -26,5 +31,14 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    padding: 28px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .home {
+    .main-image-home {
+      width: 600px;
+    }
   }
 }
