@@ -10,8 +10,11 @@ export const fetchdata = async (limit) => {
       `${VITE_BACKEND_URL}/api/charging-stations?limit=${limit}`
     );
     const data = await reponse.json();
+
+    const limitedData = data.slice(0, 100);
+
     // Traitement des données garder 6 chiffres après la virgule
-    const processedData = data.map((station) => {
+    const processedData = limitedData.map((station) => {
       const latitude = parseFloat(station.consolidated_latitude).toFixed(6);
       const longitude = parseFloat(station.consolidated_longitude).toFixed(6);
 

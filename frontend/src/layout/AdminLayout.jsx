@@ -29,7 +29,7 @@ function AdminLayout() {
                     <img className="icon-link" src={User} alt="icon-link" />
                   </Link>
                   <Link className="navigation-link" to="/admin/users">
-                    <p className="text-link">Liste Users</p>
+                    <p className="text-link">Liste Utilisateurs</p>
                   </Link>
                 </li>
                 <li className="menu-navigation-link">
@@ -45,7 +45,7 @@ function AdminLayout() {
                     <img className="icon-link" src={Email} alt="icon-link" />
                   </Link>
                   <Link className="navigation-link" to="/admin/contacts">
-                    <p className="text-link">Documents</p>
+                    <p className="text-link">Messages</p>
                   </Link>
                 </li>
                 <li className="menu-navigation-link">
