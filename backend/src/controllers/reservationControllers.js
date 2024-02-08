@@ -24,6 +24,21 @@ const read = async (req, res, next) => {
     next(error);
   }
 };
+const readUserReservations = async (req, res, next) => {
+  try {
+    const reservation =
+      await tables.user_has_charging_station.readReservationByUser(
+        req.params.id
+      );
+    if (reservation == null) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(reservation);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 const edit = async (req, res, next) => {
   try {
@@ -72,6 +87,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
   browse,
   read,
+  readUserReservations,
   edit,
   add,
   destroy,

@@ -89,6 +89,10 @@ router.delete("/cars/:id", verifyToken, carControllers.destroy);
 // Route to get a list of reservations
 router.get("/reservations", reservationControllers.browse);
 router.get("/reservations/:id", reservationControllers.read);
+router.get(
+  "/users/:id/reservations",
+  reservationControllers.readUserReservations
+);
 router.put(
   "/reservations/:id",
   validateReservation,
