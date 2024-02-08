@@ -103,7 +103,7 @@ router.get("/contacts/:id", contactControllers.read);
 router.post("/contacts", validateMessage, contactControllers.add);
 router.put("/contacts/:id", validateMessage, contactControllers.edit);
 router.delete("/contacts/:id", verifyToken, contactControllers.destroy);
-router.post("/verify-token", verifyTokenValid, (req, res) => {
+router.get("/verify-token", verifyTokenValid, (req, res) => {
   // Si le middleware passe, vous pouvez renvoyer une réponse appropriée
   res.status(200).json({ token: req.user });
 });

@@ -38,18 +38,22 @@ function Profile() {
       <section className="profile-garage">
         <div className="profile-garage-text">
           <div className="picture-car" />
-          {dataUser && (
-            <ul>
-              <h1>{dataUser.name} </h1>
-              <h1>{dataUser.firstname}</h1>
-            </ul>
-          )}
-          {dataCars.length && <p>{`Marque: ${dataCars[0].Marque}`}</p>}
+          <div className="profile-garage-contain-title">
+            {dataUser && (
+              <h1>
+                {`${dataUser.name} 
+                ${dataUser.firstname}  `}
+              </h1>
+            )}
+            {dataCars.length > 0 && <p>{`${dataCars[0].model}`}</p>}
+          </div>
         </div>
       </section>
-      <CardProfile />
-      <CardCar />
-      <CardPlug />
+      <div className="df-row">
+        <CardProfile />
+        <CardPlug />
+        <CardCar />
+      </div>
     </div>
   );
 }

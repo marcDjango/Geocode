@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCurrentUserContext } from "../../../contexte/CurrentUserContext";
 import Form from "../../form/form";
@@ -13,7 +13,7 @@ function LoginPage() {
   const [isErrors, setIsErrors] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
   const [isSignupModal, setIsSignupModal] = useState(false);
-
+  console.info(auth);
   const contact = {
     email: {
       value: "Adresse email",
@@ -70,11 +70,11 @@ function LoginPage() {
       setIsSubmit(true);
     }
   };
-  useEffect(() => {
-    if (auth) {
-      navigate("/profile");
-    }
-  }, [auth, navigate]);
+  // useEffect(() => {
+  //   if (auth) {
+  //     navigate("/profile");
+  //   }
+  // }, [auth, navigate]);
 
   return (
     <section className="tercolumn">

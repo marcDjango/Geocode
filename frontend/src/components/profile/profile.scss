@@ -2,289 +2,667 @@
   *,
   button {
     outline: none;
+    font-family: sans-serif;
   }
-  margin: 0;
-  padding: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   background-image: url("../../assets/images/bckground.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
   color: white;
 
   .profile-garage {
     background-image: url("../../assets/images/garage.png");
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
-    width: 100%;
-    height: 25vh;
+    background-size: contain;
+    background-position: center;
+    width: 480px;
+    height: 245px;
+    margin-bottom: 1.5rem;
 
     img {
       width: 100%;
+      height: 350px;
     }
     .profile-garage-text {
-      margin-top: 60px;
-      margin-left: 50px;
+      position: relative;
       display: flex;
-
+      height: 100%;
       .picture-car {
-        position: relative;
-        top: -80px;
-        right: -70%;
-        height: 100px;
-        width: 100px;
-        background-image: url("../../assets/carspicture/audi-e-tron-55-quattro-408-ch_001-removebg-preview.png");
+        position: absolute;
+        top: 50%;
+        right: 2%;
+        height: 50%;
+        max-height: 160px;
+        width: 50%;
+        max-width: 240px;
+        background-image: url("../../assets/imagesvoitures/audi-e-tron-gt-476.png");
         background-repeat: no-repeat;
         background-size: cover;
       }
-
       p,
       h1 {
-        font-size: clamp(1rem, 5vw, 2rem);
-      }
-      ul {
-        margin-bottom: 10px;
-        display: flex;
-        gap: 8px;
-      }
-    }
-  }
-
-  .card-profile {
-    border: 1px solid #465454;
-    width: 80%;
-    background-color: rgba(40, 49, 49, 1);
-    margin: 0 auto;
-    padding: 8px 3%;
-    border-radius: 10px;
-
-    button {
-      cursor: pointer;
-    }
-
-    .card-profile-header {
-      height: 4vh;
-      display: flex;
-      justify-content: space-between;
-      .card-profile-button-title {
-        height: 100%;
-        display: flex;
-
-        align-items: center;
-        gap: 10px;
-        h1 {
-          color: white;
-          margin: auto 0;
-          font-size: clamp(1rem, 3vw, 2rem);
-        }
-        .card-profile-header-button {
-          img {
-            height: 110%;
-          }
-        }
-      }
-      .card-profile-header-icons {
-        gap: 3px;
-        display: flex;
-        justify-content: end;
-        cursor: pointer;
-      }
-    }
-
-    .card-profile-line {
-      margin: 3px 0;
-      width: 100%;
-    }
-    .cart-content {
-      display: flex;
-      flex-direction: column;
-      .cart-content-up {
-        height: 12vh;
-        margin: 1vh 2%;
-        display: flex;
-        flex-direction: row;
-      }
-      .cart-content-down {
-        height: 12vh;
-        margin: 0 2% 2vh 2%;
-        padding-left: 3px;
-        display: flex;
-        flex-direction: row;
-      }
-      .cart-content-text {
-        width: 70%;
-        height: 100%;
-        margin: 8px 16px;
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+        position: relative;
+        top: 48%;
+        left: 20px;
+        height: 36px;
+        font-family: sans-serif;
         font-size: clamp(1rem, 2vw, 1.5rem);
       }
     }
-    .modyfy-user {
-      .modyfy-user-modal-inputs {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        input {
-          width: 70%;
-          margin: 0 auto;
-          border: 1px solid #10fffe;
-          background: black;
-          color: white;
-          padding: 8px 12px;
-          border-radius: 8px;
-        }
-        button {
-          padding: 8px 12px;
-          color: #10fffe;
-          transition: ease-in-out 0.3s;
-        }
-        button:hover {
-          scale: 1.2;
-        }
-      }
-      .modyfy-user-modal-button {
-        position: absolute;
-        top: 80vh;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
   }
-  .add-car,
-  .modify-car,
-  .modyfy-user {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .df-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-inline: auto;
     width: 100%;
-    height: 130vh;
-    z-index: 10002;
-    backdrop-filter: blur(1.5px);
-    background-color: rgba(255, 255, 255, 0.162);
+    height: 100%;
+    gap: 1rem;
 
-    .add-car-modal,
-    .modify-car-modal,
-    .modyfy-user-modal {
-      position: relative;
-      background-image: url("../../assets/images/bckground.jpg");
-      width: 100%;
-      height: 100dvh;
-      background-repeat: no-repeat;
-      background-size: cover;
-      color: white;
-      animation: slide 1s ease-in-out;
-      .add-car-modal-close {
-        margin: 20px;
-      }
-      section {
-        margin-block-start: 50px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        height: 30vh;
-        border: 1px solid #10fffe;
-        border-radius: 8px;
-        margin: 130px 20px 100px 20px;
-        padding-inline: 10px;
-        h2 {
-          text-align: center;
-        }
-        .proposition {
-          color: white;
+    .card-profile {
+      border: 1px solid #465454;
+      width: 420px;
+      max-height: 100%;
+      background-color: rgba(40, 49, 49, 1);
+      margin: 0 auto;
+      padding: 8px 3%;
+      border-radius: 10px;
 
-          margin-left: 16px;
-          height: 18.5px;
-        }
-      }
-
-      .add-car-button,
-      .modify-car-button,
-      .modyfy-user-modal-button {
-        display: block;
-        margin: 0 auto;
-        width: 220px;
-        height: 43px;
-        border-radius: 24px;
-        background: var(--Color-3, #10fffe);
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      button {
         cursor: pointer;
       }
-    }
-  }
-  .modify-delete-car {
-    height: 12vh;
-    display: flex;
 
-    .modify-delete-car-content {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin: auto 0;
-      div {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        button {
-          text-align: start;
-          color: white;
-        }
-      }
-    }
-    .delete-car-modal {
-      width: 100%;
-      h1 {
-        text-align: center;
-        font-size: clamp(0.9rem, 2vw, 1.5rem);
-        margin-block: 10px;
-        color: red;
-      }
-      .delete-car-modal-content {
-        width: 100%;
+      .card-profile-header {
+        height: 4vh;
         display: flex;
-        gap: 100px;
-
-        .delete-car-modal-content-text {
+        justify-content: space-between;
+        .card-profile-button-title {
+          height: 100%;
           display: flex;
-          flex-direction: column;
-          gap: 3px;
-          li {
-            font-size: clamp(0.7rem, 1.5vw, 1.2rem);
+          align-items: center;
+          gap: 10px;
+
+          h1 {
+            color: white;
+            margin: auto 0;
+            font-size: clamp(1rem, 3vw, 2rem);
+          }
+          .card-profile-header-button {
+            img {
+              height: 110%;
+            }
           }
         }
-        .buttons-content {
-          margin-top: 15px;
+        .card-profile-header-icons {
+          gap: 3px;
           display: flex;
-          gap: 30px;
+          justify-content: end;
+          cursor: pointer;
+        }
+      }
+
+      .card-profile-line {
+        margin: 3px 0;
+        width: 100%;
+      }
+      .cart-content {
+        display: flex;
+        flex-direction: column;
+        margin: 1rem;
+        min-height: 100px;
+
+        .cart-content-up {
+          height: 100px;
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          gap: 1rem;
+
+          .car-profil-user-fond {
+            position: relative;
+            background-color: #85d9ec; /* Couleur du cercle */
+            border-radius: 50%; /* Pour créer un cercle */
+            width: 350px; /* Largeur du cercle */
+            height: 100px; /* Hauteur du cercle */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .car-profil-user {
+            position: absolute;
+            object-fit: contain;
+            top: 0;
+            width: 200px;
+            height: 120px;
+          }
+        }
+        .cart-content-down {
+          height: 100%;
+          margin-top: 2rem;
+          display: flex;
+          flex-direction: row;
+
+          .car-profil-user-fond {
+            position: relative;
+            background-color: #85d9ec; /* Couleur du cercle */
+            border-radius: 50%; /* Pour créer un cercle */
+            width: 350px; /* Largeur du cercle */
+            height: 100px; /* Hauteur du cercle */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .car-profil-user {
+            position: absolute;
+            object-fit: cover;
+            top: 0;
+            width: 200px;
+            height: 120px;
+          }
+        }
+        .cart-content-text {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: end;
+          font-size: 18px;
+          gap: 1rem;
+
+          li {
+            text-align: end;
+            width: 100%;
+          }
+        }
+      }
+      .modyfy-user {
+        .modyfy-user-modal-inputs {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          input {
+            width: 70%;
+            margin: 0 auto;
+            border: 1px solid #10fffe;
+            background: black;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+          }
+          button {
+            padding: 8px 12px;
+            color: #10fffe;
+            transition: ease-in-out 0.3s;
+          }
+          button:hover {
+            scale: 1.2;
+          }
+        }
+        .modyfy-user-modal-button {
+          position: absolute;
+          top: 80vh;
+          left: 50%;
+          transform: translateX(-50%);
         }
       }
     }
   }
-  @media screen and (min-width: 768px) {
-    .add-car-modal,
-    .modify-car-modal,
-    .modyfy-user-modal {
-      width: 40%;
-      max-width: 450px;
+  .add {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+.add-car,
+.modify-car,
+.modyfy-user {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 130vh;
+  z-index: 10002;
+  backdrop-filter: blur(1.5px);
+  background-color: rgba(255, 255, 255, 0.162);
+
+  .add-car-modal,
+  .modify-car-modal,
+  .modyfy-user-modal {
+    position: relative;
+    background-image: url("../../assets/images/bckground.jpg");
+    width: 100%;
+    height: 100dvh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    animation: slide 1s ease-in-out;
+    .add-car-modal-close {
+      margin: 20px;
+    }
+    section {
+      margin-block-start: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 30vh;
+      border: 1px solid #10fffe;
+      border-radius: 8px;
+      margin: 130px 20px 100px 20px;
+      padding-inline: 10px;
+      h2 {
+        text-align: center;
+      }
+      .proposition {
+        color: white;
+        margin-left: 16px;
+        height: 18.5px;
+      }
+    }
+
+    .add-car-button,
+    .modify-car-button,
+    .modyfy-user-modal-button {
+      display: block;
+      margin: 0 auto;
+      width: 220px;
+      height: 43px;
+      border-radius: 24px;
+      background: var(--Color-3, #10fffe);
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
     }
   }
-  @keyframes slide {
-    0% {
-      left: -100%;
+}
+.modify-delete-car {
+  height: 12vh;
+  display: flex;
+
+  .modify-delete-car-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: auto 0;
+    div {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      button {
+        text-align: start;
+        color: white;
+      }
     }
-    94% {
-      left: 0;
+  }
+  .delete-car-modal {
+    width: 100%;
+    h1 {
+      text-align: center;
+      font-size: clamp(0.9rem, 2vw, 1.5rem);
+      margin-block: 10px;
+      color: red;
     }
-    98% {
-      width: 110%;
-    }
-    to {
+    .delete-car-modal-content {
       width: 100%;
+      display: flex;
+      gap: 100px;
+
+      .delete-car-modal-content-text {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        li {
+          font-size: clamp(0.7rem, 1.5vw, 1.2rem);
+        }
+      }
+      .buttons-content {
+        margin-top: 15px;
+        display: flex;
+        gap: 30px;
+      }
     }
+  }
+}
+@media screen and (min-width: 768px) {
+  .add-car-modal,
+  .modify-car-modal,
+  .modyfy-user-modal {
+    width: 40%;
+    max-width: 450px;
+  }
+  main {
+    height: 1050px;
+  }
+  .profile {
+    width: 100%;
+    min-height: 100dvh;
+    background-image: url("../../assets/images/bckground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    gap: 2rem;
+    color: white;
+
+    .profile-garage {
+      background-image: url("../../assets/images/backgrounddesktop.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 100%;
+      max-width: 770px;
+      height: 200px;
+
+      .profile-garage-text {
+        display: flex;
+        position: relative;
+
+        .picture-car {
+          position: relative;
+          top: 80px;
+          right: -60%;
+          height: 140px;
+          max-width: 290px;
+          background-image: url("../../assets/imagesvoitures/audi-e-tron-gt-476.png");
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+        .profile-garage-contain-title {
+          h1 {
+            position: absolute;
+            left: 5%;
+            width: 500px;
+            height: 40px;
+            font-family: sans-serif;
+            font-size: clamp(1rem, 5vw, 1.5rem);
+          }
+          p {
+            position: absolute;
+            top: 140px;
+            left: 5%;
+            width: 500px;
+            height: 50px;
+            font-family: sans-serif;
+            font-size: clamp(1rem, 5vw, 1.5rem);
+          }
+        }
+      }
+    }
+    .df-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-inline: auto;
+      width: 770px;
+      height: 61dvh;
+
+      .card-profile {
+        width: 370px;
+        max-height: 100%;
+        background-color: rgba(40, 49, 49, 1);
+        border-radius: 10px;
+        border: 1px solid #465454;
+
+        button {
+          cursor: pointer;
+        }
+
+        .card-profile-header {
+          height: 4vh;
+          display: flex;
+          justify-content: space-between;
+          .card-profile-button-title {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            h1 {
+              color: white;
+              margin: auto 0;
+              font-size: clamp(1rem, 3vw, 2rem);
+            }
+            .card-profile-header-button {
+              img {
+                height: 110%;
+              }
+            }
+          }
+          .card-profile-header-icons {
+            gap: 3px;
+            display: flex;
+            justify-content: end;
+            cursor: pointer;
+          }
+        }
+
+        .card-profile-line {
+          margin: 3px 0;
+          width: 100%;
+        }
+        .cart-content {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          .car-picture {
+            height: 550px;
+          }
+          .cart-content-up {
+            margin-top: 1rem;
+            height: 100px;
+            display: flex;
+            flex-direction: row;
+            padding-left: 1rem;
+
+            .car-profil-user-fond {
+              position: relative;
+              background-color: #85d9ec; /* Couleur du cercle */
+              border-radius: 50%; /* Pour créer un cercle */
+              width: 550px; /* Largeur du cercle */
+              height: 150px; /* Hauteur du cercle */
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-bottom: 5rem;
+            }
+            .car-profil-user {
+              position: absolute;
+              object-fit: contain;
+              top: 0;
+              width: 400px;
+              height: 150px;
+            }
+          }
+          .cart-content-down {
+            height: 12vh;
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 8rem;
+            margin-top: 5rem;
+            // overflow: hidden;
+            .car-profil-user-fond {
+              position: relative;
+              background-color: #85d9ec; /* Couleur du cercle */
+              border-radius: 50%; /* Pour créer un cercle */
+              width: 550px; /* Largeur du cercle */
+              height: 150px; /* Hauteur du cercle */
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+            .car-profil-user {
+              position: absolute;
+              object-fit: cover;
+              top: 0;
+              width: 250px;
+              height: 150px;
+            }
+          }
+          .cart-content-text {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: clamp(0.5rem, 2vw, 1.4rem);
+          }
+        }
+        .modyfy-user {
+          .modyfy-user-modal-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            input {
+              width: 70%;
+              margin: 0 auto;
+              border: 1px solid #10fffe;
+              background: black;
+              color: white;
+              padding: 8px 12px;
+              border-radius: 8px;
+            }
+            button {
+              padding: 8px 12px;
+              color: #10fffe;
+              transition: ease-in-out 0.3s;
+            }
+            button:hover {
+              scale: 1.2;
+            }
+          }
+          .modyfy-user-modal-button {
+            position: absolute;
+            top: 80vh;
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+      }
+      .add {
+        width: 770px;
+        min-height: 250px;
+      }
+    }
+    .add-car,
+    .modify-car,
+    .modyfy-user {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 130vh;
+      z-index: 10002;
+      backdrop-filter: blur(1.5px);
+      background-color: rgba(255, 255, 255, 0.162);
+
+      .add-car-modal,
+      .modify-car-modal,
+      .modyfy-user-modal {
+        position: relative;
+        background-image: url("../../assets/images/bckground.jpg");
+        width: 100%;
+        height: 100dvh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: white;
+        animation: slide 1s ease-in-out;
+        .add-car-modal-close {
+          margin: 20px;
+        }
+        section {
+          margin-block-start: 50px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          height: 30vh;
+          border: 1px solid #10fffe;
+          border-radius: 8px;
+          margin: 130px 20px 100px 20px;
+          padding-inline: 10px;
+          h2 {
+            text-align: center;
+          }
+          .proposition {
+            color: white;
+
+            margin-left: 16px;
+            height: 18.5px;
+          }
+        }
+
+        .add-car-button,
+        .modify-car-button,
+        .modyfy-user-modal-button {
+          display: block;
+          margin: 0 auto;
+          width: 220px;
+          height: 43px;
+          border-radius: 24px;
+          background: var(--Color-3, #10fffe);
+          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+          cursor: pointer;
+        }
+      }
+    }
+    .modify-delete-car {
+      height: 12vh;
+      display: flex;
+
+      .modify-delete-car-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: auto 0;
+        div {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          button {
+            text-align: start;
+            color: white;
+          }
+        }
+      }
+      .delete-car-modal {
+        width: 100%;
+        h1 {
+          text-align: center;
+          font-size: clamp(0.9rem, 2vw, 1.5rem);
+          margin-block: 10px;
+          color: red;
+        }
+        .delete-car-modal-content {
+          width: 100%;
+          display: flex;
+          gap: 100px;
+
+          .delete-car-modal-content-text {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            li {
+              font-size: clamp(0.7rem, 1.5vw, 1.2rem);
+            }
+          }
+          .buttons-content {
+            margin-top: 15px;
+            display: flex;
+            gap: 30px;
+          }
+        }
+      }
+    }
+  }
+}
+@keyframes slide {
+  0% {
+    left: -100%;
+  }
+  94% {
+    left: 0;
+  }
+  98% {
+    width: 110%;
+  }
+  to {
+    width: 100%;
   }
 }

@@ -41,13 +41,15 @@ function CardPlug() {
             <li> xx yy zz</li>
           </ul>
         </div>
-        {show && (
-          <ul>
-            <li>Toulouse </li>
-            <li> Type de prise:</li>
-            <li> xx yy zz</li>
-          </ul>
-        )}
+        <div className="cart-content-text">
+          {show && (
+            <ul>
+              <li>Toulouse </li>
+              <li> Type de prise:</li>
+              <li> xx yy zz</li>
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );
