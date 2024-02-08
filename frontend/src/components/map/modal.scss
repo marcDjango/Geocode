@@ -13,8 +13,8 @@
     position: absolute;
     top: -30px;
     right: 20px;
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
     background-image: url("../../assets/carspicture/audi-e-tron-55-quattro-408-ch_001-removebg-preview.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -72,17 +72,18 @@
 
       .timetables {
         display: flex;
+        align-items: center;
         width: 160px;
-        height: 44px;
+        min-height: 44px;
         gap: 8px;
         justify-content: center;
-        align-items: center;
         border-radius: 15px;
         background: var(--Color-2, #525b5a);
         color: white;
         position: absolute;
         top: 0;
         left: 55%;
+        padding: 0px;
 
         button {
           cursor: pointer;
@@ -134,7 +135,7 @@
       .button-reservation {
         padding: 16px;
         display: flex;
-        height: 38px;
+        height: 44px;
         justify-content: center;
         align-items: center;
         border-radius: 20px;
@@ -199,7 +200,7 @@
         .timetables {
           width: 120px;
           left: 52%;
-          height: 34px;
+          min-height: 34px;
         }
       }
     }

@@ -44,10 +44,10 @@ function ModifyCar() {
           {dataCars.map((car, index) => (
             <div key={car.model}>
               <button type="button" onClick={() => handlerClickModify(index)}>
-                modifier: {car.Marque}
+                Modifier: {car.Marque}
               </button>
               <button type="button" onClick={() => handlerClickDelete(index)}>
-                supprimer: {car.Marque}
+                Supprimer: {car.Marque}
               </button>
             </div>
           ))}
@@ -55,7 +55,7 @@ function ModifyCar() {
       )}
       {dataDeleteCar && (
         <div className="delete-car-modal">
-          <h1>Voulez-vous vraiment supprimer ce vehicule</h1>
+          <h1>Voulez-vous vraiment supprimer ce véhicule ?</h1>
           <div className="delete-car-modal-content">
             <ul className="delete-car-modal-content-text">
               <li>Marque: {dataDeleteCar.Marque}</li>
