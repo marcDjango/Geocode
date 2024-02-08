@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import user from "./config.json";
 import Form from "../../form/form";
 import "./RegistrationForm.scss";
@@ -8,6 +9,7 @@ import Alert from "../../alert/alert";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function RegistrationForm({ isSignupModal, setIsSignupModal }) {
+  const navigate = useNavigate();
   const [isErrors, setIsErrors] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
   const handleOnClickCloseModal = () => {
@@ -64,6 +66,20 @@ function RegistrationForm({ isSignupModal, setIsSignupModal }) {
       console.error(error);
     }
   };
+  useEffect(() => {
+    if (isSubmit) {
+      const timerId = setTimeout(() => {
+        setIsSignupModal(false);
+        navigate("/login");
+      }, 2000);
+
+      return () => {
+        // Assurez-vous de nettoyer le timer si le composant est démonté avant l'expiration du délai
+        clearTimeout(timerId);
+      };
+    }
+    return undefined;
+  }, [isSubmit, setIsSignupModal]);
 
   return (
     <div className="background-modal">
