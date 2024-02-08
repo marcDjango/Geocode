@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 :root {
   --geo-font: "futureX";
@@ -166,6 +167,12 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 button {
+  outline: none;
   border: none;
   background: none;
+  font-family: sans-serif;
+}
+input {
+  outline: none;
+  font-family: sans-serif;
 }

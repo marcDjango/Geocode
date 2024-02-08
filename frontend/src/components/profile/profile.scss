@@ -14,6 +14,20 @@
   align-items: center;
   color: white;
 
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+    img {
+      height: 50px;
+    }
+    a {
+      font-size: 20px;
+    }
+  }
+
   .profile-garage {
     background-image: url("../../assets/images/garage.png");
     background-repeat: no-repeat;
@@ -281,12 +295,13 @@
   }
 }
 .modify-delete-car {
-  height: 12vh;
   display: flex;
+  font-size: 20px;
 
   .modify-delete-car-content {
     width: 100%;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     gap: 10px;
     margin: auto 0;
@@ -306,24 +321,50 @@
       font-size: clamp(0.9rem, 2vw, 1.5rem);
       margin-block: 10px;
       color: red;
+      padding: 10px;
     }
     .delete-car-modal-content {
       width: 100%;
       display: flex;
-      gap: 100px;
+      // gap: 100px;
 
       .delete-car-modal-content-text {
         display: flex;
         flex-direction: column;
         gap: 3px;
+        margin-top: 16px;
         li {
-          font-size: clamp(0.7rem, 1.5vw, 1.2rem);
+          font-size: clamp(0.7rem, 1.5vw, 1.5em);
         }
       }
       .buttons-content {
         margin-top: 15px;
         display: flex;
         gap: 30px;
+
+        button {
+          color: white;
+          padding: 16px;
+          display: flex;
+          height: 38px;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20px;
+          background: var(--Color-3, #10fffe);
+          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+          cursor: pointer;
+          font-weight: 600;
+          transition: transform 0.3s ease;
+          font-size: 14px;
+
+          &:hover {
+            transform: scale(1.05);
+          }
+
+          &:active {
+            transform: scale(0.95);
+          }
+        }
       }
     }
   }
@@ -345,7 +386,7 @@
     display: flex;
     flex-direction: column;
     padding: 3rem;
-    gap: 2rem;
+    gap: 1rem;
     color: white;
 
     .profile-garage {
@@ -648,6 +689,10 @@
             margin-top: 15px;
             display: flex;
             gap: 30px;
+            button {
+              padding: 24px;
+              font-size: 24px;
+            }
           }
         }
       }

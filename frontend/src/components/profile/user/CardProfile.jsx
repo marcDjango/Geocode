@@ -10,8 +10,9 @@ function CardProfile() {
   const [show, setShow] = useState(false);
   const [modal, setModal] = useState(false);
   const [userData, setUserData] = useState({});
-
   const [age, setAge] = useState(null);
+  const [genderFr, setGenderFr] = useState({});
+
   useEffect(() => {
     const fetchUser = async () => {
       const { VITE_BACKEND_URL } = import.meta.env;
@@ -38,7 +39,15 @@ function CardProfile() {
     };
     fetchUser();
   }, [modal]);
-
+  useEffect(() => {
+    if (userData.gender === "male") {
+      setGenderFr("Homme");
+    } else if (userData.gender === "female") {
+      setGenderFr("Femme");
+    } else {
+      setGenderFr("Autre");
+    }
+  }, [userData]);
   useEffect(() => {
     // Function to calculate age based on birthdate
     const calculateAge = () => {
@@ -104,7 +113,7 @@ function CardProfile() {
           <div className="cart-content-up">
             <ul className="cart-content-text">
               <li>{userData.email}</li>
-              <li>{userData.gender}</li>
+              {genderFr && <li>{genderFr}</li>}
               <li>Nombre de véhicules : {userData.number_vehicles}</li>
             </ul>
           </div>

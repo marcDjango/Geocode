@@ -1,6 +1,6 @@
 .calendar-container {
   input {
-    width: 160px;
+    width: 250px;
     border-radius: 20px;
     padding: 10px;
     border: 1px solid #10fffe;
@@ -9,6 +9,7 @@
     margin: 8px;
     z-index: 1004;
     text-align: center;
+    font-size: 20px;
 
     &::placeholder {
       color: white;
