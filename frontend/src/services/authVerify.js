@@ -23,4 +23,24 @@ const verifyTokenOnServer = async () => {
   }
 };
 
+export const fetchDataUsers = async (id) => {
+  const token = localStorage.getItem("token");
+
+  try {
+    const response = await fetch(`${VITE_BACKEND_URL}/api/users/${id}/admin`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      return redirect("/");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw Error("error", error);
+  }
+};
+
 export default verifyTokenOnServer;

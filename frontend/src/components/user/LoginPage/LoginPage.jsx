@@ -7,7 +7,6 @@ import "./login.scss";
 import RegistrationForm from "../RegistrationPage/RegistrationForm";
 
 function LoginPage() {
-  // const [isAdmin, setIsAdmin] = useState(false);
   const { auth, setAuth } = useCurrentUserContext();
   const navigate = useNavigate();
   const [isErrors, setIsErrors] = useState(null);
@@ -44,7 +43,6 @@ function LoginPage() {
       const user = await response.json();
       if (response.status === 200) {
         if (user.user.is_admin === 1) {
-          // setIsAdmin(true);
           delete user.user.is_admin;
           setAuth(user.user);
           localStorage.setItem("user", JSON.stringify(user.user));
@@ -55,7 +53,7 @@ function LoginPage() {
           setAuth(user.user);
           localStorage.setItem("user", JSON.stringify(user.user));
           localStorage.setItem("token", user.token);
-          navigate("/profile");
+          navigate("/map");
         }
       } else {
         if (user.validationErrors.length > 0) {
@@ -70,11 +68,6 @@ function LoginPage() {
       setIsSubmit(true);
     }
   };
-  // useEffect(() => {
-  //   if (auth) {
-  //     navigate("/profile");
-  //   }
-  // }, [auth, navigate]);
 
   return (
     <section className="tercolumn">

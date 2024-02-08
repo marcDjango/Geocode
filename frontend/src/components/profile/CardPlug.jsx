@@ -89,7 +89,7 @@ function CardPlug() {
             className="card-profile-anuler-button"
             onClick={() => handlerdeleteReservation()}
           >
-            Anuler
+            Annuler
           </button>
         )}
       </div>

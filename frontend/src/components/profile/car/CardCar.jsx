@@ -1,4 +1,3 @@
-/* eslint-disable no-await-in-loop */
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import AddCar from "./AddCar";
@@ -24,9 +23,11 @@ function CardCar() {
   useEffect(() => {
     const loadImages = async () => {
       const loaded = {};
-      for (const key of Object.keys(images)) {
-        loaded[key] = (await images[key]).default;
-      }
+      await Promise.all(
+        Object.keys(images).map(async (key) => {
+          loaded[key] = (await images[key]).default;
+        })
+      );
       setLoadedImages(loaded);
     };
 

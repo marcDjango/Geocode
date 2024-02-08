@@ -54,6 +54,7 @@ const validateMessage = require("./middlewares/validateMessage");
 // Route to get a list of charging station
 router.get("/users", verifyToken, userControllers.browse);
 router.get("/users/:id", verifyToken, userControllers.read);
+router.get("/users/:id/admin", verifyToken, userControllers.readIsAdmin);
 router.post("/users/", validateUser, hashPassword, userControllers.add);
 router.post(
   "/users/login",
