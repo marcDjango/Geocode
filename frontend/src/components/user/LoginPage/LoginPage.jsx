@@ -12,7 +12,6 @@ function LoginPage() {
   const [isErrors, setIsErrors] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
   const [isSignupModal, setIsSignupModal] = useState(false);
-  console.info(auth);
   const contact = {
     email: {
       value: "Adresse email",
@@ -44,7 +43,9 @@ function LoginPage() {
       if (response.status === 200) {
         if (user.user.is_admin === 1) {
           delete user.user.is_admin;
-          setAuth(user.user);
+          if (auth) {
+            setAuth(user.user);
+          }
           localStorage.setItem("user", JSON.stringify(user.user));
           localStorage.setItem("token", user.token);
           navigate("/admin");
