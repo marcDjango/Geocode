@@ -2,6 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 html,
@@ -159,6 +160,12 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 button {
+  outline: none;
   border: none;
   background: none;
+  font-family: sans-serif;
+}
+input {
+  outline: none;
+  font-family: sans-serif;
 }
