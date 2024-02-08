@@ -18,10 +18,7 @@ function Navbar() {
     { name: "Accueil", route: "/" },
     { name: "Carte", route: "/map" },
     { name: "Profil", route: "/profile" },
-    { name: "Informations", route: "/" },
-    { name: "Actualités", route: "/" },
     { name: "Contact", route: "/contact" },
-    { name: "A propos de nous", route: "/" },
   ];
   if (window.innerWidth >= 600 && location.pathname === "/") {
     return null;
@@ -119,6 +116,19 @@ function Navbar() {
                 />
               </Link>
             </>
+          )}
+
+          {localStorage.getItem("token") && (
+            <button
+              type="button"
+              className="navbar-links-desktop"
+              onClick={() => {
+                localStorage.clear();
+                navigate("/logout");
+              }}
+            >
+              Déconnexion
+            </button>
           )}
         </div>
       )}

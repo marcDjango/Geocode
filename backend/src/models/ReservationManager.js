@@ -27,5 +27,15 @@ class ReservaManager extends AbstractManager {
     // Returning the first row (assuming there is only one result)
     return row[0];
   }
+
+  async readReservationByUser(id) {
+    const [row] = await this.database.query(
+      `select user_has_charging_station.id, user_has_charging_station.user_id AS userId, user_has_charging_station.charging_station_id AS chargingStationId, DATE_FORMAT(reservation_date, '%Y-%m-%d') AS reservationDate, user_has_charging_station.reservation_heure AS reservationHeure, user_has_charging_station.amount_paid AS amountPaid, charging_station.nom_operateur AS nomOperateur from ${this.table} 
+        inner join charging_station on charging_station.id = user_has_charging_station.charging_station_id
+        where user_id = ?`,
+      [id]
+    );
+    return row; // No need to access row[0] here
+  }
 }
 module.exports = ReservaManager;
