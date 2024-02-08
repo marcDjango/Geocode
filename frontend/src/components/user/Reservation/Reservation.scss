@@ -17,8 +17,9 @@
 
 .open-popup {
   visibility: visible;
-  top: 200%;
-  transform: translate(-50%, -50%) scale(1);
+  top: 100%;
+  transform: translate(-50%, -0%) scale(1);
+  transition-duration: 0.3s;
   z-index: 1099;
 }
 .close {
