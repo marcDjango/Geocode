@@ -13,8 +13,6 @@ const verifyTokenOnServer = async () => {
       },
     });
     if (response.ok) {
-      const data = await response.json();
-      console.info("Token vérifié avec succès :", data.token);
       return token; // Retourne le token une fois vérifié avec succès
     }
     return redirect("/logout");

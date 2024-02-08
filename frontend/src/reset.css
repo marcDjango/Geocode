@@ -4,6 +4,13 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+:root {
+  --geo-font: "futureX";
+}
+@font-face {
+  font-family: "futureX";
+  src: url("../src/assets/fonts/MADE\ Future\ X\ Light\ PERSONAL\ USE.otf");
+}
 
 html,
 body,
@@ -111,6 +118,7 @@ section {
 body {
   line-height: 1;
   height: 100%;
+  font-family: var(--geo-font);
 }
 ol,
 ul {
@@ -158,7 +166,6 @@ input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
-
 button {
   outline: none;
   border: none;

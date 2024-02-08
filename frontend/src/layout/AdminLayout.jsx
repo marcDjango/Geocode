@@ -3,7 +3,6 @@ import Avatar from "../assets/images/avatar.png";
 import Email from "../assets/images/clarity_email-solid.svg";
 import Car from "../assets/images/fa-solid_car.svg";
 import User from "../assets/images/fa-solid_users.svg";
-import Setting from "../assets/images/ion_settings.svg";
 import Logout from "../assets/images/solar_logout-2-bold.svg";
 import Calender from "../assets/images/uis_schedule.svg";
 import Home from "../assets/images/clarity_home-solid.png";
@@ -61,12 +60,6 @@ function AdminLayout() {
                   <img className="icon-link" src={Calender} alt="icon-link" />
                   <Link className="navigation-link" to="/admin/reservations">
                     <p className="text-link">Réservations</p>
-                  </Link>
-                </li>
-                <li className="menu-navigation-link">
-                  <img className="icon-link" src={Setting} alt="icon-link" />
-                  <Link className="navigation-link" to="/admin/users">
-                    <p className="text-link">Options</p>
                   </Link>
                 </li>
                 <li className="menu-navigation-link">

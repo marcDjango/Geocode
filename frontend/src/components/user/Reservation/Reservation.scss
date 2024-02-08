@@ -1,3 +1,41 @@
+.popup {
+  width: 400px;
+  background-color: rgba(170, 246, 56, 0.8);
+  border-radius: 6px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  text-align: center;
+  padding: 0 30px 30px;
+  color: #333;
+  visibility: hidden;
+  transition:
+    transform 0.4s,
+    top 0.4s;
+}
+
+.open-popup {
+  visibility: visible;
+  top: 100%;
+  transform: translate(-50%, -0%) scale(1);
+  transition-duration: 0.3s;
+  z-index: 1099;
+}
+.close {
+  margin-top: 1em;
+  width: 40px;
+}
+.title-popup {
+  padding: 1rem;
+  font-size: 18px;
+}
+.text-popup {
+  padding: 1rem;
+  margin-top: 5rem;
+  font-size: 18px;
+}
+
 .reservation-modal {
   position: absolute;
   width: 100%;
