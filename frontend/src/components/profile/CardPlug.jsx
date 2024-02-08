@@ -41,6 +41,7 @@ function CardPlug() {
     };
     fetchReservationUser();
   }, [onClick]);
+
   const handlerdeleteReservation = async () => {
     setOnClick(!onClick);
     if (reservation.length) {
@@ -71,7 +72,7 @@ function CardPlug() {
           <button
             type="button"
             className="card-profile-header-button"
-            onClick={() => setShow(!show)}
+            onClick={() => reservation.length > 0 && setShow(!show)}
           >
             {show ? (
               <img src={flachHaute} alt="flach" />
@@ -96,20 +97,22 @@ function CardPlug() {
       <div className="cart-content">
         <div className="cart-content-up">
           <img src={chargingImage} alt="ststion" />
-          {reservation.length > 0 && (
+          {reservation.length > 0 ? (
             <ul className="cart-content-text">
-              <li>{`Name d'operateur : ${reservation[0].nomOperateur}`}</li>
-              <li>{`Date : ${reservation[0].reservationDate} Heure : ${reservation[0].reservationHeure}`}</li>
-              <li>{`Tarif : ${reservation[0].amountPaid} €`}</li>
+              <li>{`Nom d'enseigne : ${reservation[0].nomEnseigne}`}</li>
+            </ul>
+          ) : (
+            <ul className="cart-content-text">
+              <li>Aucune réservation!</li>
             </ul>
           )}
         </div>
         <div className="cart-content-text">
-          {show && (
+          {reservation.length > 0 && show && (
             <ul>
-              <li>Toulouse </li>
-              <li> Type de prise:</li>
-              <li> xx yy zz</li>
+              <li>{`Date : ${reservation[0].reservationDate}`}</li>
+              <li>{`Heure : ${reservation[0].reservationHeure}`}</li>
+              <li>{`Tarif : ${reservation[0].amountPaid} €`}</li>
             </ul>
           )}
         </div>
