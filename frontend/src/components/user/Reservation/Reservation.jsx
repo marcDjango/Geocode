@@ -22,6 +22,7 @@ function Reservation({ station, handleCloseReservationModal }) {
   const payload = JSON.parse(localStorage.getItem("user"));
   const [isFormValidated, setIsFormValidated] = useState(false);
   const price = 5;
+  const [openPopup, setOpenPopup] = useState(false);
 
   const uploadReservation = async (chargingStation) => {
     try {
@@ -49,6 +50,7 @@ function Reservation({ station, handleCloseReservationModal }) {
       });
 
       if (response.ok) {
+        setOpenPopup(false);
         handleCloseReservationModal();
       } else {
         console.error("Échec de la réservation !");
@@ -59,6 +61,7 @@ function Reservation({ station, handleCloseReservationModal }) {
   };
 
   const handleReservation = (item) => {
+    setOpenPopup(true);
     uploadReservation(item);
   };
 
@@ -103,166 +106,183 @@ function Reservation({ station, handleCloseReservationModal }) {
   );
 
   return (
-    <div className="reservation-modal">
-      <div className="reservation-main">
-        <div className="reservation-informations">
-          <div className="button-close-modal-main">
-            <button
-              className="boutton-close-modal-reservation"
-              type="button"
-              onClick={handleCloseReservationModal}
-            >
-              X
-            </button>
-          </div>
-          <div className="informations-title">
-            <h2>{decodeURIComponent(escape(station.nom_enseigne))}</h2>
-          </div>
-          <div className="informations-data">
-            <div className="informations-adresse">
-              <img src={position} alt="adresse" />
-              Adresse : {station.adresse_station}
-            </div>
-            <div className="informations-telephone">
-              <img src={telephone} alt="telephone" />
-              Numéro de téléphone : {station.telephone_operateur}
-            </div>
-            <div className="informations-horloge">
-              <img src={horloge} alt="horloge" />
-              Horaires : {displayText}
-              {station.horaires.length > 25 && (
-                <button
-                  type="button"
-                  className="fold-out-button"
-                  onClick={toggleExpansion}
-                >
-                  <img
-                    src={expanded ? replier : deplier}
-                    alt={expanded ? "Réduire" : "Voir plus"}
-                  />
-                </button>
-              )}{" "}
-            </div>
-          </div>
-          <div className="informations-plug">
-            <h3>Type de prises :</h3>
-            <div>
-              <img src={priseEf} alt="Type EF" /> Prise Ef :{" "}
-              {station.prise_type_ef === "TRUE" ? "Oui" : "Non"}
-            </div>
-            <div>
-              <img src={priseType2} alt="Type 2" /> Prise Type 2 :{" "}
-              {station.prise_type_2 === "TRUE" ? "Oui" : "Non"}
-            </div>
-            <div>
-              <img src={priseComboCcs} alt="Combo CCS" /> Prise Combo CCS :{" "}
-              {station.prise_type_combo_ccs === "TRUE" ? "Oui" : "Non"}
-            </div>
-            <div>
-              <img src={priseChademo} alt="Chademo" /> Prise Chademo :{" "}
-              {station.prise_type_chademo === "TRUE" ? "Oui" : "Non"}
-            </div>
-            <div>
-              <img src={priseAutre} alt="Autre" /> Autre :{" "}
-              {station.prise_type_autre === "TRUE" ? "Oui" : "Non"}
-            </div>
-          </div>
-          <div className="informations-price">
-            Coût en électricité de la borne de recharge :{" "}
-            {station.tarification === ""
-              ? "Pas d'informations de la part de l'enseigne."
-              : `Coût de l'énergie : ${tarificationWithReplacement}€`}
-          </div>
-          <div className="informations-price-reservation">
-            Tarif de réservation : {price}€
-          </div>
-        </div>
-        <div className="reservation-validation">
-          <div className="validation-title">
-            <h2>Réservation</h2>{" "}
-          </div>
-          <div className="reservation-date">
-            <MyCalendar onDateTimeChange={onDateTimeChange} />
-          </div>
-          <div className="time-slot-container">
-            <select
-              id="timeSlot"
-              name="timeSlot"
-              onChange={handleHourChange}
-              value={selectedHour}
-              className="select-no-arrow"
-            >
-              <option value="">Sélectionnez un créneau</option>
-              {[
-                8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14,
-                14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5,
-              ].map((startHour) => {
-                const endHour = startHour + 0.5;
-                const formattedStartHour = Math.floor(startHour);
-                const formattedEndHour = Math.floor(endHour);
-                const startMinute = startHour % 1 === 0 ? "00" : "30";
-                const endMinute = endHour % 1 === 0 ? "00" : "30";
-
-                const formattedOption = `${formattedStartHour}:${startMinute} - ${formattedEndHour}:${endMinute}`;
-
-                return (
-                  <option
-                    key={startHour}
-                    value={`${formattedStartHour}:${startMinute}`}
-                  >
-                    {formattedOption}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          {reservationDateTime && selectedHour && (
-            <div>
+    <div>
+      <div className={openPopup ? "popup open-popup" : "popup"} id="popup">
+        <h2>
+          <strong className="title-popup">Merci!</strong>
+        </h2>
+        <span className="text-popup">
+          Votre réservation a bien été prise en compte...
+        </span>
+        <button
+          className="close"
+          type="button"
+          onClick={() => setOpenPopup(!openPopup)}
+        >
+          ok
+        </button>
+      </div>
+      <div className="reservation-modal">
+        <div className="reservation-main">
+          <div className="reservation-informations">
+            <div className="button-close-modal-main">
               <button
+                className="boutton-close-modal-reservation"
                 type="button"
-                className="button-validation-calendar"
-                onClick={handleValidation}
+                onClick={handleCloseReservationModal}
               >
-                Validez
+                X
               </button>
             </div>
-          )}
-          {isFormValidated && (
-            <div className="background-modal-validation-reservation">
-              <div className="modal-validation-reservation">
-                <div className="reservation-price">
-                  {reservationDateTime && (
-                    <>
-                      Vous avez choisi de réserver une borne{" "}
-                      <strong>{station.nom_enseigne}</strong> le{" "}
-                      <strong>{formatDate(reservationDateTime)} à </strong>
-                      <strong>
-                        <strong>{selectedHour}</strong>
-                      </strong>{" "}
-                      pour une durée de 30 min, votre montant est de{" "}
-                      <strong>{price}</strong> €.
-                    </>
-                  )}
-                </div>
-                <div className="reservation-button">
+            <div className="informations-title">
+              <h2>{decodeURIComponent(escape(station.nom_enseigne))}</h2>
+            </div>
+            <div className="informations-data">
+              <div className="informations-adresse">
+                <img src={position} alt="adresse" />
+                Adresse : {station.adresse_station}
+              </div>
+              <div className="informations-telephone">
+                <img src={telephone} alt="telephone" />
+                Numéro de téléphone : {station.telephone_operateur}
+              </div>
+              <div className="informations-horloge">
+                <img src={horloge} alt="horloge" />
+                Horaires : {displayText}
+                {station.horaires.length > 25 && (
                   <button
                     type="button"
-                    className="validation-reservation-button"
-                    onClick={() => handleReservation(station.id)}
+                    className="fold-out-button"
+                    onClick={toggleExpansion}
                   >
-                    Réservez et Payez
+                    <img
+                      src={expanded ? replier : deplier}
+                      alt={expanded ? "Réduire" : "Voir plus"}
+                    />
                   </button>
-                  <button
-                    type="button"
-                    className="cancellation-reservation-button"
-                    onClick={handleCancellation}
-                  >
-                    Annuler
-                  </button>
-                </div>
+                )}{" "}
               </div>
             </div>
-          )}
+            <div className="informations-plug">
+              <h3>Type de prises :</h3>
+              <div>
+                <img src={priseEf} alt="Type EF" /> Prise Ef :{" "}
+                {station.prise_type_ef === "TRUE" ? "Oui" : "Non"}
+              </div>
+              <div>
+                <img src={priseType2} alt="Type 2" /> Prise Type 2 :{" "}
+                {station.prise_type_2 === "TRUE" ? "Oui" : "Non"}
+              </div>
+              <div>
+                <img src={priseComboCcs} alt="Combo CCS" /> Prise Combo CCS :{" "}
+                {station.prise_type_combo_ccs === "TRUE" ? "Oui" : "Non"}
+              </div>
+              <div>
+                <img src={priseChademo} alt="Chademo" /> Prise Chademo :{" "}
+                {station.prise_type_chademo === "TRUE" ? "Oui" : "Non"}
+              </div>
+              <div>
+                <img src={priseAutre} alt="Autre" /> Autre :{" "}
+                {station.prise_type_autre === "TRUE" ? "Oui" : "Non"}
+              </div>
+            </div>
+            <div className="informations-price">
+              Coût en électricité de la borne de recharge :{" "}
+              {station.tarification === ""
+                ? "Pas d'informations de la part de l'enseigne."
+                : `Coût de l'énergie : ${tarificationWithReplacement}€`}
+            </div>
+            <div className="informations-price-reservation">
+              Tarif de réservation : {price}€
+            </div>
+          </div>
+          <div className="reservation-validation">
+            <div className="validation-title">
+              <h2>Réservation</h2>{" "}
+            </div>
+            <div className="reservation-date">
+              <MyCalendar onDateTimeChange={onDateTimeChange} />
+            </div>
+            <div className="time-slot-container">
+              <select
+                id="timeSlot"
+                name="timeSlot"
+                onChange={handleHourChange}
+                value={selectedHour}
+                className="select-no-arrow"
+              >
+                <option value="">Sélectionnez un créneau</option>
+                {[
+                  8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14,
+                  14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5,
+                ].map((startHour) => {
+                  const endHour = startHour + 0.5;
+                  const formattedStartHour = Math.floor(startHour);
+                  const formattedEndHour = Math.floor(endHour);
+                  const startMinute = startHour % 1 === 0 ? "00" : "30";
+                  const endMinute = endHour % 1 === 0 ? "00" : "30";
+
+                  const formattedOption = `${formattedStartHour}:${startMinute} - ${formattedEndHour}:${endMinute}`;
+
+                  return (
+                    <option
+                      key={startHour}
+                      value={`${formattedStartHour}:${startMinute}`}
+                    >
+                      {formattedOption}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+            {reservationDateTime && selectedHour && (
+              <div>
+                <button
+                  type="button"
+                  className="button-validation-calendar"
+                  onClick={handleValidation}
+                >
+                  Validez
+                </button>
+              </div>
+            )}
+            {isFormValidated && (
+              <div className="background-modal-validation-reservation">
+                <div className="modal-validation-reservation">
+                  <div className="reservation-price">
+                    {reservationDateTime && (
+                      <>
+                        Vous avez choisi de réserver une borne{" "}
+                        <strong>{station.nom_enseigne}</strong> le{" "}
+                        <strong>{formatDate(reservationDateTime)} à </strong>
+                        <strong>
+                          <strong>{selectedHour}</strong>
+                        </strong>{" "}
+                        pour une durée de 30 min, votre montant est de{" "}
+                        <strong>{price}</strong> €.
+                      </>
+                    )}
+                  </div>
+                  <div className="reservation-button">
+                    <button
+                      type="button"
+                      className="validation-reservation-button"
+                      onClick={() => handleReservation(station.id)}
+                    >
+                      Réservez et Payez
+                    </button>
+                    <button
+                      type="button"
+                      className="cancellation-reservation-button"
+                      onClick={handleCancellation}
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

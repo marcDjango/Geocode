@@ -12,12 +12,12 @@
   .picture-car {
     position: absolute;
     top: -30px;
-    right: 20px;
+    right: -110px;
     height: 150px;
-    width: 150px;
-    background-image: url("../../assets/carspicture/audi-e-tron-55-quattro-408-ch_001-removebg-preview.png");
+    width: 350px;
+    background-image: url("../../assets/imagesvoitures/default.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
   }
   .part-user {
     display: flex;
