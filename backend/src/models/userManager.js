@@ -28,6 +28,16 @@ class UserManager extends AbstractManager {
     return row[0];
   }
 
+  async readUserIsAdmin(id) {
+    // Performing a database query to select a record with the given ID
+    const [row] = await this.database.query(
+      `select is_admin from ${this.table} where id = ?`,
+      [id]
+    );
+    // Returning the first row (assuming there is only one result)
+    return row[0];
+  }
+
   async readByEmail(email) {
     const [rows] = await this.database.query(
       `select * from ${this.table} where email = ?`,

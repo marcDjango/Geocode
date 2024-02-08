@@ -6,6 +6,7 @@ import User from "../assets/images/fa-solid_users.svg";
 import Setting from "../assets/images/ion_settings.svg";
 import Logout from "../assets/images/solar_logout-2-bold.svg";
 import Calender from "../assets/images/uis_schedule.svg";
+import Home from "../assets/images/clarity_home-solid.png";
 import "./AdminLayout.scss";
 
 function AdminLayout() {
@@ -68,10 +69,15 @@ function AdminLayout() {
                     <p className="text-link">Options</p>
                   </Link>
                 </li>
+                <li className="menu-navigation-link">
+                  <img className="icon-link" src={Home} alt="icon-link" />
+                  <Link className="navigation-link" to="/">
+                    <p className="text-link">Aller vers le site</p>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
-
           <div className="bottom-side-menu">
             <div className="footer-side-menu">
               <Link className="logout-link" to="/logout">

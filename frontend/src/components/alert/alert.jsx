@@ -36,8 +36,8 @@ function Alert({ errors, submit }) {
                     <span className="sr-only">Close</span>
                   </button>
                   <i className="start-icon far fa-check-circle faa-tada animated" />
-                  <strong className="font__weight-semibold">Well done!</strong>{" "}
-                  You successfullyread this important.
+                  <strong className="font__weight-semibold">Bien Joué!</strong>{" "}
+                  Votre formulaire a été envoyé avec succès !
                 </div>
               </div>
             )}

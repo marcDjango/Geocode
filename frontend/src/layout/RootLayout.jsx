@@ -7,10 +7,7 @@ import "../reset.css";
 
 function RootLayout() {
   const { auth } = useCurrentUserContext();
-
-  const userItem = JSON.parse(localStorage.getItem("user"));
   console.info(auth);
-  console.info(userItem);
   return (
     <div>
       <header style={{ position: "relative" }}>

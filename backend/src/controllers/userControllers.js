@@ -23,6 +23,18 @@ const read = async (req, res, next) => {
     next(error);
   }
 };
+const readIsAdmin = async (req, res, next) => {
+  try {
+    const user = await tables.user.readUserIsAdmin(req.params.id);
+    if (!user) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(user);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
 
 const readByEmailAndPassToNext = async (req, res, next) => {
   try {
@@ -98,6 +110,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
   browse,
   read,
+  readIsAdmin,
   readByEmailAndPassToNext,
   edit,
   editUser,
