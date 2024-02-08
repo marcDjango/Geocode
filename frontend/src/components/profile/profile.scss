@@ -134,14 +134,32 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
-        input {
+        color: white;
+        .modyfy-inputs {
           width: 70%;
+          height: 6vh;
           margin: 0 auto;
           border: 1px solid #10fffe;
           background: black;
           color: white;
           padding: 8px 12px;
           border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+
+          input {
+            color: white;
+            margin: 0;
+            padding: 0;
+            width: 70%;
+            background: transparent;
+            border: none;
+          }
+          img {
+            width: 30px;
+          }
         }
         button {
           padding: 8px 12px;

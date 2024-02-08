@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import croix from "../../../assets/croix.svg";
+import hidden from "../../../assets/hiddem.svg";
+import show from "../../../assets/show.svg";
 
 function ModyfyUser({ setModal, userData }) {
   const navigate = useNavigate();
@@ -9,6 +11,11 @@ function ModyfyUser({ setModal, userData }) {
   const data = JSON.parse(localStorage.getItem("user"));
   const [changePassword, setChangePassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState([]);
+  const [showPassword, setShowPassword] = useState({
+    password: true,
+    passwordActuel: true,
+    confirmPassword: true,
+  });
   const [newData, setNewData] = useState({
     email: userData.email,
     postal_code: userData.postal_code,
@@ -86,6 +93,7 @@ function ModyfyUser({ setModal, userData }) {
         </button>
         <div className="modyfy-user-modal-inputs">
           <input
+            className="modyfy-inputs"
             type="text"
             placeholder="Adresse email"
             value={newData.email}
@@ -93,6 +101,7 @@ function ModyfyUser({ setModal, userData }) {
           />
 
           <input
+            className="modyfy-inputs"
             type="text"
             placeholder="Code postal"
             value={newData.postal_code}
@@ -102,26 +111,44 @@ function ModyfyUser({ setModal, userData }) {
           />
 
           <input
+            className="modyfy-inputs"
             type="text"
             placeholder="Ville"
             value={newData.city}
             onChange={(e) => setNewData({ ...newData, city: e.target.value })}
           />
           <input
+            className="modyfy-inputs"
             type="text"
             placeholder="Nombre de Véhicule"
             value={newData.number_vehicles}
             onChange={(e) => handlerChangeNumberVehicles(e)}
           />
+          <div className="modyfy-inputs">
+            <input
+              type={showPassword.passwordActuel ? "password" : "text"}
+              placeholder="Mot de passe actuel"
+              value={newData.passwordActuel}
+              onChange={(e) =>
+                setNewData({ ...newData, passwordActuel: e.target.value })
+              }
+            />
+            <button
+              type="button"
+              onClick={() =>
+                setShowPassword({
+                  ...showPassword,
+                  passwordActuel: !showPassword.passwordActuel,
+                })
+              }
+            >
+              <img
+                src={showPassword.passwordActuel ? hidden : show}
+                alt="show"
+              />
+            </button>
+          </div>
 
-          <input
-            type="text"
-            placeholder="Mot de passe actuel"
-            value={newData.passwordActuel}
-            onChange={(e) =>
-              setNewData({ ...newData, passwordActuel: e.target.value })
-            }
-          />
           <button
             type="button"
             onClick={() => setChangePassword(!changePassword)}
@@ -129,27 +156,56 @@ function ModyfyUser({ setModal, userData }) {
             Changer le mot de passe
           </button>
           {changePassword && (
-            <input
-              type="text"
-              placeholder="Nouveau mot de passe"
-              value={newData.password}
-              onChange={(e) =>
-                setNewData({ ...newData, password: e.target.value })
-              }
-            />
+            <div className="modyfy-inputs">
+              <input
+                type={showPassword.password ? "password" : "text"}
+                placeholder="Nouveau mot de passe"
+                value={newData.password}
+                onChange={(e) =>
+                  setNewData({ ...newData, password: e.target.value })
+                }
+              />
+              <button
+                type="button"
+                onClick={() =>
+                  setShowPassword({
+                    ...showPassword,
+                    password: !showPassword.password,
+                  })
+                }
+              >
+                <img src={showPassword.password ? hidden : show} alt="show" />
+              </button>
+            </div>
           )}
           {changePassword && (
-            <input
-              type="text"
-              placeholder="Confirmer le mot de passe"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              style={
-                confirmPassword === newData.password
-                  ? { color: " green" }
-                  : { color: "red" }
-              }
-            />
+            <div className="modyfy-inputs">
+              <input
+                type={showPassword.confirmPassword ? "password" : "text"}
+                placeholder="Confirmer le mot de passe"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                style={
+                  confirmPassword === newData.password
+                    ? { color: " green" }
+                    : { color: "red" }
+                }
+              />
+              <button
+                type="button"
+                onClick={() =>
+                  setShowPassword({
+                    ...showPassword,
+                    confirmPassword: !showPassword.confirmPassword,
+                  })
+                }
+              >
+                <img
+                  src={showPassword.confirmPassword ? hidden : show}
+                  alt="show"
+                />
+              </button>
+            </div>
           )}
         </div>
 
