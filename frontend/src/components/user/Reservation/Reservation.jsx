@@ -21,7 +21,7 @@ function Reservation({ station, handleCloseReservationModal }) {
   const token = localStorage.getItem("token");
   const payload = JSON.parse(localStorage.getItem("user"));
   const [isFormValidated, setIsFormValidated] = useState(false);
-  const tarification = station.tarification !== "" ? station.tarification : 0;
+  const price = 5;
 
   const uploadReservation = async (chargingStation) => {
     try {
@@ -40,7 +40,7 @@ function Reservation({ station, handleCloseReservationModal }) {
           user_id: payload.id,
           reservation_date: formattedDate,
           reservation_heure: selectedHour,
-          amount_paid: tarification,
+          amount_paid: price,
         }),
         headers: {
           "Content-Type": "application/json",
@@ -93,6 +93,15 @@ function Reservation({ station, handleCloseReservationModal }) {
     setIsFormValidated(false);
   };
 
+  const changeCharacter = {
+    "â‚¬": "cts",
+  };
+
+  const tarificationWithReplacement = station.tarification.replace(
+    new RegExp(Object.keys(changeCharacter).join("|"), "g"),
+    (replace) => changeCharacter[replace]
+  );
+
   return (
     <div className="reservation-modal">
       <div className="reservation-main">
@@ -136,7 +145,7 @@ function Reservation({ station, handleCloseReservationModal }) {
             </div>
           </div>
           <div className="informations-plug">
-            <h3>Type de prises disponibles :</h3>
+            <h3>Type de prises :</h3>
             <div>
               <img src={priseEf} alt="Type EF" /> Prise Ef :{" "}
               {station.prise_type_ef === "TRUE" ? "Oui" : "Non"}
@@ -159,7 +168,13 @@ function Reservation({ station, handleCloseReservationModal }) {
             </div>
           </div>
           <div className="informations-price">
-            Tarifs : {station.tarification}€
+            Coût en électricité de la borne de recharge :{" "}
+            {station.tarification === ""
+              ? "Pas d'informations de la part de l'enseigne."
+              : `Coût de l'énergie : ${tarificationWithReplacement}€`}
+          </div>
+          <div className="informations-price-reservation">
+            Tarif de réservation : {price}€
           </div>
         </div>
         <div className="reservation-validation">
@@ -225,7 +240,7 @@ function Reservation({ station, handleCloseReservationModal }) {
                         <strong>{selectedHour}</strong>
                       </strong>{" "}
                       pour une durée de 30 min, votre montant est de{" "}
-                      <strong>{tarification}</strong> €.
+                      <strong>{price}</strong> €.
                     </>
                   )}
                 </div>

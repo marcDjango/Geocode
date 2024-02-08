@@ -103,7 +103,7 @@ function Modal(props) {
         <div className="part-rate-charging-station">
           <h3>Tarifs</h3>
           {station.tarification === ""
-            ? "Pas d'informations"
+            ? "Pas d'informations de la part de l'enseigne."
             : `Coût de l'énergie : ${tarificationWithReplacement}`}
         </div>
         <div className="part-information-charging-station">
@@ -116,7 +116,7 @@ function Modal(props) {
           <button
             type="button"
             className="button-reservation"
-            disabled={!token || station.reservation !== "TRUE"}
+            disabled={!token}
             onClick={() => {
               onReservationButtonClick();
             }}

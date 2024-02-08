@@ -94,6 +94,7 @@
         h3 {
           text-align: center;
           font-weight: 700;
+          margin-bottom: 6px;
         }
 
         div {
@@ -105,6 +106,10 @@
       .informations-price {
         font-size: 16px;
       }
+
+      .informations-price-reservation {
+        font-size: 16px;
+      }
     }
     .reservation-validation {
       display: flex;
@@ -113,8 +118,8 @@
       position: relative;
       border-radius: 10px;
       background: rgba(217, 217, 217, 0.7);
-      gap: 1rem;
       padding: 1rem;
+      height: 100%;
 
       .validation-title {
         h2 {
@@ -150,6 +155,7 @@
       }
 
       .button-validation-calendar {
+        margin: 8px;
         padding: 8px;
         padding-left: 16px;
         padding-right: 16px;
