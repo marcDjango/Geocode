@@ -63,7 +63,6 @@ function Map() {
   const [selectedStation, setSelectedStation] = useState(null);
   const [isReservationButtonClicked, setIsReservationButtonClicked] =
     useState(false);
-
   // Fonction pour récupérer les stations de recharge depuis le backend
   const fetchChargingStations = useCallback(async () => {
     try {
