@@ -62,16 +62,9 @@ router.post(
   userControllers.readByEmailAndPassToNext,
   verifyPassword
 );
-router.put(
-  "/users/:id",
-  verifyToken,
-  validateUser,
-  hashPassword,
-  userControllers.edit
-);
+router.put("/users/:id", verifyToken, validateUser, userControllers.edit);
 router.put(
   "/loggedusers/:id",
-
   verifyPasswordActual,
   hashPassword,
   missingElements,
