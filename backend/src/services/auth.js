@@ -48,7 +48,7 @@ const verifyPassword = async (req, res, next) => {
       sub: req.user,
     };
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    const token = jwt.sign(payload, process.env.APP_SECRET, {
       expiresIn: 24 * 60 * 60,
     });
 
@@ -73,7 +73,7 @@ const verifyToken = async (req, res, next) => {
       throw new Error("Authorization header has not the 'Bearer' type");
     }
 
-    req.payload = jwt.verify(token, process.env.JWT_SECRET);
+    req.payload = jwt.verify(token, process.env.APP_SECRET);
 
     delete req.payload.sub.hashed_password;
 
@@ -99,7 +99,7 @@ const verifyTokenValid = (req, res, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.APP_SECRET);
 
     // Vérifier si la date d'expiration est valide
     const currentTime = Math.floor(Date.now() / 1000);
