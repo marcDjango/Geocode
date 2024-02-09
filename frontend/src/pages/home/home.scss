@@ -14,7 +14,14 @@
 
   .main-image-home {
     position: absolute;
-    top: 25%;
+    top: -100%; /* Déplacez l'élément vers le haut pour qu'il ne soit pas visible initialement */
+    transition: top 1s ease-in-out; /* Ajoutez une transition sur la propriété top */
+  }
+
+  .loaded .main-image-home {
+    top: 28%; /* Position finale de l'élément */
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .home-btn {

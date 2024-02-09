@@ -82,7 +82,7 @@
     margin-block: 1rem;
     width: 220px;
     height: 43px;
-    font-family: sans-serif;
+    font-family: var(--geo-font);
     font-size: 18px;
     font-weight: 600;
     font-size: 16px;
@@ -96,7 +96,7 @@
     color: #000;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     text-decoration: none;
-    font-family: Inter;
+    font-family: var(--geo-font);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -109,14 +109,14 @@
     margin-top: -1rem;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     text-decoration: none;
-    font-family: sans-serif;
+    font-family: var(--geo-font);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
   }
   .login-button-signup {
-    font-family: sans-serif;
+    font-family: var(--geo-font);
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;

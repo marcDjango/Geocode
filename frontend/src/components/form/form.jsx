@@ -44,7 +44,7 @@ function Form({
           )
         )}
         {action && (
-          <Link className="login-link-password" to="/sinscire">
+          <Link className="login-link-password" to="/">
             Mot de passe oublié?
           </Link>
         )}
