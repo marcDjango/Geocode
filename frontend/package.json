@@ -35,12 +35,20 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-react": "^7.33.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.2",
     "prettier": "^3.0.0",
     "sass": "^1.69.7",
     "vite": "^4.4.7"
   },
-  "lint-staged": {
-    "*.{html,scss,css}": "prettier --check",
-    "*.{jsx,js}": "eslint"
-  }
+    "lint-staged": {
+      "*.scss": [
+        "prettier --write",
+        "git add"
+      ],
+      "*.{js,jsx}": [
+        "eslint --fix",
+        "git add"
+      ]
+    }
 }

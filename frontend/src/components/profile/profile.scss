@@ -241,7 +241,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 130vh;
+  height: 1500px;
   z-index: 10002;
   backdrop-filter: blur(1.5px);
   background-color: rgba(255, 255, 255, 0.162);
@@ -249,10 +249,10 @@
   .add-car-modal,
   .modify-car-modal,
   .modyfy-user-modal {
-    position: relative;
+    position: sticky;
     background-image: url("../../assets/images/bckground.jpg");
     width: 100%;
-    height: 100dvh;
+    height: 100px;
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
@@ -369,17 +369,23 @@
     }
   }
 }
+
+//******************************** Desktop **************************************** //
+
 @media screen and (min-width: 768px) {
   .add-car-modal,
   .modify-car-modal,
   .modyfy-user-modal {
+    position: relative;
     width: 40%;
     max-width: 450px;
+    height: 150%;
   }
 
   .profile {
+    position: relative;
     width: 100%;
-    height: 1100px;
+    height: 200%;
     background-image: url("../../assets/images/bckground.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -437,7 +443,7 @@
       flex-wrap: wrap;
       margin-inline: auto;
       width: 770px;
-      height: 450px;
+      height: 100%;
 
       .card-profile {
         width: 370px;
@@ -584,6 +590,7 @@
         min-height: 250px;
       }
     }
+
     .add-car,
     .modify-car,
     .modyfy-user {
@@ -591,7 +598,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 130vh;
+      height: 100%;
       z-index: 10002;
       backdrop-filter: blur(1.5px);
       background-color: rgba(255, 255, 255, 0.162);
@@ -601,8 +608,9 @@
       .modyfy-user-modal {
         position: relative;
         background-image: url("../../assets/images/bckground.jpg");
-        width: 100%;
-        height: 100dvh;
+        width: 40%;
+        max-width: 450px;
+        height: 100%;
         background-repeat: no-repeat;
         background-size: cover;
         color: white;

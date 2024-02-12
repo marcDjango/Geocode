@@ -56,7 +56,6 @@ function Profile() {
           <Link to="/admin">Tableau de Bord</Link>
         </div>
       )}
-
       <div className="df-row">
         <CardProfile />
         <CardPlug />
