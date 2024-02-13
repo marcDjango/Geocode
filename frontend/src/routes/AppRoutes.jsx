@@ -22,7 +22,6 @@ import Delete from "../pages/admin/ActionAdmin/delete";
 import ReservationManagement, {
   fetchDataReservation,
 } from "../pages/admin/ReservationManagement";
-import CardProfile from "../components/user-dashboard/profile/CardProfile";
 
 const AppRoutes = createBrowserRouter(
   createRoutesFromElements(
@@ -30,7 +29,6 @@ const AppRoutes = createBrowserRouter(
       {/* routes pour l'utilisateur ou visiteur  */}
       <Route element={<RootLayout />} path="/" id="rootlayout">
         <Route index element={<Home />} path="/" />
-        <Route index element={<CardProfile />} path="/test" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<Logout />} path="/logout" />
         <Route element={<Map />} path="/map" loader={getUserLocation} />
