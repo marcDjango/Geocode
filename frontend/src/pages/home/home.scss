@@ -30,10 +30,11 @@
     border-radius: 25px;
     border: 2px solid #10fffe;
     background-color: rgba(40, 49, 49, 1);
-    box-shadow: 0px 2px 8px 0px #10fffe;
+    box-shadow: 0px 4px 8px 0px #10fffe;
     cursor: pointer;
     color: white;
-    font-size: clamp(18px, 2.8vw, 32px);
+    font-family: var(--geo-font);
+    font-size: clamp(18px, 2.8vw, 26px);
     display: flex;
     align-items: center;
     justify-content: center;

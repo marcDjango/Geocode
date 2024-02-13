@@ -63,18 +63,39 @@
         top: 48%;
         left: 20px;
         height: 36px;
-        font-family: sans-serif;
+        font-family: var(--geo-font);
         font-size: clamp(1rem, 2vw, 1.5rem);
       }
     }
+  }
+  .df-row-navigation {
+    display: flex;
+    height: 100%;
+    margin: -2rem auto;
+    align-items: center;
+    padding: 0.5rem;
+    .icon-link {
+      width: 30px;
+    }
+    .text-link {
+      padding-left: 0.5rem;
+      text-decoration: none;
+      color: white;
+    }
+  }
+  .df-row-navigation:hover {
+    border-radius: 10px;
+    border: 1px solid #10fffe;
   }
   .df-row {
     display: flex;
     flex-wrap: wrap;
     margin-inline: auto;
+    margin-top: -0.5rem;
     width: 100%;
     height: 100%;
     gap: 1rem;
+    padding-block: 1rem;
 
     .card-profile {
       border: 1px solid #465454;
@@ -82,7 +103,7 @@
       max-height: 100%;
       background-color: rgba(40, 49, 49, 1);
       margin: 0 auto;
-      padding: 8px 3%;
+      padding: 8px 1%;
       border-radius: 10px;
 
       button {
@@ -106,6 +127,7 @@
           h1 {
             color: white;
             margin: auto 0;
+            font-family: var(--geo-font);
             font-size: clamp(1rem, 3vw, 2rem);
           }
           .card-profile-header-button {
@@ -130,14 +152,17 @@
         display: flex;
         flex-direction: column;
         margin: 1rem;
-        min-height: 100px;
+        margin-top: 0;
+        height: 100%;
+        padding-bottom: 1rem;
 
         .cart-content-up {
+          position: relative;
           height: 100px;
           width: 100%;
           display: flex;
           flex-direction: row;
-          gap: 1rem;
+          gap: 0.5rem;
 
           .car-profil-user-fond {
             position: relative;
@@ -188,7 +213,7 @@
           flex-direction: column;
           align-items: end;
           font-size: 18px;
-          gap: 1rem;
+          gap: 0.7rem;
 
           li {
             text-align: end;
@@ -211,20 +236,34 @@
             padding: 8px 12px;
             border-radius: 8px;
           }
-          button {
+          .btn-change-password {
             padding: 8px 12px;
             color: #10fffe;
             transition: ease-in-out 0.3s;
           }
-          button:hover {
+          .btn-change-password:hover {
             scale: 1.2;
+          }
+          .modyfy-inputs-password {
+            position: relative;
+            display: flex;
+            width: 100%;
+
+            button {
+              padding: 0;
+              img {
+                width: 25px;
+                position: absolute;
+                top: 15%;
+                left: 75%;
+                cursor: pointer;
+              }
+            }
           }
         }
         .modyfy-user-modal-button {
-          position: absolute;
-          top: 80vh;
-          left: 50%;
-          transform: translateX(-50%);
+          position: relative;
+          margin-top: 2rem;
         }
       }
     }
@@ -241,7 +280,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 1500px;
+  height: 200%;
   z-index: 10002;
   backdrop-filter: blur(1.5px);
   background-color: rgba(255, 255, 255, 0.162);
@@ -249,15 +288,17 @@
   .add-car-modal,
   .modify-car-modal,
   .modyfy-user-modal {
-    position: sticky;
+    position: relative;
     background-image: url("../../assets/images/bckground.jpg");
     width: 100%;
-    height: 100px;
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
     animation: slide 1s ease-in-out;
     .add-car-modal-close {
+      position: relative;
+      left: 85%;
       margin: 20px;
     }
     section {
@@ -326,7 +367,6 @@
     .delete-car-modal-content {
       width: 100%;
       display: flex;
-      // gap: 100px;
 
       .delete-car-modal-content-text {
         display: flex;
@@ -370,23 +410,13 @@
   }
 }
 
+//********************************************************************************* //
 //******************************** Desktop **************************************** //
+//********************************************************************************* //
 
 @media screen and (min-width: 768px) {
-  .add-car-modal,
-  .modify-car-modal,
-  .modyfy-user-modal {
-    position: relative;
-    width: 40%;
-    max-width: 450px;
-    height: 150%;
-  }
-
   .profile {
     position: relative;
-    width: 100%;
-    height: 200%;
-    background-image: url("../../assets/images/bckground.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -413,8 +443,7 @@
           right: -60%;
           height: 140px;
           max-width: 290px;
-          background-image: url("../../assets/imagesvoitures/audi-e-tron-gt-476.png");
-          background-repeat: no-repeat;
+
           background-size: contain;
         }
         .profile-garage-contain-title {
@@ -423,8 +452,8 @@
             left: 5%;
             width: 500px;
             height: 40px;
-            font-family: sans-serif;
-            font-size: clamp(1rem, 5vw, 1.5rem);
+            font-family: var(--geo-font);
+            font-size: clamp(1rem, 3vw, 1.5rem);
           }
           p {
             position: absolute;
@@ -432,16 +461,18 @@
             left: 5%;
             width: 500px;
             height: 50px;
-            font-family: sans-serif;
+            font-family: var(--geo-font);
             font-size: clamp(1rem, 5vw, 1.5rem);
           }
         }
       }
     }
+
     .df-row {
       display: flex;
       flex-wrap: wrap;
       margin-inline: auto;
+      justify-content: space-between;
       width: 770px;
       height: 100%;
 
@@ -468,7 +499,7 @@
             h1 {
               color: white;
               margin: auto 0;
-              font-size: clamp(1rem, 3vw, 2rem);
+              font-size: clamp(1rem, 3vw, 1.5rem);
             }
             .card-profile-header-button {
               img {
@@ -551,6 +582,7 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
+            font-family: var(--geo-font);
             font-size: clamp(0.5rem, 2vw, 1.4rem);
           }
         }
@@ -558,6 +590,7 @@
           .modyfy-user-modal-inputs {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 20px;
             input {
               width: 70%;
@@ -568,20 +601,6 @@
               padding: 8px 12px;
               border-radius: 8px;
             }
-            button {
-              padding: 8px 12px;
-              color: #10fffe;
-              transition: ease-in-out 0.3s;
-            }
-            button:hover {
-              scale: 1.2;
-            }
-          }
-          .modyfy-user-modal-button {
-            position: absolute;
-            top: 80vh;
-            left: 50%;
-            transform: translateX(-50%);
           }
         }
       }
@@ -633,7 +652,6 @@
           }
           .proposition {
             color: white;
-
             margin-left: 16px;
             height: 18.5px;
           }
@@ -711,13 +729,7 @@
   0% {
     left: -100%;
   }
-  94% {
-    left: 0;
-  }
-  98% {
-    width: 110%;
-  }
   to {
-    width: 100%;
+    left: 0;
   }
 }

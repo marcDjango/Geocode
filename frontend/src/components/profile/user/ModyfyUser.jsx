@@ -124,7 +124,7 @@ function ModyfyUser({ setModal, userData }) {
             value={newData.number_vehicles}
             onChange={(e) => handlerChangeNumberVehicles(e)}
           />
-          <div className="modyfy-inputs">
+          <div className="modyfy-inputs-password">
             <input
               type={showPassword.passwordActuel ? "password" : "text"}
               placeholder="Mot de passe actuel"
@@ -151,12 +151,13 @@ function ModyfyUser({ setModal, userData }) {
 
           <button
             type="button"
+            className="btn-change-password"
             onClick={() => setChangePassword(!changePassword)}
           >
             Changer le mot de passe
           </button>
           {changePassword && (
-            <div className="modyfy-inputs">
+            <div className="modyfy-inputs-password">
               <input
                 type={showPassword.password ? "password" : "text"}
                 placeholder="Nouveau mot de passe"
@@ -179,7 +180,7 @@ function ModyfyUser({ setModal, userData }) {
             </div>
           )}
           {changePassword && (
-            <div className="modyfy-inputs">
+            <div className="modyfy-inputs-password">
               <input
                 type={showPassword.confirmPassword ? "password" : "text"}
                 placeholder="Confirmer le mot de passe"

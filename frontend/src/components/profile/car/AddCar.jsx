@@ -129,7 +129,7 @@ function AddCar({ state, dataProps }) {
           <img src={croix} alt="close" />
         </button>
         <section>
-          <h2>TEXT</h2>
+          <h2>Modifier votre voiture</h2>
           <div>
             <label htmlFor="marque">Marque :</label>
             <input

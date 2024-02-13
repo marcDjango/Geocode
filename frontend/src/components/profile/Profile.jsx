@@ -3,6 +3,7 @@ import CardProfile from "./user/CardProfile";
 import CardCar from "./car/CardCar";
 import CardPlug from "./CardPlug";
 import Home from "../../assets/images/clarity_home-solid.png";
+import Logout from "../../assets/images/solar_logout-2-bold.svg";
 import { fetchDataUsers } from "../../services/authVerify";
 import "./profile.scss";
 
@@ -51,9 +52,23 @@ function Profile() {
         </div>
       </section>
       {dataCars.user.is_admin === 1 && (
-        <div className="row">
-          <img className="icon-link" src={Home} alt="icon-link" />
-          <Link to="/admin">Tableau de Bord</Link>
+        <div className="df-row">
+          <div className="df-row-navigation">
+            <Link className="text-link" to="/admin">
+              <img className="icon-link" src={Home} alt="icon-link" />
+            </Link>
+            <Link className="text-link" to="/admin">
+              Tableau de Bord
+            </Link>
+          </div>
+          <div className="df-row-navigation">
+            <Link to="/logout">
+              <img className="icon-link" src={Logout} alt="" />
+            </Link>
+            <Link to="/logout">
+              <p className="text-link">Se déconnecter</p>
+            </Link>
+          </div>
         </div>
       )}
       <div className="df-row">

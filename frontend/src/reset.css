@@ -97,7 +97,7 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font-family: sans-serif;
+  font-family: var(--geo-font);
   font: inherit;
   vertical-align: baseline;
 }
@@ -170,10 +170,10 @@ button {
   outline: none;
   border: none;
   background: none;
-  font-family: sans-serif;
+  font-family: var(--geo-font);
 }
 input {
   outline: none;
-  font-family: sans-serif;
+  font-family: var(--geo-font);
 }
 
