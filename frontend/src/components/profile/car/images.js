@@ -6,7 +6,9 @@ const images = {
   ),
   MINI: import("../../../assets/imagesvoitures/mini-cooper-se-184ch.png"),
   FIAT: import("../../../assets/imagesvoitures/fiat-500-e-95.png"),
-  AUDI: import("../../../assets/imagesvoitures/audi-e-tron-gt-476.png"),
+  AUDI: import(
+    "../../../assets/imagesvoitures/audi-e-tron-gt-476-ch-quattro_001.png"
+  ),
   addCar: import("../../../assets/add_car.svg"),
   default: import("../../../assets/imagesvoitures/default.png"),
 };
