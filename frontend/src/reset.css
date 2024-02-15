@@ -97,8 +97,8 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font-family: var(--geo-font);
   font: inherit;
+  font-family: var(--geo-font);
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */

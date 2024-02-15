@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { redirect } from "react-router-dom";
 import line from "../../assets/Line.svg";
-import flachBase from "../../assets/flachBase.svg";
-import flachHaute from "../../assets/flachHaute.svg";
 import chargingImage from "../../assets/guidance_charging-station.svg";
+import ExpandableCardToggleButton from "../Buttons/ExpandableCardToggleButton";
 
 function CardPlug() {
   const [show, setShow] = useState(false);
@@ -69,17 +68,7 @@ function CardPlug() {
     <div className="card-profile">
       <div className="card-profile-header">
         <div className="card-profile-button-title">
-          <button
-            type="button"
-            className="card-profile-header-button"
-            onClick={() => reservation.length > 0 && setShow(!show)}
-          >
-            {show ? (
-              <img src={flachHaute} alt="flach" />
-            ) : (
-              <img src={flachBase} alt="flach" />
-            )}
-          </button>
+          <ExpandableCardToggleButton setIsExpandable={setShow} />
           <h1>Réservation</h1>
         </div>
 

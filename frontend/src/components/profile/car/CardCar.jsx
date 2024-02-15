@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import AddCar from "./AddCar";
 import ModifyCar from "./ModifyCar";
-import flachBase from "../../../assets/flachBase.svg";
-import flachHaute from "../../../assets/flachHaute.svg";
 import line from "../../../assets/Line.svg";
 import stylo from "../../../assets/stylo.svg";
 import addCar from "../../../assets/add_car.svg";
 import croix from "../../../assets/croix.svg";
 import images from "./images";
+import ExpandableCardToggleButton from "../../Buttons/ExpandableCardToggleButton";
 
 function CardCar() {
   const [modalCar, setModalCar] = useState(false);
@@ -42,17 +41,7 @@ function CardCar() {
     >
       <div className="card-profile-header">
         <div className="card-profile-button-title">
-          <button
-            type="button"
-            className="card-profile-header-button"
-            onClick={() => setShow(!show)}
-          >
-            {show ? (
-              <img src={flachHaute} alt="flach" />
-            ) : (
-              <img src={flachBase} alt="flach" />
-            )}
-          </button>
+          <ExpandableCardToggleButton setIsExpandable={setShow} />
 
           <h1>Véhicule</h1>
         </div>

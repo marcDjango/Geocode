@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import ModyfyUser from "./ModyfyUser";
-import flachBase from "../../../assets/flachBase.svg";
-import flachHaute from "../../../assets/flachHaute.svg";
 import line from "../../../assets/Line.svg";
 import profileImage from "../../../assets/images/profilImag.png";
 import stylo from "../../../assets/stylo.svg";
+import ExpandableCardToggleButton from "../../Buttons/ExpandableCardToggleButton";
 
 function CardProfile() {
   const [show, setShow] = useState(false);
@@ -76,18 +75,7 @@ function CardProfile() {
     <div className={show ? "card-profile-show card-profile" : "card-profile"}>
       <div className="card-profile-header">
         <div className="card-profile-button-title">
-          <button
-            type="button"
-            className="card-profile-header-button"
-            onClick={() => setShow(!show)}
-          >
-            {show ? (
-              <img src={flachHaute} alt="flach" />
-            ) : (
-              <img src={flachBase} alt="flach" />
-            )}
-          </button>
-
+          <ExpandableCardToggleButton setIsExpandable={setShow} />
           <h1>Profil</h1>
         </div>
 
