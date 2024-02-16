@@ -6,7 +6,7 @@ import line from "../../../assets/Line.svg";
 import stylo from "../../../assets/stylo.svg";
 import addCar from "../../../assets/add_car.svg";
 import croix from "../../../assets/croix.svg";
-import images from "./images";
+import imagesv from "./images";
 import ExpandableCardToggleButton from "../../Buttons/ExpandableCardToggleButton";
 
 function CardCar() {
@@ -18,13 +18,12 @@ function CardCar() {
   const dataProps = null;
 
   const [loadedImages, setLoadedImages] = useState({});
-
   useEffect(() => {
     const loadImages = async () => {
       const loaded = {};
       await Promise.all(
-        Object.keys(images).map(async (key) => {
-          loaded[key] = (await images[key]).default;
+        Object.keys(imagesv).map(async (key) => {
+          loaded[key] = (await imagesv[key]).default;
         })
       );
       setLoadedImages(loaded);

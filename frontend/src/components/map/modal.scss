@@ -12,9 +12,9 @@
   .picture-car {
     position: absolute;
     top: -30px;
-    right: -110px;
-    height: 150px;
-    width: 350px;
+    right: 10px;
+    height: 25%;
+    width: 50%;
     background-image: url("../../assets/imagesvoitures/default.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -29,7 +29,7 @@
   .part-charging-station {
     width: 100%;
     height: 100%;
-    padding: 16px;
+    padding: 1rem;
     padding-top: 30px;
     display: flex;
     flex-direction: column;
@@ -49,41 +49,33 @@
     }
 
     .part-two-charging-station {
-      padding: 8px;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       position: relative;
-      height: 40px;
+      height: 50px;
 
       .number-pdc {
         display: flex;
         gap: 8px;
         width: 160px;
-        height: 44px;
         justify-content: center;
         align-items: center;
         border-radius: 15px;
         background: var(--Color-2, #525b5a);
         color: white;
-        position: absolute;
-        top: 0;
-        left: 5%;
+        padding: 5px;
       }
 
       .timetables {
         display: flex;
         align-items: center;
-        width: 160px;
-        min-height: 44px;
-        gap: 8px;
         justify-content: center;
+        gap: 4px;
+        width: 200px;
+        padding: 5px;
         border-radius: 15px;
         background: var(--Color-2, #525b5a);
         color: white;
-        position: absolute;
-        top: 0;
-        left: 55%;
-        padding: 0px;
 
         button {
           cursor: pointer;
@@ -183,7 +175,9 @@
   .popup-charging-station {
     text-align: center;
     font-size: 14px;
-
+    .picture-car {
+      display: none;
+    }
     .part-charging-station {
       gap: 0px;
       padding-top: 0px;
@@ -192,15 +186,14 @@
       }
 
       .part-two-charging-station {
+        height: 100%;
+        width: 275px;
+        left: -12px;
         .number-pdc {
           width: 120px;
-          left: 0%;
-          height: 34px;
         }
         .timetables {
-          width: 120px;
-          left: 52%;
-          min-height: 34px;
+          width: 150px;
         }
       }
     }

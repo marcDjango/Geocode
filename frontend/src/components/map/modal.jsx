@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import "./modal.scss";
 import PropTypes from "prop-types";
 import priseType2 from "../../assets/Prise1.svg";
@@ -6,8 +6,8 @@ import priseEf from "../../assets/Prise2.svg";
 import priseChademo from "../../assets/Prise3.svg";
 import priseComboCcs from "../../assets/Prise4.svg";
 import priseAutre from "../../assets/Prise5.svg";
-import deplier from "../../assets/Deplier.svg";
-import replier from "../../assets/Replier.svg";
+// import deplier from "../../assets/Deplier.svg";
+// import replier from "../../assets/Replier.svg";
 import horloge from "../../assets/mdi_clock-outline.svg";
 import prise from "../../assets/lucide_plug.svg";
 
@@ -21,16 +21,16 @@ function Modal(props) {
     userLocation,
   } = props;
 
-  const [expanded, setExpanded] = useState(false);
+  // const [expanded, setExpanded] = useState(false);
   const token = JSON.parse(localStorage.getItem("user"));
 
-  const toggleExpansion = () => {
-    setExpanded(!expanded);
-  };
+  // const toggleExpansion = () => {
+  //   setExpanded(!expanded);
+  // };
 
-  const displayText = expanded
-    ? station.horaires
-    : `${station.horaires.slice(0, 25)}`;
+  // const displayText = expanded
+  //   ? station.horaires
+  //   : `${station.horaires.slice(0, 25)}`;
 
   const changeCharacter = {
     "â‚¬": "cts",
@@ -68,8 +68,8 @@ function Modal(props) {
           </div>
           <div className="timetables">
             <img src={horloge} alt="prise" />
-            Ouvert {displayText}
-            {station.horaires.length > 25 && (
+            Ouvert 24h/7
+            {/* {station.horaires.length > 25 && (
               <button
                 type="button"
                 className="fold-out-button"
@@ -80,7 +80,7 @@ function Modal(props) {
                   alt={expanded ? "Réduire" : "Voir plus"}
                 />
               </button>
-            )}
+            )} */}
           </div>
         </div>
         <div className="part-plug-charging-station">

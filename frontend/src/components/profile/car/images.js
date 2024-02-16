@@ -1,5 +1,5 @@
-// images.js
-const images = {
+// // images.js
+const imagesv = {
   TESLA: import("../../../assets/imagesvoitures/tesla-model-3.png"),
   PEUGEOT: import(
     "../../../assets/imagesvoitures/peugeot-e-208-electrique-50-kwh-136ch.png"
@@ -13,4 +13,4 @@ const images = {
   default: import("../../../assets/imagesvoitures/default.png"),
 };
 
-export default images;
+export default imagesv;
